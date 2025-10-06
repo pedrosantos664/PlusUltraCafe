@@ -174,9 +174,9 @@
         <div class="nav-right">
             {% if user.is_authenticated %}
             <div class="auth-buttons">
-                <span class="welcome-text">Olá, {{ user.first_name }}!</span>
+                <a href="{% url 'perfil' %}" class="welcome-text">Olá, {{ user.first_name }}!</span>
 
-                <a href="{% url 'logout' %}">Sair</a>
+                    <a href="{% url 'logout' %}">Sair</a>
             </div>
             {% else %}
             <div class="auth-buttons">
@@ -190,11 +190,17 @@
 
 
     <div class="products-container">
+        {% for produto in produtos %}
         <div class="product-card">
             <img src="{% static 'imagens/31078Medsker_SundayInBrooklyn_February_239.jpg' %}" alt="Produto 1">
-            <div class="product-name">Produto 1</div>
-            <div class="product-price">R$ 19,90</div>
+            <div class="product-name">{{ produto.nome }}</div>
+            <div class="product-price">R$R$ {{ produto.preco }}</div>
         </div>
+        {% empty %}
+        {% comment %} Se a lista de produtos estiver vazia, mostra esta mensagem. {% endcomment %}
+        <p style="color: white;">Nenhum produto cadastrado.</p>
+        {% endfor %}
+        {% comment %} Fim do loop {% endcomment %}
 
         <div class="product-card">
             <img src="{% static 'imagens/38407Medsker_SundayInBrooklyn_Fall_014.jpg' %}" alt="Produto 2">
@@ -275,6 +281,9 @@
             <div class="product-price">R$ 40,00</div>
         </div>
     </div>
+
+
+
 
 
 
