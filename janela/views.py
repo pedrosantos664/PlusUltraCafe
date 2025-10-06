@@ -9,6 +9,9 @@ from django.views.decorators.csrf import csrf_exempt
 def index(request):
     return render(request, "janela/index.html")
 
+def perfil(request):
+    return render(request, "janela/perfil.html")
+
 def products(request):
     return render(request, "janela/products.html")
 

@@ -10,5 +10,6 @@ urlpatterns = [
     path('registro/', views.registro, name='registro'),
     path('products/', views.products, name='products'),
     path('contact/', views.contact, name='contact'),
+    path('perfil/', views.perfil, name='perfil'),
    
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
