@@ -4,10 +4,15 @@ from django.contrib import messages
 from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
 from django.views.decorators.csrf import csrf_exempt
+from django.shortcuts import render
+from .models import Produto
 
 @csrf_exempt
 def index(request):
     return render(request, "janela/index.html")
+
+def perfil(request):
+    return render(request, "janela/perfil.html")
 
 def products(request):
     return render(request, "janela/products.html")
@@ -86,6 +91,28 @@ def logout_view(request):
     logout(request)
     messages.success(request, 'Você saiu com sucesso!')
     return redirect('index')
+
+def ver_carrinho(request):
+    # Acessa o carrinho do usuário e todos os seus itens associados
+    carrinho = request.user.carrinho
+    itens_do_carrinho = carrinho.itens.all() # Usamos o related_name 'itens'
+    
+    # O total é calculado pela propriedade no modelo Carrinho
+    total_do_carrinho = carrinho.total
+
+    context = {
+        'itens': itens_do_carrinho,
+        'total': total_do_carrinho,
+    }
+    return render(request, 'janela/perfil.html', context)
+
+
+def ver_produtos(request):
+    lista_de_produtos = Produto.objects.all()
+    contexto = {
+        'produtos': lista_de_produtos
+    }
+    return render(request, 'janela/products.html', contexto)
 
 
 @login_required

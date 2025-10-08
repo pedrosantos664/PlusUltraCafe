@@ -216,8 +216,8 @@
 
         <div class="nav-right">
             {% if user.is_authenticated %}
-            <div class="user-buttons">
-                <span class="welcome-text">Olá, {{ user.first_name }}!</span>
+            <div class="auth-buttons">
+                <a href="{%url 'perfil' %}" class="welcome-text">Olá, {{ user.first_name}}!</a>
 
                 <a href="{% url 'logout' %}">Sair</a>
             </div>

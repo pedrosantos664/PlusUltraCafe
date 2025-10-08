@@ -1,0 +1,242 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="pt-br">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>PlusUltraCafe</title>
+    <link rel="icon" type="image/png" href="{% static 'imagens/favicon.jpg' %}">
+
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: Tenor Sans;
+        }
+
+        .content {
+            height: 520px;
+            width: 935px;
+            border-radius: 20px;
+            overflow: hidden;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
+            z-index: 2;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 15px 40px;
+            border-bottom: 1px solid #eee;
+            background-color: white;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+        }
+
+        .nav-left,
+        .nav-right {
+            display: flex;
+            align-items: center;
+            gap: 30px;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 20px;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            font-size: 14px;
+        }
+
+        .nav-links a:hover {
+            color: #666;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 15px;
+        }
+
+        .auth-buttons a {
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 500;
+            padding: 8px 15px;
+            border-radius: 4px;
+        }
+
+        .auth-buttons a:first-child {
+            color: #333;
+        }
+
+        .auth-buttons a:last-child {
+            background-color: #000;
+            color: white;
+        }
+
+
+        .bubble {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            animation: float 8s infinite ease-in-out;
+            z-index: -1;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0) translateX(0);
+            }
+
+            25% {
+                transform: translateY(-20px) translateX(10px);
+            }
+
+            50% {
+                transform: translateY(-40px) translateX(-10px);
+            }
+
+            75% {
+                transform: translateY(-20px) translateX(-15px);
+            }
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: #000;
+        }
+
+
+        body {
+            color: #333;
+            padding-top: 70px;
+            min-height: 100vh;
+            overflow: hidden;
+            position: relative;
+            background: #6F4E37 100%;
+
+        }
+    </style>
+
+<body>
+
+    <nav>
+        <div class="nav-left">
+            <a href="{% url 'index' %}" class="logo">PlusUltraCafe</a>
+            <div class="nav-links">
+                <a href="{% url 'products' %}">Products</a>
+                <a href="{% url 'contact' %}">Contact</a>
+            </div>
+        </div>
+
+        <div class="nav-right">
+            {% if user.is_authenticated %}
+            <div class="auth-buttons">
+                <a href="{%url 'perfil' %}" class="welcome-text">Olá, {{ user.first_name}}!</a>
+
+                <a href="{% url 'logout' %}">Sair</a>
+            </div>
+            {% else %}
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}">Sign in</a>
+                <a href="{% url 'registro' %}">Register</a>
+            </div>
+            {% endif %}
+        </div>
+
+
+    </nav>
+
+    {% if not itens %}
+    <p>Seu carrinho está vazio.</p>
+    {% else %}
+    <table>
+        <thead>
+            <tr>
+                <th>Produto</th>
+                <th>Preço Unitário</th>
+                <th>Quantidade</th>
+                <th>Subtotal</th>
+            </tr>
+        </thead>
+        <tbody>
+            {% for item in itens %}
+            <tr>
+                <td>{{ item.produto.nome }}</td>
+                <td>R$ {{ item.produto.preco }}</td>
+                <td>{{ item.quantidade }}</td>
+                <td>R$ {{ item.subtotal }}</td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+    <h3>Total: R$ {{ total }}</h3> {% endif %}
+    <script>
+
+        let contador = 1;
+
+        setInterval(function () {
+            document.getElementById('slide' + contador).checked = true;
+            contador++;
+
+            if (contador > 5) {
+                contador = 1;
+            }
+        }, 3000);
+
+
+
+        document.addEventListener('DOMContentLoaded', function () {
+            const body = document.querySelector('body');
+            for (let i = 0; i < 15; i++) {
+                const bubble = document.createElement('div');
+                bubble.classList.add('bubble');
+
+                // Tamanho aleatório
+                const size = Math.random() * 100 + 20;
+
+                // Posição aleatória
+                const posX = Math.random() * 100;
+                const posY = Math.random() * 100;
+
+                // Atraso aleatório para animação
+                const delay = Math.random() * 5;
+
+                // Opacidade aleatória
+                const opacity = Math.random() * 0.3 + 0.1;
+
+                bubble.style.width = `${size}px`;
+                bubble.style.height = `${size}px`;
+                bubble.style.left = `${posX}%`;
+                bubble.style.top = `${posY}%`;
+                bubble.style.animationDelay = `${delay}s`;
+                bubble.style.opacity = opacity;
+
+                body.appendChild(bubble);
+            }
+        });
+    </script>
+
+
+</body>
+
+</html>
