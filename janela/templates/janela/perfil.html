@@ -5,28 +5,28 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlusUltraCafe</title>
+    <title>Meu Perfil - PlusUltraCafe</title>
     <link rel="icon" type="image/png" href="{% static 'imagens/favicon.jpg' %}">
+    <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
 
     <style>
+        /* --- ESTILOS ORIGINAIS (MANTIDOS) --- */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: Tenor Sans;
+            font-family: 'Tenor Sans', sans-serif;
         }
 
-        .content {
-            height: 520px;
-            width: 935px;
-            border-radius: 20px;
-            overflow: hidden;
-            position: absolute;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            box-shadow: 10px 10px 20px rgba(0, 0, 0, 0.3);
-            z-index: 2;
+        body {
+            color: #333;
+            padding-top: 100px;
+            /* Aumenta o espaço para o conteúdo não ficar atrás do nav */
+            min-height: 100vh;
+            overflow-x: hidden;
+            /* Permite scroll vertical mas esconde o horizontal */
+            position: relative;
+            background: #6F4E37;
         }
 
         nav {
@@ -63,8 +63,11 @@
             font-size: 14px;
         }
 
-        .nav-links a:hover {
-            color: #666;
+        .logo {
+            font-weight: 700;
+            font-size: 18px;
+            color: #000;
+            text-decoration: none;
         }
 
         .auth-buttons {
@@ -80,7 +83,7 @@
             border-radius: 4px;
         }
 
-        .auth-buttons a:first-child {
+        .auth-buttons a.welcome-text {
             color: #333;
         }
 
@@ -88,7 +91,6 @@
             background-color: #000;
             color: white;
         }
-
 
         .bubble {
             position: absolute;
@@ -118,23 +120,151 @@
             }
         }
 
-        .logo {
-            font-weight: 700;
-            font-size: 18px;
-            color: #000;
+        /* --- NOVOS ESTILOS PARA A PÁGINA DE PERFIL --- */
+        .profile-page-container {
+            max-width: 1200px;
+            margin: 20px auto;
+            padding: 0 20px;
+            animation: fadeIn 0.8s ease-in-out;
         }
 
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+                transform: translateY(20px);
+            }
 
-        body {
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .profile-header {
+            background: white;
+            border-radius: 15px;
+            padding: 30px;
+            display: flex;
+            align-items: center;
+            gap: 30px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            margin-bottom: 40px;
+        }
+
+        .avatar img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 4px solid #6F4E37;
+        }
+
+        .user-details h1 {
+            font-size: 28px;
+            margin: 0;
             color: #333;
-            padding-top: 70px;
-            min-height: 100vh;
-            overflow: hidden;
-            position: relative;
-            background: #6F4E37 100%;
+        }
 
+        .user-details p {
+            font-size: 16px;
+            color: #777;
+            margin-top: 5px;
+        }
+
+        .profile-actions {
+            margin-left: auto;
+            /* Empurra os botões para a direita */
+            display: flex;
+            gap: 15px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 500;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .btn-primary {
+            background-color: #333;
+            color: white;
+        }
+
+        .btn-primary:hover {
+            background-color: #000;
+            transform: translateY(-2px);
+        }
+
+        .btn-secondary {
+            background-color: #f0f0f0;
+            color: #333;
+        }
+
+        .btn-secondary:hover {
+            background-color: #e0e0e0;
+        }
+
+        .articles-section {
+            margin-top: 50px;
+        }
+
+        .articles-section h2 {
+            font-size: 24px;
+            color: white;
+            text-align: center;
+            margin-bottom: 30px;
+            text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.2);
+        }
+
+        .articles-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 30px;
+        }
+
+        .article-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+        }
+
+        .article-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 12px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .article-card img {
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .article-content {
+            padding: 20px;
+        }
+
+        .article-content h3 {
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .article-content p {
+            font-size: 14px;
+            color: #666;
+            line-height: 1.6;
+            margin-bottom: 20px;
+        }
+
+        .article-content a {
+            text-decoration: none;
+            color: #6F4E37;
+            font-weight: bold;
         }
     </style>
+</head>
 
 <body>
 
@@ -161,67 +291,79 @@
             </div>
             {% endif %}
         </div>
-
-
     </nav>
 
-    {% if not itens %}
-    <p>Seu carrinho está vazio.</p>
-    {% else %}
-    <table>
-        <thead>
-            <tr>
-                <th>Produto</th>
-                <th>Preço Unitário</th>
-                <th>Quantidade</th>
-                <th>Subtotal</th>
-            </tr>
-        </thead>
-        <tbody>
-            {% for item in itens %}
-            <tr>
-                <td>{{ item.produto.nome }}</td>
-                <td>R$ {{ item.produto.preco }}</td>
-                <td>{{ item.quantidade }}</td>
-                <td>R$ {{ item.subtotal }}</td>
-            </tr>
-            {% endfor %}
-        </tbody>
-    </table>
+    <main class="profile-page-container">
+        <header class="profile-header">
+            <div class="avatar">
+                <img src="{% static 'imagens/31078Medsker_SundayInBrooklyn_February_239.jpg' %}"
+                    alt="Avatar do Usuário">
+            </div>
+            <div class="user-details">
+                <h1>{{ user.first_name|default:"Bem-vindo" }} {{ user.last_name }}</h1>
+                <p>{{ user.email }}</p>
+            </div>
+            <div class="profile-actions">
+                <a href="#" class="btn btn-secondary">Meus Pedidos</a>
+                <a href="#" class="btn btn-primary">Editar Perfil</a>
+            </div>
+        </header>
 
-    <h3>Total: R$ {{ total }}</h3> {% endif %}
+        <section class="articles-section">
+            <h2>Explore o Mundo do Café</h2>
+            <div class="articles-grid">
+
+                <div class="article-card">
+                    <img src="{% static 'imagens/17338Medsker_SundayInBrooklyn_August2019_105.jpg' %}"
+                        alt="Grãos de café">
+                    <div class="article-content">
+                        <h3>A Origem do Café: Uma Lenda Etíope</h3>
+                        <p>Descubra a fascinante lenda de Kaldi, o pastor de cabras que notou seus animais dançando após
+                            comerem os frutos de uma misteriosa planta.</p>
+                        <a href="#">Leia Mais &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <img src="{% static 'imagens/65644Medsker_SundayInBrooklyn_February_067.jpg' %}"
+                        alt="Xícara de café expresso">
+                    <div class="article-content">
+                        <h3>Do Grão à Xícara: O Processo de Torra</h3>
+                        <p>A torra é a alma do café. Entenda como a temperatura e o tempo transformam grãos verdes em
+                            uma explosão de aromas e sabores.</p>
+                        <a href="#">Leia Mais &rarr;</a>
+                    </div>
+                </div>
+
+                <div class="article-card">
+                    <img src="{% static 'imagens/95488Medsker_SundayInBrooklyn_Fall_003.jpg' %}" alt="Café sendo coado">
+                    <div class="article-content">
+                        <h3>Métodos de Extração: Qual o seu preferido?</h3>
+                        <p>Expresso, Prensa Francesa, Hario V60... Cada método de preparo revela uma faceta diferente do
+                            mesmo grão. Explore e encontre o seu ideal.</p>
+                        <a href="#">Leia Mais &rarr;</a>
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    </main>
+
     <script>
-
-        let contador = 1;
-
-        setInterval(function () {
-            document.getElementById('slide' + contador).checked = true;
-            contador++;
-
-            if (contador > 5) {
-                contador = 1;
-            }
-        }, 3000);
-
-
-
+        // Script das bolhas (mantido)
         document.addEventListener('DOMContentLoaded', function () {
             const body = document.querySelector('body');
+            // Evita adicionar bolhas se já existirem
+            if (document.querySelector('.bubble')) return;
+
             for (let i = 0; i < 15; i++) {
                 const bubble = document.createElement('div');
                 bubble.classList.add('bubble');
 
-                // Tamanho aleatório
                 const size = Math.random() * 100 + 20;
-
-                // Posição aleatória
                 const posX = Math.random() * 100;
                 const posY = Math.random() * 100;
-
-                // Atraso aleatório para animação
                 const delay = Math.random() * 5;
-
-                // Opacidade aleatória
                 const opacity = Math.random() * 0.3 + 0.1;
 
                 bubble.style.width = `${size}px`;
@@ -235,8 +377,6 @@
             }
         });
     </script>
-
-
 </body>
 
 </html>

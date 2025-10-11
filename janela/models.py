@@ -1,11 +1,16 @@
+# seu_app/models.py
+
 from django.db import models
 from django.dispatch import receiver
 from django.db.models.signals import post_save
 
 class Usuario(models.Model):
     nome = models.CharField(max_length=100)
-    email = models.EmailField(unique=True)  
-    senha = models.CharField(max_length=128) 
+    email = models.EmailField(unique=True)
+    senha = models.CharField(max_length=128)
+    # NOVO CAMPO DE IMAGEM PARA O PERFIL
+    foto_perfil = models.ImageField(upload_to='imagens/', null=True, blank=True)
+
     def __str__(self):
         return self.nome
 
@@ -15,7 +20,8 @@ class Produto(models.Model):
     descricao = models.TextField(blank=True, null=True)
     preco = models.DecimalField(max_digits=10, decimal_places=2)
     estoque = models.PositiveIntegerField(default=0)
-
+    # NOVO CAMPO DE IMAGEM PARA O PRODUTO
+    imagem = models.ImageField(upload_to='imagens/', null=True, blank=True)
 
     def __str__(self):
         return self.nome
@@ -29,11 +35,10 @@ class Carrinho(models.Model):
     def __str__(self):
         return f'Carrinho de {self.usuario.nome}'
 
-   
     @property
     def total(self):
-     
         return sum(item.subtotal for item in self.itens.all())
+
 
 class ItemCarrinho(models.Model):
     carrinho = models.ForeignKey(Carrinho, on_delete=models.CASCADE, related_name='itens')
@@ -42,7 +47,6 @@ class ItemCarrinho(models.Model):
 
     def __str__(self):
         return f'{self.quantidade} x {self.produto.nome} no {self.carrinho}'
-
 
     @property
     def subtotal(self):
@@ -54,7 +58,5 @@ class ItemCarrinho(models.Model):
 
 @receiver(post_save, sender=Usuario)
 def criar_ou_atualizar_carrinho_usuario(sender, instance, created, **kwargs):
-
-    if created: 
+    if created:
         Carrinho.objects.create(usuario=instance)
-    

@@ -27,7 +27,6 @@ def registro(request):
         senha = request.POST.get('senha')
         confirmar_senha = request.POST.get('confirmar_senha')
         
-        # Validações
         if not nome or not email or not senha:
             messages.error(request, 'Preencha todos os campos!')
             return redirect('registro')
@@ -41,7 +40,7 @@ def registro(request):
             return redirect('registro')
         
         try:
-            # Cria o usuário
+            
             user = User.objects.create_user(
                 username=email,
                 email=email,
@@ -50,7 +49,6 @@ def registro(request):
             )
             user.save()
             
-            # Autentica e loga automaticamente
             user = authenticate(request, username=email, password=senha)
             if user is not None:
                 login(request, user)
@@ -63,7 +61,6 @@ def registro(request):
     return render(request, 'janela/registro.html')
 
 def login_view(request):
-    # Se usuário já está logado, redireciona
     if request.user.is_authenticated:
         return redirect('index')
         
@@ -75,7 +72,6 @@ def login_view(request):
             messages.error(request, 'Preencha todos os campos!')
             return redirect('login')
         
-        # Autentica com o sistema do Django
         user = authenticate(request, username=email, password=senha)
         
         if user is not None:
@@ -93,11 +89,10 @@ def logout_view(request):
     return redirect('index')
 
 def ver_carrinho(request):
-    # Acessa o carrinho do usuário e todos os seus itens associados
+   
     carrinho = request.user.carrinho
-    itens_do_carrinho = carrinho.itens.all() # Usamos o related_name 'itens'
+    itens_do_carrinho = carrinho.itens.all() 
     
-    # O total é calculado pela propriedade no modelo Carrinho
     total_do_carrinho = carrinho.total
 
     context = {
