@@ -1,21 +1,15 @@
-from django.shortcuts import render, redirect
+# janela/views.py (COMPLETO E CORRIGIDO)
+
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
-from django.contrib.auth.models import User
 from django.contrib.auth.decorators import login_required
-from django.views.decorators.csrf import csrf_exempt
-from django.shortcuts import render
-from .models import Produto
 
-@csrf_exempt
+# IMPORTANTE: Importamos nosso modelo Usuario e removemos o User padrão
+from .models import Usuario, Produto, Carrinho, ItemCarrinho
+
 def index(request):
     return render(request, "janela/index.html")
-
-def perfil(request):
-    return render(request, "janela/perfil.html")
-
-def products(request):
-    return render(request, "janela/products.html")
 
 def contact(request):
     return render(request, "janela/contact.html")
@@ -29,40 +23,36 @@ def registro(request):
         
         if not nome or not email or not senha:
             messages.error(request, 'Preencha todos os campos!')
-            return redirect('registro')
+            return redirect('/janela/registro/')
             
         if senha != confirmar_senha:
             messages.error(request, 'As senhas não coincidem!')
-            return redirect('registro')
+            return redirect('/janela/registro/')
             
-        if User.objects.filter(username=email).exists():
+        # AGORA VERIFICAMOS NO NOSSO MODELO USUARIO
+        if Usuario.objects.filter(email=email).exists():
             messages.error(request, 'Este email já está cadastrado!')
-            return redirect('registro')
+            return redirect('/janela/registro/')
         
-        try:
-            
-            user = User.objects.create_user(
-                username=email,
-                email=email,
-                password=senha,
-                first_name=nome
-            )
-            user.save()
-            
-            user = authenticate(request, username=email, password=senha)
-            if user is not None:
-                login(request, user)
-                messages.success(request, f'Cadastro realizado! Bem-vindo, {nome}!')
-                return redirect('index')
-            
-        except Exception as e:
-            messages.error(request, f'Erro ao registrar: {str(e)}')
-    
+        # AGORA CRIAMOS NO NOSSO MODELO USUARIO
+        user = Usuario.objects.create_user(
+            username=email, # Django exige um username, usamos o email
+            email=email,
+            password=senha,
+            nome=nome      # Nosso campo customizado
+        )
+        
+        # O sinal post_save já cria o carrinho automaticamente
+        
+        login(request, user)
+        messages.success(request, f'Cadastro realizado! Bem-vindo, {nome}!')
+        return redirect('/janela/')
+
     return render(request, 'janela/registro.html')
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('index')
+        return redirect('/janela/')
         
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -70,14 +60,15 @@ def login_view(request):
         
         if not email or not senha:
             messages.error(request, 'Preencha todos os campos!')
-            return redirect('login')
+            return redirect('/janela/login/')
         
+        # O 'authenticate' agora vai usar nosso modelo Usuario por causa do settings.py
         user = authenticate(request, username=email, password=senha)
         
         if user is not None:
             login(request, user)
-            messages.success(request, f'Bem-vindo, {user.first_name}!')
-            return redirect('index')
+            messages.success(request, f'Bem-vindo, {user.nome}!')
+            return redirect('/janela/')
         else:
             messages.error(request, 'Email ou senha incorretos!')
     
@@ -86,21 +77,17 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Você saiu com sucesso!')
-    return redirect('index')
+    return redirect('/janela/')
 
-def ver_carrinho(request):
-   
-    carrinho = request.user.carrinho
-    itens_do_carrinho = carrinho.itens.all() 
-    
-    total_do_carrinho = carrinho.total
-
-    context = {
-        'itens': itens_do_carrinho,
-        'total': total_do_carrinho,
+# As views abaixo já estão corretas e vão funcionar
+# pois agora 'request.user' será uma instância de 'Usuario'
+@login_required
+def perfil(request):
+    carrinho = get_object_or_404(Carrinho, usuario=request.user)
+    contexto = {
+        'carrinho': carrinho,
     }
-    return render(request, 'janela/perfil.html', context)
-
+    return render(request, "janela/perfil.html", contexto)
 
 def ver_produtos(request):
     lista_de_produtos = Produto.objects.all()
@@ -109,23 +96,19 @@ def ver_produtos(request):
     }
     return render(request, 'janela/products.html', contexto)
 
-
 @login_required
-
-
-def check_auth(request):
-   
-    usuario_autenticado = False
-    usuario_nome = None
-    usuario_id = None
+def adicionar_ao_carrinho(request, produto_id):
+    produto = get_object_or_404(Produto, id=produto_id)
+    carrinho = get_object_or_404(Carrinho, usuario=request.user)
     
-    if 'usuario_id' in request.session:
-        usuario_autenticado = True
-        usuario_nome = request.session.get('usuario_nome', 'Usuário')
-        usuario_id = request.session.get('usuario_id')
+    item, created = ItemCarrinho.objects.get_or_create(
+        carrinho=carrinho,
+        produto=produto
+    )
+
+    if not created:
+        item.quantidade += 1
+        item.save()
     
-    return {
-        'usuario_autenticado': usuario_autenticado,
-        'usuario_nome': usuario_nome,
-        'usuario_id': usuario_id,
-    }
+    messages.success(request, f'"{produto.nome}" adicionado ao carrinho!')
+    return redirect('/janela/products/')

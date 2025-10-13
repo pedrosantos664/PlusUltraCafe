@@ -1,20 +1,33 @@
 # janela/admin.py
 from django.contrib import admin
-from django.contrib.auth.admin import UserAdmin
-from django.contrib.auth import get_user_model
-from .models import Produto, Carrinho, ItemCarrinho, Usuario 
+from .models import Usuario, Produto, Carrinho, ItemCarrinho
 
-User = get_user_model()
+# Customização para o seu modelo Usuario (usando ModelAdmin)
+@admin.register(Usuario)
+class UsuarioAdmin(admin.ModelAdmin):
+    # Mostra estes campos na lista de usuários
+    list_display = ('nome', 'email', 'foto_perfil')
+    # Adiciona uma barra de busca
+    search_fields = ('nome', 'email')
 
-# Desregistra o admin padrão (se necessário)
-admin.site.unregister(User)
+# Customização para o modelo Produto
+@admin.register(Produto)
+class ProdutoAdmin(admin.ModelAdmin):
+    list_display = ('nome', 'preco', 'estoque', 'imagem')
+    search_fields = ('nome',)
+    list_filter = ('preco', 'estoque')
 
-# Registra com customização
-@admin.register(User)
-class CustomUserAdmin(UserAdmin):
-    list_display = ('email', 'first_name', 'is_staff')
+# Permite ver os itens do carrinho dentro da página do próprio carrinho
+class ItemCarrinhoInline(admin.TabularInline):
+    model = ItemCarrinho
+    extra = 1 # Quantos campos de item extra mostrar
 
+@admin.register(Carrinho)
+class CarrinhoAdmin(admin.ModelAdmin):
+    list_display = ('usuario', 'criado_em', 'total')
+    # Adiciona a tabela de itens na página de detalhes do carrinho
+    inlines = [ItemCarrinhoInline]
 
-admin.site.register(Produto)
-admin.site.register(Carrinho)
-admin.site.register(ItemCarrinho)
+# Não precisamos mais registrar ItemCarrinho separadamente,
+# pois ele já é gerenciado dentro do CarrinhoAdmin.
+# admin.site.register(ItemCarrinho)

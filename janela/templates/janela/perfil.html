@@ -349,6 +349,38 @@
         </section>
     </main>
 
+    <section class="cart-section">
+        <h2>Meu Carrinho</h2>
+
+        {% if user.carrinho and user.carrinho.itens.all %}
+        <table class="cart-table">
+            <thead>
+                <tr>
+                    <th>Produto</th>
+                    <th>Preço Unitário</th>
+                    <th>Quantidade</th>
+                    <th>Subtotal</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for item in user.carrinho.itens.all %}
+                <tr>
+                    <td>{{ item.produto.nome }}</td>
+                    <td>R$ {{ item.produto.preco }}</td>
+                    <td>{{ item.quantidade }}</td>
+                    <td>R$ {{ item.subtotal }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        <div class="cart-total">
+            <span>Total: R$ {{ user.carrinho.total }}</span>
+        </div>
+        {% else %}
+        <p class="empty-cart-message">Seu carrinho está vazio.</p>
+        {% endif %}
+    </section>
+
     <script>
         // Script das bolhas (mantido)
         document.addEventListener('DOMContentLoaded', function () {

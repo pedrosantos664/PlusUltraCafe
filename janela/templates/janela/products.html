@@ -192,8 +192,9 @@
     <div class="products-container">
         {% for produto in produtos %}
         <div class="product-card">
-            <img src="{% static 'imagens/31078Medsker_SundayInBrooklyn_February_239.jpg' %}" alt="Produto 1">
+
             <div class="product-name">{{ produto.nome }}</div>
+            <img src="{{ produto.imagem.url }}" alt="{{ produto.imagem.url }}">
             <div class="product-price">R$R$ {{ produto.preco }}</div>
         </div>
         {% empty %}

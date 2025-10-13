@@ -129,5 +129,7 @@ STATICFILES_DIRS = [
 
 DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
-MEDIA_URL = 'imagens/'
+
 MEDIA_ROOT = BASE_DIR / 'imagens'
+
+AUTH_USER_MODEL = 'janela.Usuario'
