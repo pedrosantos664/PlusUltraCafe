@@ -196,91 +196,97 @@
             <div class="product-name">{{ produto.nome }}</div>
             <img src="{{ produto.imagem.url }}" alt="{{ produto.imagem.url }}">
             <div class="product-price">R$R$ {{ produto.preco }}</div>
+            <form action="{% url 'adicionar_ao_carrinho' produto.id %}" method="post" style="margin-top: 15px;">
+                {% csrf_token %}
+                <button type="submit" class="add-to-cart-btn">Adicionar ao Carrinho</button>
+            </form>
         </div>
         {% empty %}
         {% comment %} Se a lista de produtos estiver vazia, mostra esta mensagem. {% endcomment %}
         <p style="color: white;">Nenhum produto cadastrado.</p>
-        {% endfor %}
-        {% comment %} Fim do loop {% endcomment %}
 
-        <div class="product-card">
-            <img src="{% static 'imagens/38407Medsker_SundayInBrooklyn_Fall_014.jpg' %}" alt="Produto 2">
-            <div class="product-name">Produto 2</div>
-            <div class="product-price">R$ 25,00</div>
-        </div>
+    </div>
+    {% endfor %}
+    {% comment %} Fim do loop {% endcomment %}
 
-        <div class="product-card">
-            <img src="{% static 'imagens/40883Medsker_SundayInBrooklyn_August2019_126.jpg' %}" alt="Produto 3">
-            <div class="product-name">Produto 3</div>
-            <div class="product-price">R$ 12,50</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/38407Medsker_SundayInBrooklyn_Fall_014.jpg' %}" alt="Produto 2">
+        <div class="product-name">Produto 2</div>
+        <div class="product-price">R$ 25,00</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/49253Medsker_SundayInBrooklyn_February_203.jpg' %}" alt="Produto 4">
-            <div class="product-name">Produto 4</div>
-            <div class="product-price">R$ 30,00</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/40883Medsker_SundayInBrooklyn_August2019_126.jpg' %}" alt="Produto 3">
+        <div class="product-name">Produto 3</div>
+        <div class="product-price">R$ 12,50</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/63476Medsker_SundayInBrooklyn_Fall_015.jpg' %}" alt="Produto 5">
-            <div class="product-name">Produto 5</div>
-            <div class="product-price">R$ 22,00</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/49253Medsker_SundayInBrooklyn_February_203.jpg' %}" alt="Produto 4">
+        <div class="product-name">Produto 4</div>
+        <div class="product-price">R$ 30,00</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/64836Medsker_SundayInBrooklyn_August2019_136.jpg' %}" alt="Produto 6">
-            <div class="product-name">Produto 6</div>
-            <div class="product-price">R$ 27,90</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/63476Medsker_SundayInBrooklyn_Fall_015.jpg' %}" alt="Produto 5">
+        <div class="product-name">Produto 5</div>
+        <div class="product-price">R$ 22,00</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/65644Medsker_SundayInBrooklyn_February_067.jpg' %}" alt="Produto 7">
-            <div class="product-name">Produto 7</div>
-            <div class="product-price">R$ 15,00</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/64836Medsker_SundayInBrooklyn_August2019_136.jpg' %}" alt="Produto 6">
+        <div class="product-name">Produto 6</div>
+        <div class="product-price">R$ 27,90</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/76024Medsker_SundayInBrooklyn_Fall_017.jpg' %}" alt="Produto 8">
-            <div class="product-name">Produto 8</div>
-            <div class="product-price">R$ 35,00</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/65644Medsker_SundayInBrooklyn_February_067.jpg' %}" alt="Produto 7">
+        <div class="product-name">Produto 7</div>
+        <div class="product-price">R$ 15,00</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/76068Medsker_SundayInBrooklyn_Fall_013_2.jpg' %}" alt="Produto 9">
-            <div class="product-name">Produto 9</div>
-            <div class="product-price">R$ 28,50</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/76024Medsker_SundayInBrooklyn_Fall_017.jpg' %}" alt="Produto 8">
+        <div class="product-name">Produto 8</div>
+        <div class="product-price">R$ 35,00</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/88717Medsker_SundayInBrooklyn_Fall_016.jpg' %}" alt="Produto 10">
-            <div class="product-name">Produto 10</div>
-            <div class="product-price">R$ 20,00</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/76068Medsker_SundayInBrooklyn_Fall_013_2.jpg' %}" alt="Produto 9">
+        <div class="product-name">Produto 9</div>
+        <div class="product-price">R$ 28,50</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/94637Medsker_SundayInBrooklyn_February_231.jpg' %}" alt="Produto 11">
-            <div class="product-name">Produto 11</div>
-            <div class="product-price">R$ 32,00</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/88717Medsker_SundayInBrooklyn_Fall_016.jpg' %}" alt="Produto 10">
+        <div class="product-name">Produto 10</div>
+        <div class="product-price">R$ 20,00</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/95488Medsker_SundayInBrooklyn_Fall_003.jpg' %}" alt="Produto 12">
-            <div class="product-name">Produto 12</div>
-            <div class="product-price">R$ 18,90</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/94637Medsker_SundayInBrooklyn_February_231.jpg' %}" alt="Produto 11">
+        <div class="product-name">Produto 11</div>
+        <div class="product-price">R$ 32,00</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/99204Medsker_SundayInBrooklyn_August2019_017.jpg' %}" alt="Produto 13">
-            <div class="product-name">Produto 13</div>
-            <div class="product-price">R$ 24,00</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/95488Medsker_SundayInBrooklyn_Fall_003.jpg' %}" alt="Produto 12">
+        <div class="product-name">Produto 12</div>
+        <div class="product-price">R$ 18,90</div>
+    </div>
 
-        <div class="product-card">
-            <img src="{% static 'imagens/Qd5cbsfbQEifhoBtuXq7_zKMQYlWoQQanZ2m61Fgm_Copy of 180718_SundayInBrooklyn_0328.jpg' %}"
-                alt="Produto 15">
-            <div class="product-name">Produto 15</div>
-            <div class="product-price">R$ 40,00</div>
-        </div>
+    <div class="product-card">
+        <img src="{% static 'imagens/99204Medsker_SundayInBrooklyn_August2019_017.jpg' %}" alt="Produto 13">
+        <div class="product-name">Produto 13</div>
+        <div class="product-price">R$ 24,00</div>
+    </div>
+
+    <div class="product-card">
+        <img src="{% static 'imagens/Qd5cbsfbQEifhoBtuXq7_zKMQYlWoQQanZ2m61Fgm_Copy of 180718_SundayInBrooklyn_0328.jpg' %}"
+            alt="Produto 15">
+        <div class="product-name">Produto 15</div>
+        <div class="product-price">R$ 40,00</div>
+    </div>
     </div>
 
 

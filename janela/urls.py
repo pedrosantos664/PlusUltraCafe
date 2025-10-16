@@ -13,6 +13,8 @@ urlpatterns = [
     path('products/', views.ver_produtos, name='products'),
     path('contact/', views.contact, name='contact'),
     path('perfil/', views.perfil, name='perfil'),
+    path('adicionar/<int:produto_id>/', views.adicionar_ao_carrinho, name='adicionar_ao_carrinho'),
+
    
 ]+ static(settings.STATIC_URL, document_root=settings.STATIC_ROOT)
 
