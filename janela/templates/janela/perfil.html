@@ -280,7 +280,7 @@
         <div class="nav-right">
             {% if user.is_authenticated %}
             <div class="auth-buttons">
-                <a href="{%url 'perfil' %}" class="welcome-text">Olá, {{ user.first_name}}!</a>
+                <a href="{%url 'perfil' %}" class="welcome-text">Olá, {{ usuario.nome }}!</a>
 
                 <a href="{% url 'logout' %}">Sair</a>
             </div>
@@ -296,11 +296,10 @@
     <main class="profile-page-container">
         <header class="profile-header">
             <div class="avatar">
-                <img src="{% static 'imagens/31078Medsker_SundayInBrooklyn_February_239.jpg' %}"
-                    alt="Avatar do Usuário">
+                <img src="{{ user.foto_perfil.url }}" alt="{{ user.foto_perfil.url }}">
             </div>
             <div class="user-details">
-                <h1>{{ user.first_name|default:"Bem-vindo" }} {{ user.last_name }}</h1>
+                <h1>{{ user.nome|default:"Bem-vindo" }} {{ user.last_name }}</h1>
                 <p>{{ user.email }}</p>
             </div>
             <div class="profile-actions">
@@ -308,6 +307,46 @@
                 <a href="#" class="btn btn-primary">Editar Perfil</a>
             </div>
         </header>
+        <section class="cart-section">
+            <h2>Meu Carrinho</h2>
+
+            {% if carrinho and carrinho.itens.all %}
+            <div class="cart-grid">
+                {% for item in carrinho.itens.all %}
+                <div class="cart-item-card">
+
+                    {% if item.produto.imagem %}
+                    <img src="{{ item.produto.imagem.url }}" alt="{{ item.produto.nome }}">
+                    {% else %}
+                    <img src="{% static 'janela/imagens/placeholder-cafe.jpg' %}" alt="Imagem de café padrão">
+                    {% endif %}
+
+                    <div class="item-details">
+                        <h3 class="item-name">{{ item.produto.nome }}</h3>
+                        <div class="item-info">
+                            <span>Preço: R$ {{ item.produto.preco }}</span>
+                            <span>Quantidade: {{ item.quantidade }}</span>
+                        </div>
+                        <p class="item-subtotal">Subtotal: R$ {{ item.subtotal }}</p>
+                    </div>
+
+                    <div class="item-actions">
+                        <a href="#" class="remove-btn">Remover</a>
+                    </div>
+
+                </div>
+                {% endfor %}
+            </div>
+
+            <div class="cart-summary">
+                <span class="cart-total-text">Total: R$ {{ carrinho.total }}</span>
+                <a href="#" class="checkout-btn">Finalizar Compra</a>
+            </div>
+
+            {% else %}
+            <p class="empty-cart-message">Seu carrinho está vazio.</p>
+            {% endif %}
+        </section>
 
         <section class="articles-section">
             <h2>Explore o Mundo do Café</h2>
