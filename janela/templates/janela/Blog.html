@@ -9,7 +9,337 @@
     <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
 
     <!-- CSS -->
-    <link rel="stylesheet" href="css/blog.css">
+    <style>
+
+        /* RESET */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: Arial, sans-serif;
+  background-color: #fff8f0;
+  color: #3b3b3b;
+  line-height: 1.6;
+}
+
+/* ===== HEADER ===== */
+header {
+  width: 100%;
+  background-color: #b85c3a;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 60px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  position: sticky;
+  top: 0;
+  z-index: 100;
+}
+
+.logo {
+  height: 80px;
+  transition: transform 0.3s ease;
+}
+.logo:hover {
+  transform: scale(1.05);
+}
+
+/* ===== MENU ===== */
+.menu_direita ul {
+  display: flex;
+  gap: 40px;
+  list-style: none;
+  font-family: 'Rouge Script', cursive;
+  font-size: 32px;
+}
+
+.menu_direita a {
+  text-decoration: none;
+  color: #f5e8d3;
+  position: relative;
+  transition: 0.3s;
+}
+.menu_direita a:hover {
+  color: #fff;
+  transform: scale(1.1);
+}
+.menu_direita a::after {
+  content: "";
+  position: absolute;
+  bottom: -5px;
+  left: 0;
+  height: 2px;
+  width: 0%;
+  background-color: #fff;
+  transition: width 0.3s;
+}
+.menu_direita a:hover::after,
+.menu_direita a.ativo::after {
+  width: 100%;
+}
+
+/* ===== MAIN ===== */
+main {
+  max-width: 1200px;
+  margin: 60px auto;
+  padding: 0 20px;
+}
+
+.tutorial {
+  background-color: #fdf4ea;
+  border-radius: 12px;
+  padding: 30px;
+  margin-bottom: 50px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease;
+}
+.tutorial:hover {
+  transform: translateY(-5px);
+}
+
+.tutorial h3, .tutorial h2 {
+  color: #8e4a2a;
+  margin-bottom: 15px;
+  border-left: 5px solid #b85c3a;
+  padding-left: 10px;
+}
+
+.tutorial h2 {
+  font-size: 32px;
+}
+
+.tutorial h3 {
+  font-size: 28px;
+}
+
+.tutorial img {
+  width: 100%;
+  border-radius: 10px;
+  margin: 15px 0;
+}
+
+.texto_cafeteira {
+  text-align: justify;
+  font-size: 1.05rem;
+  color: #444;
+  margin-bottom: 20px;
+}
+
+/* ===== VIDEO ===== */
+iframe {
+  width: 100%;
+  max-width: 800px;
+  height: 450px;
+  display: block;
+  margin: 20px auto;
+  border-radius: 10px;
+  border: none;
+}
+
+/* ===== ÁUDIO ===== */
+.audio-descricao {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 15px;
+  margin: 20px 0;
+  flex-wrap: wrap;
+}
+.audio-descricao audio {
+  width: 250px;
+}
+.audio-descricao p {
+  font-size: 1rem;
+  font-weight: 500;
+  color: #4a2e1f;
+  text-align: center;
+  margin-top: 10px;
+  background-color: #fff4ed;
+  display: inline-block;
+  padding: 8px 15px;
+  border-radius: 6px;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ===== RELACIONADOS ===== */
+.relacionados {
+  background-color: #fff1e0;
+  border-left: 5px solid #b85c3a;
+  padding: 25px;
+  border-radius: 10px;
+  margin-top: 40px;
+}
+.relacionados h3 {
+  font-size: 22px;
+  color: #8e4a2a;
+  margin-bottom: 15px;
+}
+.relacionados ul {
+  list-style: none;
+  padding-left: 0;
+}
+.relacionados a {
+  color: #b85c3a;
+  text-decoration: none;
+  transition: 0.2s;
+}
+.relacionados a:hover {
+  text-decoration: underline;
+  color: #8e4a2a;
+}
+
+/* ===== FOOTER ===== */
+footer {
+  background-color: #b85c3a;
+  color: #f5e8d3;
+  padding: 40px 60px;
+  margin-top: 80px;
+  text-align: center;
+}
+
+.newsletter {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  justify-content: center;
+  align-items: center;
+  margin-bottom: 40px;
+}
+.newsletter input {
+  padding: 10px;
+  border: none;
+  border-radius: 5px;
+  width: 250px;
+}
+.newsletter button {
+  background-color: #8e4a2a;
+  border: none;
+  color: #fff;
+  padding: 10px 18px;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.3s;
+}
+.newsletter button:hover {
+  background-color: #6f361b;
+}
+
+.rodape-links {
+  display: flex;
+  justify-content: space-around;
+  flex-wrap: wrap;
+  gap: 30px;
+  margin-bottom: 30px;
+}
+.rodape-links h4 {
+  color: #fff;
+  margin-bottom: 10px;
+  border-bottom: 2px solid #f5e8d3;
+  display: inline-block;
+  padding-bottom: 5px;
+}
+.rodape-links a {
+  color: #f5e8d3;
+  text-decoration: none;
+  transition: 0.2s;
+}
+.rodape-links a:hover {
+  color: #fff;
+  text-decoration: underline;
+}
+
+.copy {
+  font-size: 0.9rem;
+  opacity: 0.9;
+}
+
+/* ===== LEGENDAS DE IMAGENS E VÍDEOS ===== */
+.imagem-artigo + p,
+.video-container + .lead {
+    font-size: 1.05rem;
+    color: #4a2e1f;
+    line-height: 1.7;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    text-align: justify;
+    padding: 12px 15px;
+    background-color: #fff4ed;
+    border-left: 4px solid #b85c3a;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Ícones discretos antes do texto */
+.imagem-artigo + p::before,
+.video-container + .lead::before {
+    content: "📝";
+    margin-right: 8px;
+    color: #b85c3a;
+}
+
+/* FIGCAPTION */
+figure {
+    display: block;
+    margin: 20px 0;
+}
+
+figure img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+figure figcaption {
+    font-size: 1rem;
+    color: #4a2e1f;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+    line-height: 1.6;
+    background-color: #fff4ed;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .menu_direita ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 26px;
+    gap: 20px;
+  }
+
+  iframe {
+    height: 250px;
+  }
+
+  .newsletter {
+    flex-direction: column;
+  }
+
+  .rodape-links {
+    flex-direction: column;
+    text-align: center;
+  }
+}
+
+    </style>
 </head>
 <body>
 
@@ -31,12 +361,64 @@
     <!-- MAIN -->
     <main>
         <section class="conteudo">
-            <h2>Cursos de Preparo</h2>
-            <img src="coloque_aqui_sua_imagem" alt="Imagem do curso" class="imagem-cafe">
 
+            <!-- HISTÓRIA DO CAFÉ -->
             <article class="tutorial">
-                <h3>Como usar a Cafeteira Italiana</h3>
-                <img src="coloque_aqui_sua_imagem" alt="Tutorial" class="imagem-tutorial">
+                <h2>História do Café</h2>
+                <img src="/media/fotosprodutos/véio com café.png" alt="Homem tomando café" class="imagem-artigo">
+                <p>
+                    A história do café começa há mais de mil anos, nas montanhas da Etiópia, na África. Segundo a lenda mais conhecida, 
+                    um pastor chamado Kaldi percebeu que suas cabras ficavam mais agitadas e cheias de energia depois de comer os frutos 
+                    vermelhos de um certo arbusto. Curioso, ele experimentou as frutinhas e sentiu o mesmo efeito revigorante.
+                </p>
+                <p>
+                    Com o tempo, a notícia se espalhou e os monges de um mosteiro próximo começaram a usar o café para se manter acordados durante longas orações.
+                    A bebida logo se popularizou e chegou à Península Arábica, onde foi cultivada e aprimorada.
+                </p>
+                <p>
+                    No século XVII, o café chegou à Europa, conquistando rapidamente países como Itália, França e Inglaterra. 
+                    As cafeterias europeias tornaram-se pontos de encontro de intelectuais, artistas e comerciantes.
+                </p>
+                <p>
+                    No século XVIII, a planta chegou ao Brasil, trazida da Guiana Francesa. O clima tropical favoreceu tanto o cultivo 
+                    que o país se tornou — e ainda é — um dos maiores produtores de café do mundo.
+                </p>
+            </article>
+
+            <!-- COMO USAR A CAFETEIRA ITALIANA -->
+            <article class="tutorial">
+                <h2>Como usar a Cafeteira Italiana (Moka)</h2>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/ote7jSsnxSI"  
+                        title="Como usar a Cafeteira Italiana"
+                        frameborder="0" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+
+                <p class="lead">
+                    Aprenda de forma rápida e prática a preparar um café encorpado usando sua cafeteira Moka.
+                </p>
+
+                <ol class="steps">
+                    <li><strong>Partes principais:</strong> Base (água), funil/filtro (pó) e parte superior (café pronto).</li>
+                    <li><strong>Coloque a água:</strong> Encha a base até um pouco abaixo da válvula de segurança.</li>
+                    <li><strong>Adicione o café:</strong> Use pó médio-fino, sem compactar, apenas nivelando.</li>
+                    <li><strong>Monte a cafeteira:</strong> Rosqueie bem para evitar vazamentos.</li>
+                    <li><strong>Leve ao fogo:</strong> Espere o som de borbulha e retire antes de ferver demais.</li>
+                    <li><strong>Sirva:</strong> Mexa levemente e aproveite seu café.</li>
+                </ol>
+
+                <aside class="tips">
+                    <h3>Dicas rápidas</h3>
+                    <ul>
+                        <li>Lave a cafeteira apenas com água, sem sabão.</li>
+                        <li>Se o café ficar amargo, abaixe o fogo e use moagem mais grossa.</li>
+                        <li>Se ficar fraco, use moagem mais fina ou um pouco mais de pó.</li>
+                    </ul>
+                </aside>
 
                 <div class="audio-descricao">
                     <audio controls>
@@ -47,6 +429,41 @@
                 </div>
             </article>
 
+            <!-- ÚLTIMAS NOVIDADES -->
+            <article class="tutorial">
+                <h2>Últimas Novidades do Mundo do Café</h2>
+
+              <div class="video-container">
+    <iframe 
+        src="https://www.youtube.com/embed/QQJsqWKJdN4"
+        title="Novidades sobre café"
+        frameborder="0"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen>
+    </iframe>
+    </div>
+
+
+                <p>
+                    Governo busca isenção da tarifa de 40% sobre o café brasileiro nos EUA
+
+O governo federal pretende negociar com os Estados Unidos a isenção da tarifa extra de 40% aplicada ao café brasileiro. A reunião entre os presidentes Luiz Inácio Lula da Silva e Donald Trump deve ocorrer neste domingo (26), na Malásia.
+
+Segundo a CNN, o Brasil trabalha em duas frentes: suspender a tarifa adicional para todos os produtos ou incluir o café na lista de itens isentos, o chamado Anexo II. O produto é prioridade nas negociações, já que os EUA produzem pouco café — apenas no Havaí.
+
+Os ministérios das Relações Exteriores, Indústria, Fazenda e Agricultura estão envolvidos nas tratativas, que também incluem temas como a exploração de terras raras, considerada estratégica para ambos os países.
+                </p>
+
+                <div class="audio-descricao">
+                    <audio controls>
+                        <source src="coloque_aqui_seu_audio.mp3" type="audio/mpeg">
+                        Seu navegador não suporta o elemento de áudio.
+                    </audio>
+                    <p>Áudio descrição</p>
+                </div>
+            </article>
+
+            <!-- CONTEÚDOS RELACIONADOS -->
             <section class="relacionados">
                 <h3>Conteúdos Relacionados</h3>
                 <ul>
@@ -55,6 +472,7 @@
                     <li><a href="#">Os benefícios do café natural</a></li>
                 </ul>
             </section>
+
         </section>
     </main>
 
