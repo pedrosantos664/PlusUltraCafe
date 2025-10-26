@@ -11,23 +11,27 @@ body {
     color: #333;
 }
 
-/* HEADER */
+/*O Header(Cabeçalho) do PlusUltrCafé*/
 header {
-    width: 100%;
+    width: 100%; /* ocupa toda a largura da tela */
     display: flex;
     justify-content: space-between;
-    align-items: center;
     background-color: #B85C3A;
     padding: 10px 20px;
-    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative; /* mantém no fluxo normal */
 }
 
-/* Logo */
+/*A logo do PlusUltraCafé*/
 .logo {
     height: 100px;
+    margin-left: 20px;
 }
 
-/* MENU DIREITA */
+/*São os Botões do Header*/
 .menu_direita ul {
     font-family: 'Rouge Script', cursive;
     font-size: 35px;
@@ -40,46 +44,54 @@ header {
 }
 
 
-.menu_direita ul li a {
+/* ===== Botão ativo ===== */
+.menu_direita .ativo {
     position: relative;
+    color: #F5E8D3;
     text-decoration: none;
+}
+.menu_direita .ativo::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0; /* começa da direita */
+    width: 100%;
+    height: 2px;
+    background-color: #F5E8D3;
+    transform: scaleX(1); /* sempre visível */
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.menu_direita:hover .ativo {
+    color: #3b3b3b; /* Fica namesma cor dos não ativos */
+    transition: 0.3s ease;
+}
+.menu_direita:hover .ativo::after {
+    transform: scaleX(0); /* some a linha */
+}
+/* Quando não tem hover no menu, volta ao normal */
+.menu_direita:not(:hover) .ativo {
     color: #F5E8D3;
     transition: 0.3s ease;
 }
-
-/* Botão ativo */
-.menu_direita ul li a.ativo::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 100%;
-    height: 2px;
-    background-color: #F5E8D3;
+.menu_direita:not(:hover) .ativo::after {
     transform: scaleX(1);
-    transform-origin: center;
-    transition: transform 0.3s ease;
 }
 
-/* Hover no ativo */
-.menu_direita ul:hover li a.ativo {
+
+/* ===== Botão não ativo ===== */
+.menu_direita .nao_ativo {
+    position: relative;
+    text-decoration: none;
     color: #3b3b3b;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
-
-.menu_direita ul:hover li a.ativo::after {
-    transform: scaleX(0);
-}
-
-/* Botão não ativo */
-.menu_direita ul li a.nao_ativo {
-    color: #3b3b3b;
-}
-
-.menu_direita ul li a.nao_ativo::after {
+.menu_direita .nao_ativo::after {
     content: "";
     position: absolute;
-    bottom: -5px;
-    left: 0;
+    bottom: 0;
+    right: 0; 
     width: 100%;
     height: 2px;
     background-color: #F5E8D3;
@@ -87,13 +99,11 @@ header {
     transform-origin: center;
     transition: transform 0.3s ease;
 }
-
-.menu_direita ul li a.nao_ativo:hover {
+.menu_direita .nao_ativo:hover {
+    transform: scale(1.2);
     color: #F5E8D3;
-    transform: scale(1.1);
 }
-
-.menu_direita ul li a.nao_ativo:hover::after {
+.menu_direita .nao_ativo:hover::after {
     transform: scaleX(1);
 }
 
