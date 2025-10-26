@@ -114,3 +114,26 @@ def adicionar_ao_carrinho(request, produto_id):
     
     messages.success(request, f'"{produto.nome}" adicionado ao carrinho!')
     return redirect('/janela/products/')
+
+
+
+@login_required
+def remover_do_carrinho(request, produto_id):
+    # Encontra o item específico no carrinho do usuário logado
+    # Buscamos o ItemCarrinho que pertence ao carrinho do usuário E contém o produto específico
+    item = get_object_or_404(ItemCarrinho, carrinho__usuario=request.user, produto__id=produto_id)
+
+    # Verifica a quantidade
+    if item.quantidade > 1:
+        # Se for maior que 1, apenas diminui a quantidade
+        item.quantidade -= 1
+        item.save()
+        messages.info(request, f'Quantidade de "{item.produto.nome}" diminuída no carrinho.')
+    else:
+        # Se for 1 (ou menos, embora não deva acontecer), remove o item
+        nome_produto = item.produto.nome # Guarda o nome antes de deletar
+        item.delete()
+        messages.success(request, f'"{nome_produto}" removido do carrinho.')
+
+    # Redireciona de volta para a página onde o carrinho é exibido (o perfil)
+    return redirect('/janela/perfil/')

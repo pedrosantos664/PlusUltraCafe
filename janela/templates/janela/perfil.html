@@ -74,18 +74,21 @@
                         </div>
                         <p class="item-subtotal">Subtotal: R$ {{ item.subtotal }}</p>
                     </div>
-
                     <div class="item-actions">
-                        <a href="#" class="remove-btn">Remover</a>
+                        <form action="/janela/remover/{{ item.produto.id }}/" method="post" style="display: inline;">
+                            {% csrf_token %}
+                            <button type="submit" class="remove-btn">Remover 1</button>
+                        </form>
                     </div>
-
                 </div>
                 {% endfor %}
             </div>
 
-            <div class="cart-summary">
-                <span class="cart-total-text">Total: R$ {{ carrinho.total }}</span>
-                <a href="#" class="checkout-btn">Finalizar Compra</a>
+            <div style="text-align: right; margin-top: 20px;">
+                <button type="button" id="checkout-email-btn" class="checkout-btn">
+                    Finalizar Compra
+                </button>
+                <span id="email-status" style="margin-left: 15px; font-weight: bold;"></span>
             </div>
 
             {% else %}
@@ -136,8 +139,8 @@
     <section class="cart-section">
         <h2>Meu Carrinho</h2>
 
-        {% if user.carrinho and user.carrinho.itens.all %}
-        <table class="cart-table">
+        {% if carrinho and carrinho.itens.all %}
+        <table class="cart-table" id="cart-items-table">
             <thead>
                 <tr>
                     <th>Produto</th>
@@ -147,51 +150,117 @@
                 </tr>
             </thead>
             <tbody>
-                {% for item in user.carrinho.itens.all %}
+                {% for item in carrinho.itens.all %}
                 <tr>
-                    <td>{{ item.produto.nome }}</td>
-                    <td>R$ {{ item.produto.preco }}</td>
-                    <td>{{ item.quantidade }}</td>
-                    <td>R$ {{ item.subtotal }}</td>
+                    <td class="item-name">{{ item.produto.nome }}</td>
+                    <td class="item-price">R$ {{ item.produto.preco }}</td>
+                    <td class="item-quantity">{{ item.quantidade }}</td>
+                    <td class="item-subtotal">R$ {{ item.subtotal }}</td>
                 </tr>
                 {% endfor %}
             </tbody>
         </table>
         <div class="cart-total">
-            <span>Total: R$ {{ user.carrinho.total }}</span>
+            <span>Total: <span id="cart-total-amount">R$ {{ carrinho.total }}</span></span>
         </div>
+
+
+
         {% else %}
         <p class="empty-cart-message">Seu carrinho está vazio.</p>
         {% endif %}
     </section>
 
-    <script>
-        // Script das bolhas (mantido)
+    <script type="text/javascript" src="https://cdn.jsdelivr.net/npm/@emailjs/browser@3/dist/email.min.js"></script>
+    <script type="text/javascript">
         document.addEventListener('DOMContentLoaded', function () {
-            const body = document.querySelector('body');
-            // Evita adicionar bolhas se já existirem
-            if (document.querySelector('.bubble')) return;
 
-            for (let i = 0; i < 15; i++) {
-                const bubble = document.createElement('div');
-                bubble.classList.add('bubble');
+            // --- INICIALIZAÇÃO DO EMAILJS ---
+            (function () {
+                // !!! SUBSTITUA PELO SEU USER ID (PUBLIC KEY) DO EMAILJS !!!
+                emailjs.init("X5ZieltQKUiMfRhju");
+            })();
 
-                const size = Math.random() * 100 + 20;
-                const posX = Math.random() * 100;
-                const posY = Math.random() * 100;
-                const delay = Math.random() * 5;
-                const opacity = Math.random() * 0.3 + 0.1;
+            // --- LÓGICA DO BOTÃO DE CHECKOUT POR EMAIL ---
+            const checkoutButton = document.getElementById('checkout-email-btn');
+            const emailStatus = document.getElementById('email-status');
+            const cartTable = document.getElementById('cart-items-table');
 
-                bubble.style.width = `${size}px`;
-                bubble.style.height = `${size}px`;
-                bubble.style.left = `${posX}%`;
-                bubble.style.top = `${posY}%`;
-                bubble.style.animationDelay = `${delay}s`;
-                bubble.style.opacity = opacity;
+            if (checkoutButton && cartTable) { // Só adiciona o listener se o botão e a tabela existirem
+                checkoutButton.addEventListener('click', function () {
 
-                body.appendChild(bubble);
+                    // 1. Desabilitar botão e mostrar status
+                    checkoutButton.disabled = true;
+                    emailStatus.textContent = 'Enviando email...';
+                    emailStatus.style.color = 'orange';
+
+                    // 2. Extrair dados da tabela
+                    let itemsText = "";
+                    const tableRows = cartTable.querySelector('tbody').querySelectorAll('tr');
+
+                    tableRows.forEach(row => {
+                        const name = row.querySelector('.item-name').textContent.trim();
+                        const quantity = row.querySelector('.item-quantity').textContent.trim();
+                        const subtotal = row.querySelector('.item-subtotal').textContent.trim();
+                        itemsText += `${quantity}x ${name} - ${subtotal}\n`;
+                    });
+
+                    // 3. Extrair o total
+                    const totalAmountText = document.getElementById('cart-total-amount').textContent.trim();
+
+                    // 4. Preparar os parâmetros para o template EmailJS
+                    //    Os nomes aqui DEVEM corresponder às variáveis no seu template EmailJS.
+                    const templateParams = {
+                        to_name: "{{ user.nome }}", // Pega o nome do usuário logado do Django
+                        customer_email: "{{ user.email }}", // Pega o email do usuário logado
+                        cart_items: itemsText,
+                        cart_total: totalAmountText
+                    };
+
+                    // 5. Enviar o email via EmailJS
+                    //    !!! SUBSTITUA PELO SEU SERVICE ID E TEMPLATE ID DO EMAILJS !!!
+                    emailjs.send('service_lgud2en', 'template_0hlyymw', templateParams)
+                        .then(function (response) {
+                            console.log('SUCESSO!', response.status, response.text);
+                            emailStatus.textContent = 'Pedido enviado por email!';
+                            emailStatus.style.color = 'green';
+                            // IMPORTANTE: Este script NÃO limpa o carrinho no servidor.
+                            // Ele apenas envia o email. Para limpar o carrinho de verdade,
+                            // você precisaria de uma view no Django para isso.
+
+                        }, function (error) {
+                            console.log('FALHOU...', error);
+                            emailStatus.textContent = 'Erro ao enviar email.';
+                            emailStatus.style.color = 'red';
+                            checkoutButton.disabled = false; // Reabilita o botão em caso de erro
+                        });
+                });
             }
-        });
+
+            // --- SCRIPT DAS BOLHAS ---
+            const body = document.querySelector('body');
+            if (!document.querySelector('.bubble')) { // Verifica se já existem antes de adicionar
+                for (let i = 0; i < 15; i++) {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+
+                    const size = Math.random() * 100 + 20;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const delay = Math.random() * 5;
+                    const opacity = Math.random() * 0.3 + 0.1;
+
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    bubble.style.left = `${posX}%`;
+                    bubble.style.top = `${posY}%`;
+                    bubble.style.animationDelay = `${delay}s`;
+                    bubble.style.opacity = opacity;
+
+                    body.appendChild(bubble);
+                }
+            }
+        }); // Fim do addEventListener principal
     </script>
 </body>
 
