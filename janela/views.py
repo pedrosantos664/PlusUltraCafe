@@ -4,6 +4,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from django.contrib.auth.decorators import login_required
+from janela.forms import PerfilEditForm
 
 # IMPORTANTE: Importamos nosso modelo Usuario e removemos o User padrão
 from .models import Usuario, Produto, Carrinho, ItemCarrinho
@@ -141,3 +142,25 @@ def remover_do_carrinho(request, produto_id):
 
     # Redireciona de volta para a página onde o carrinho é exibido (o perfil)
     return redirect('/janela/perfil/')
+
+@login_required
+def perfil(request):
+    carrinho = get_object_or_404(Carrinho, usuario=request.user)
+    
+    if request.method == 'POST':
+        form = PerfilEditForm(request.POST, request.FILES, instance=request.user)
+        if form.is_valid():
+            form.save()
+            messages.success(request, 'Perfil atualizado com sucesso!')
+            return redirect('/janela/perfil/') 
+        else:
+            messages.error(request, 'Erro ao atualizar o perfil. Verifique os campos.')
+            
+    else: 
+        form = PerfilEditForm(instance=request.user)
+
+    contexto = {
+        'carrinho': carrinho,
+        'form': form, 
+    }
+    return render(request, "janela/perfil.html", contexto)

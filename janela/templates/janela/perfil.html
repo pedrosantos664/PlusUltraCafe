@@ -36,20 +36,72 @@
             </div>
             {% endif %}
         </div>
+
     </nav>
+
+
 
     <main class="profile-page-container">
         <header class="profile-header">
             <div class="avatar">
-                <img src="{{ user.foto_perfil.url }}" alt="{{ user.foto_perfil.url }}">
+                {% if user.foto_perfil %}
+                <img src="{{ user.foto_perfil.url }}" alt="Foto de Perfil de {{ user.nome }}">
+                {% else %}
+                <img src="{% static 'janela/imagens/avatar_placeholder.jpg' %}" alt="Avatar Padrão">
+                {% endif %}
             </div>
-            <div class="user-details">
-                <h1>{{ user.nome|default:"Bem-vindo" }} {{ user.last_name }}</h1>
-                <p>{{ user.email }}</p>
+
+            <div id="display-mode" style="{% if form.errors %}display: none;{% endif %}">
+
+                <div class="user-details">
+                    <h1>{{ user.nome }}</h1>
+                    <p>{{ user.email }}</p>
+                </div>
+                <div class="profile-actions">
+                    <a href="#" class="btn btn-secondary">Meus Pedidos</a>
+                    <button type="button" id="edit-button" class="btn btn-primary">Editar Perfil</button>
+                </div>
             </div>
-            <div class="profile-actions">
-                <a href="#" class="btn btn-secondary">Meus Pedidos</a>
-                <a href="#" class="btn btn-primary">Editar Perfil</a>
+            <div id="edit-mode" style="{% if not form.errors %}display: none;{% endif %} flex-grow: 1;">
+
+                <form method="post" enctype="multipart/form-data" action="/janela/perfil/">
+                    {% csrf_token %}
+                    <div class="form-group" style="margin-bottom: 15px;">
+                        <label for="{{ form.nome.id_for_label }}" style="font-weight: bold;">nome</label>
+                        {{ form.nome }}
+                        {% if form.nome.errors %}
+                        <div style="color: #e74c3c; font-size: 0.9em; margin-top: 5px;">{{ form.nome.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group" style="margin-bottom: 20px;">
+                        <label for="{{ form.email.id_for_label }}" style="font-weight: bold;">email</label>
+                        {{ form.email }}
+                        {% if form.email.errors %}
+                        <div style="color: #e74c3c; font-size: 0.9em; margin-top: 5px;">{{ form.email.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="form-group" style="margin-bottom: 25px;">
+                        <label for="{{ form.foto_perfil.id_for_label }}"
+                            style="display: block; margin-bottom: 5px; font-weight: bold;">{{ form.foto_perfil.label
+                            }}</label>
+                        {% if user.foto_perfil %}
+                        <p style="margin-bottom: 5px;">
+                            Atual: <a href="{{ user.foto_perfil.url }}" target="_blank">{{ user.foto_perfil.name }}</a>
+                            <img src="{{ user.foto_perfil.url }}" alt="Foto Atual"
+                                style="max-height: 50px; vertical-align: middle; margin-left: 10px; border-radius: 50%;">
+                        </p>
+                        {% endif %}
+                        {{ form.foto_perfil }}
+                        {% if form.foto_perfil.errors %}
+                        <div class="error-message">{{ form.foto_perfil.errors }}</div>
+                        {% endif %}
+                    </div>
+                    <div class="profile-actions">
+                        <button type="button" id="cancel-button" class="btn btn-secondary">Cancelar</button>
+                        <button type="submit" class="btn btn-primary" style="background-color: #27ae60;">Salvar
+                            Alterações</button>
+                    </div>
+                </form>
             </div>
         </header>
         <section class="cart-section">
@@ -250,7 +302,59 @@
                     body.appendChild(bubble);
                 }
             }
-        }); 
+        });
+
+        document.addEventListener('DOMContentLoaded', function () {
+            // --- LÓGICA PARA ALTERNAR MODO DE EDIÇÃO DO PERFIL ---
+            const displayModeDiv = document.getElementById('display-mode');
+            const editModeDiv = document.getElementById('edit-mode');
+            const editButton = document.getElementById('edit-button');
+            const cancelButton = document.getElementById('cancel-button');
+
+            // Garante que os elementos existem antes de adicionar listeners
+            if (displayModeDiv && editModeDiv && editButton && cancelButton) {
+
+                // Ao clicar em "Editar Perfil"
+                editButton.addEventListener('click', function () {
+                    displayModeDiv.style.display = 'none'; // Esconde visualização
+                    editModeDiv.style.display = 'block';  // Mostra formulário
+                    editModeDiv.style.flexGrow = '1';     // Garante que o form ocupe espaço
+                });
+
+                // Ao clicar em "Cancelar"
+                cancelButton.addEventListener('click', function () {
+                    editModeDiv.style.display = 'none';   // Esconde formulário
+                    displayModeDiv.style.display = 'flex'; // Mostra visualização (usar flex se necessário)
+                    // Se display-mode não usa flex, apenas use 'block'
+                    // displayModeDiv.style.display = 'block'; 
+                });
+            }
+
+            // --- Script das Bolhas (mantido do código anterior) ---
+            const body = document.querySelector('body');
+            if (!document.querySelector('.bubble')) {
+                // ... (código das bolhas permanece o mesmo) ...
+                for (let i = 0; i < 15; i++) {
+                    const bubble = document.createElement('div');
+                    bubble.classList.add('bubble');
+                    // ... resto do código das bolhas ...
+                    const size = Math.random() * 100 + 20;
+                    const posX = Math.random() * 100;
+                    const posY = Math.random() * 100;
+                    const delay = Math.random() * 5;
+                    const opacity = Math.random() * 0.3 + 0.1;
+
+                    bubble.style.width = `${size}px`;
+                    bubble.style.height = `${size}px`;
+                    bubble.style.left = `${posX}%`;
+                    bubble.style.top = `${posY}%`;
+                    bubble.style.animationDelay = `${delay}s`;
+                    bubble.style.opacity = opacity;
+
+                    body.appendChild(bubble);
+                }
+            }
+        });
     </script>
 </body>
 
