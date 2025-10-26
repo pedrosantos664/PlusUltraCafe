@@ -10,6 +10,8 @@ from .models import Usuario, Produto, Carrinho, ItemCarrinho
 
 def index(request):
     return render(request, "janela/index.html")
+def Blog(request):
+    return render(request, "janela/Blog.html")
 
 def contact(request):
     return render(request, "janela/contact.html")
