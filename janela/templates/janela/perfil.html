@@ -177,7 +177,7 @@
 
             // --- INICIALIZAÇÃO DO EMAILJS ---
             (function () {
-                // !!! SUBSTITUA PELO SEU USER ID (PUBLIC KEY) DO EMAILJS !!!
+
                 emailjs.init("X5ZieltQKUiMfRhju");
             })();
 
@@ -186,15 +186,13 @@
             const emailStatus = document.getElementById('email-status');
             const cartTable = document.getElementById('cart-items-table');
 
-            if (checkoutButton && cartTable) { // Só adiciona o listener se o botão e a tabela existirem
+            if (checkoutButton && cartTable) {
                 checkoutButton.addEventListener('click', function () {
 
-                    // 1. Desabilitar botão e mostrar status
                     checkoutButton.disabled = true;
                     emailStatus.textContent = 'Enviando email...';
                     emailStatus.style.color = 'orange';
 
-                    // 2. Extrair dados da tabela
                     let itemsText = "";
                     const tableRows = cartTable.querySelector('tbody').querySelectorAll('tr');
 
@@ -205,41 +203,33 @@
                         itemsText += `${quantity}x ${name} - ${subtotal}\n`;
                     });
 
-                    // 3. Extrair o total
                     const totalAmountText = document.getElementById('cart-total-amount').textContent.trim();
 
-                    // 4. Preparar os parâmetros para o template EmailJS
-                    //    Os nomes aqui DEVEM corresponder às variáveis no seu template EmailJS.
                     const templateParams = {
-                        to_name: "{{ user.nome }}", // Pega o nome do usuário logado do Django
-                        customer_email: "{{ user.email }}", // Pega o email do usuário logado
+                        to_name: "{{ user.nome }}",
+                        customer_email: "{{ user.email }}",
                         cart_items: itemsText,
                         cart_total: totalAmountText
                     };
 
-                    // 5. Enviar o email via EmailJS
-                    //    !!! SUBSTITUA PELO SEU SERVICE ID E TEMPLATE ID DO EMAILJS !!!
                     emailjs.send('service_lgud2en', 'template_0hlyymw', templateParams)
                         .then(function (response) {
                             console.log('SUCESSO!', response.status, response.text);
                             emailStatus.textContent = 'Pedido enviado por email!';
                             emailStatus.style.color = 'green';
-                            // IMPORTANTE: Este script NÃO limpa o carrinho no servidor.
-                            // Ele apenas envia o email. Para limpar o carrinho de verdade,
-                            // você precisaria de uma view no Django para isso.
 
                         }, function (error) {
                             console.log('FALHOU...', error);
                             emailStatus.textContent = 'Erro ao enviar email.';
                             emailStatus.style.color = 'red';
-                            checkoutButton.disabled = false; // Reabilita o botão em caso de erro
+                            checkoutButton.disabled = false;
                         });
                 });
             }
 
             // --- SCRIPT DAS BOLHAS ---
             const body = document.querySelector('body');
-            if (!document.querySelector('.bubble')) { // Verifica se já existem antes de adicionar
+            if (!document.querySelector('.bubble')) {
                 for (let i = 0; i < 15; i++) {
                     const bubble = document.createElement('div');
                     bubble.classList.add('bubble');
@@ -260,7 +250,7 @@
                     body.appendChild(bubble);
                 }
             }
-        }); // Fim do addEventListener principal
+        }); 
     </script>
 </body>
 
