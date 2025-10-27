@@ -9,7 +9,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="{% static 'css/menu_inicial.css' %}">
+    <link rel="stylesheet" href="css/menu_inicial.css">
 </head>
 
 <body>
@@ -21,10 +21,10 @@
         </nav>
         <nav class="menu_direita">
             <ul>
-                <li><a href="menu_inicial.html" class="ativo">Home</a></li>
+                <li><a href="{% url 'menu_inicial' %}" class="ativo">Home</a></li>
                 <li><a href="#" class="nao_ativo">Cardápio</a></li>
                 <li><a href="#" class="nao_ativo">Cursos</a></li>
-                <li><a href="Blog.html" class="nao_ativo">Blog</a></li>
+                <li><a href="{% url 'blog' %}" class="nao_ativo">Blog</a></li>
             </ul>
         </nav>
     </header>
@@ -40,7 +40,6 @@
         <section class="secao_cafeteiras">
             <h1>Cafeteiras</h1>
             <div class="caixa-cafeteira">
-<<<<<<< HEAD
                 <a href="#" class="seta-esquerda-cafeteira"><img src="imagens/Seta-Esquerda.png" alt="Seta para a esquerda"></a>
 
                 <div class="cafeteiras">
@@ -74,38 +73,6 @@
                 </div>
                 
                 <a href="#" class="seta-direita-cafeteira"><img src="imagens/Seta-Direita.png" alt="Seta para a direita"></a>
-=======
-                <a href="#" class="seta-esquerda-cafeteira"><img src="imagens/Seta-Esquerda.png"
-                        alt="Seta para a esquerda"></a>
-                <div class="cafeteiras">
-                    <div class="card" data-popup="popup1"><br>
-                        <img src="imagens/cafeteiras/Cafeteira_1.png" alt="Cafeteira 1">
-                        <h2>Cafeteira Eletrolux ECM25 127v</h2>
-                        <p>R$ 228,71</p>
-                        <button class="comprar-cafeteira">Comprar</button>
-                    </div>
-                    <div class="card" data-popup="popup2"><br>
-                        <img src="imagens/cafeteiras/Cafeteira_2.png" alt="Cafeteira 2">
-                        <h2>Cafeteira Expresso Arno Dolce Gusto</h2>
-                        <p>R$ 475,90</p>
-                        <button class="comprar-cafeteira">Comprar</button>
-                    </div>
-                    <div class="card" data-popup="popup3"><br>
-                        <img src="imagens/cafeteiras/Cafeteira_3.png" alt="Cafeteira 3">
-                        <h2>Cafeteira Oster PrimaLatte Touch Red</h2>
-                        <p>R$ 1204,90</p>
-                        <button class="comprar-cafeteira">Comprar</button>
-                    </div>
-                    <div class="card" data-popup="popup4"><br>
-                        <img src="imagens/cafeteiras/Cafeteira_4.png" alt="Cafeteira 4">
-                        <h2>Cafeteira Elétrica Mondial, Preto</h2>
-                        <p>R$ 109,90</p>
-                        <button class="comprar-cafeteira">Comprar</button>
-                    </div>
-                </div>
-                <a href="#" class="seta-direita-cafeteira"><img src="imagens/Seta-Direita.png"
-                        alt="Seta para a direita"></a>
->>>>>>> d9e77645fa2fad2c2c35c965f003a068512c7dee
             </div>
         </section>
 
@@ -114,7 +81,6 @@
         <section class="secao_cafes_selecionados">
             <h1>Cafés Selecionados</h1>
             <div class="caixa-cafe-selecionado">
-<<<<<<< HEAD
                 <a href="#" class="seta-esquerda-cafe"><img src="imagens/Seta-Esquerda.png" alt="Seta para a esquerda"></a>
 
                 <div class="cafes_selecionados">
@@ -147,37 +113,6 @@
                     </div>
                 </div>
 
-=======
-                <a href="#" class="seta-esquerda-cafe"><img src="imagens/Seta-Esquerda.png"
-                        alt="Seta para a esquerda"></a>
-                <div class="cafes_selecionados">
-                    <div class="card" data-popup="popup5"><br>
-                        <img src="imagens/cafes_solucionados/Cafe_Nescafe_Origins.png"
-                            alt="Café Selecionado Nescafé Origins">
-                        <h2>Nescafé Origins</h2>
-                        <p>R$ 35,00</p>
-                        <button class="comprar-cafe-selecionado">Comprar</button>
-                    </div>
-                    <div class="card" data-popup="popup6"><br>
-                        <img src="imagens/cafes_solucionados/Cafe_Constantino.png" alt="Café Selecionado Constantino">
-                        <h2>Café Constantino</h2>
-                        <p>R$ 150,00</p>
-                        <button class="comprar-cafe-selecionado">Comprar</button>
-                    </div>
-                    <div class="card" data-popup="popup7"><br>
-                        <img src="imagens/cafes_solucionados/Cafe_Orfeu.png" alt="Café Selecionado Orfeu">
-                        <h2>Café Orfeu</h2>
-                        <p>R$ 300,00</p>
-                        <button class="comprar-cafe-selecionado">Comprar</button>
-                    </div>
-                    <div class="card" data-popup="popup8"><br>
-                        <img src="imagens/cafes_solucionados/Cafe_Baggio.png" alt="Café Selecionado Baggio">
-                        <h2>Café Baggio</h2>
-                        <p>R$ 120,00</p>
-                        <button class="comprar-cafe-selecionado">Comprar</button>
-                    </div>
-                </div>
->>>>>>> d9e77645fa2fad2c2c35c965f003a068512c7dee
                 <a href="#" class="seta-direita-cafe"><img src="imagens/Seta-Direita.png" alt="Seta para a direita"></a>
             </div>
         </section>
@@ -187,67 +122,39 @@
         <section class="secao_acessorios">
             <h1>Acessórios</h1>
             <div class="caixa-acessorio">
-<<<<<<< HEAD
-            <a href="#" class="seta-esquerda-acessorio"><img src="imagens/Seta-Esquerda.png" alt="Seta para a esquerda"></a>
-            <div class="acessorios">
-                <div class="card" data-popup="popup9"><br>
-                    <img src="imagens/acessorios/Acessorio_Cafeteira.png" alt="Acessório para Cafeteira">
-                    <h2>Acessório de Cafeteira</h2>
-                    <p>R$ 350,00</p>
-                    <button class="comprar-item">Comprar</button>
-                </div>
-                <div class="card" data-popup="popup10"><br>
-                    <img src="imagens/acessorios/Tampa_cafeteira.png" alt="Tampa para Cafeteira">
-                    <h2>Tampa de Cafeteira</h2>
-                    <p>R$ 40,00</p>
-                    <button class="comprar-item">Comprar</button>
-                </div>
-                <div class="card" data-popup="popup11"><br>
-                    <img src="imagens/acessorios/Coador_Vermelho.png" alt="Coador Vermelho">
-                    <h2>Coador Vermelho</h2>
-                    <p>R$ 10,00</p>
-                    <button class="comprar-item">Comprar</button>
-                </div>
-                <div class="card" data-popup="popup12"><br>
-                    <img src="imagens/acessorios/Capsula.png" alt="Cápsula 3 Corações">
-                    <h2>Cápsula 3 Corações</h2>
-                    <p>R$ 40,00</p>
-                    <button class="comprar-item">Comprar</button>
-                </div>
-            </div>
-            <a href="#" class="seta-direita-acessorio"><img src="imagens/Seta-Direita.png" alt="Seta para a direita"></a>
-=======
-                <a href="#" class="seta-esquerda-acessorio"><img src="imagens/Seta-Esquerda.png"
-                        alt="Seta para a esquerda"></a>
+                <a href="#" class="seta-esquerda-acessorio"><img src="imagens/Seta-Esquerda.png" alt="Seta para a esquerda"></a>
+
                 <div class="acessorios">
                     <div class="card" data-popup="popup9"><br>
-                        <img src="imagens/acessorios/Acessorio_Cafeteira.png" alt="Acessório para Cafeteira">
-                        <h2>Acessório de Cafeteira</h2>
-                        <p>R$ 350,00</p>
-                        <button class="comprar-acessorio">Comprar</button>
+                        <img src="imagens/acessorios/Porta_Capsulas.jpg" alt="Porta Cápsulas">
+                        <h2>Porta Cápsulas com bandeja</h2>
+                        <p>R$ 47,43</p>
+                        <button class="comprar-item">Comprar</button>
                     </div>
+
                     <div class="card" data-popup="popup10"><br>
-                        <img src="imagens/acessorios/Tampa_cafeteira.png" alt="Tampa para Cafeteira">
-                        <h2>Tampa de Cafeteira</h2>
-                        <p>R$ 40,00</p>
-                        <button class="comprar-acessorio">Comprar</button>
+                        <img src="imagens/acessorios/Lixeira_Para_Capsulas.jpg" alt="Lixeira para Cápsulas Dolce Gusto">
+                        <h2>Lixeira para Cápsulas</h2>
+                        <p>R$ 39,90</p>
+                        <button class="comprar-item">Comprar</button>
                     </div>
+
                     <div class="card" data-popup="popup11"><br>
-                        <img src="imagens/acessorios/Coador_Vermelho.png" alt="Coador Vermelho">
-                        <h2>Coador Vermelho</h2>
-                        <p>R$ 10,00</p>
-                        <button class="comprar-acessorio">Comprar</button>
+                        <img src="imagens/acessorios/Filtro_Inox.jpg" alt="Coador Filtro De Café Inox" style="height: 29%;">
+                        <h2>Coador Filtro De Café Inox</h2>
+                        <p>R$ 39,90</p>
+                        <button class="comprar-item">Comprar</button>
                     </div>
+
                     <div class="card" data-popup="popup12"><br>
-                        <img src="imagens/acessorios/Capsula.png" alt="Cápsula 3 Corações">
-                        <h2>Cápsula 3 Corações</h2>
-                        <p>R$ 40,00</p>
-                        <button class="comprar-acessorio">Comprar</button>
+                        <img src="imagens/acessorios/Caneca_de_Vidro.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente">
+                        <h2>4x Caneca de Café de Vidro</h2>
+                        <p>R$ 89,00</p>
+                        <button class="comprar-item">Comprar</button>
                     </div>
                 </div>
-                <a href="#" class="seta-direita-acessorio"><img src="imagens/Seta-Direita.png"
-                        alt="Seta para a direita"></a>
->>>>>>> d9e77645fa2fad2c2c35c965f003a068512c7dee
+
+                <a href="#" class="seta-direita-acessorio"><img src="imagens/Seta-Direita.png" alt="Seta para a direita"></a>
             </div>
         </section>
 
@@ -338,16 +245,9 @@
                             style="font-weight: normal; color: black;">Filtro Permanente</span></p>
                 </div>
 
-<<<<<<< HEAD
             <p style="font-weight: bold; color: black; font-size: 25px;">R$228,<span style="font-size: 20px;">71</span></p>
             <button class="comprar-item">Comprar</button>
         </div>
-=======
-                <p style="font-weight: bold; color: black; font-size: 25px;">R$228,<span
-                        style="font-size: 20px;">71</span></p>
-                <button class="comprar-cafeteira">Comprar</button>
-            </div>
->>>>>>> d9e77645fa2fad2c2c35c965f003a068512c7dee
         </div>
     </div>
 
@@ -389,16 +289,9 @@
                             style="font-weight: normal; color: black;">Reservatório de Água Removível</span></p>
                 </div>
 
-<<<<<<< HEAD
             <p style="font-weight: bold; color: black; font-size: 25px; margin-top: 5px; ">R$475,<span style="font-size: 20px;">90</span></p>
             <button class="comprar-item">Comprar</button>
         </div>
-=======
-                <p style="font-weight: bold; color: black; font-size: 25px; margin-top: 5px; ">R$475,<span
-                        style="font-size: 20px;">90</span></p>
-                <button class="comprar-cafeteira">Comprar</button>
-            </div>
->>>>>>> d9e77645fa2fad2c2c35c965f003a068512c7dee
         </div>
     </div>
 
@@ -439,16 +332,9 @@
                             Filtro permanente, Função de limpeza automática</span></p>
                 </div>
 
-<<<<<<< HEAD
             <p style="font-weight: bold; color: black; font-size: 25px;">R$1204,<span style="font-size: 20px;">90</span></p>
             <button class="comprar-item">Comprar</button>
         </div>
-=======
-                <p style="font-weight: bold; color: black; font-size: 25px;">R$1204,<span
-                        style="font-size: 20px;">90</span></p>
-                <button class="comprar-cafeteira">Comprar</button>
-            </div>
->>>>>>> d9e77645fa2fad2c2c35c965f003a068512c7dee
         </div>
     </div>
 
@@ -489,7 +375,6 @@
                             style="font-weight: normal; color: black;">Filtro Permanente</span></p>
                 </div>
 
-<<<<<<< HEAD
             <p style="font-weight: bold; color: black; font-size: 25px;">R$109,<span style="font-size: 20px;">90</span></p>
             <button class="comprar-item">Comprar</button>
         </div>
@@ -644,18 +529,160 @@
             <p style="font-weight: bold; color: black; font-size: 25px;">R$34,<span style="font-size: 20px;">19</span></p>
             <button class="comprar-item">Comprar</button>
         </div>
-=======
-                <p style="font-weight: bold; color: black; font-size: 25px;">R$109,<span
-                        style="font-size: 20px;">90</span></p>
-                <button class="comprar-cafeteira">Comprar</button>
-            </div>
->>>>>>> d9e77645fa2fad2c2c35c965f003a068512c7dee
         </div>
     </div>
 
 
+    <!--Pop-ups da Seção de Acessórios-->
 
-    
+    <!-- Pop-up 9 -->
+    <div class="overlay" id="popup9">
+        <div class="popup">
+        <div class="popup-left">
+            <div class="carousel">
+            <img src="imagens/acessorios/Porta_Capsulas.jpg" alt="Porta Cápsulas Cantinho do Café imagem 1" class="active">
+            <img src="imagens/acessorios/Porta_Capsulas_pt2.jpg" alt="Porta Cápsulas Cantinho do Café imagem 2">
+            <img src="imagens/acessorios/Porta_Capsulas_pt3.jpg" alt="Porta Cápsulas Cantinho do Café imagem 3">
+            <img src="imagens/acessorios/Porta_Capsulas_pt5.jpg" alt="Porta Cápsulas Cantinho do Café imagem 4">
+            </div>
+            <div class="thumbnails">
+            <img src="imagens/acessorios/Porta_Capsulas.jpg" alt="Porta Cápsulas Cantinho do Café imagem 1">
+            <img src="imagens/acessorios/Porta_Capsulas_pt2.jpg" alt="Porta Cápsulas Cantinho do Café imagem 2">
+            <img src="imagens/acessorios/Porta_Capsulas_pt3.jpg" alt="Porta Cápsulas Cantinho do Café imagem 3">
+            <img src="imagens/acessorios/Porta_Capsulas_pt5.jpg" alt="Porta Cápsulas Cantinho do Café imagem 4">
+            </div>
+            <span class="arrow left">&#10094;</span>
+            <span class="arrow right">&#10095;</span>
+        </div>
+        <div class="popup-right">
+            <span class="close-btn">&times;</span><br>
+            <h2 style="color: #B85C3A">Porta Cápsulas com Bandeja Cantinho do Café</h2>
+            <p>Compatível somente com cápsulas Dolce Gusto - Organiza e decora - Um item essencial para sua cozinha e escritório - Ideal para os amantes de café - Não acompanha cápsulas, máquina de café e acessórios</p>
+            <div class="especificacao">
+                <p style="font-weight: bold; color: #B85C3A;">Cor: <span style="font-weight: normal; color: black;">Preto - Dolce Gusto</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Material: <span style="font-weight: normal; color: black;">MDF</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Dimensões do produto: <span style="font-weight: normal; color: black;">38C x 30L x 9,5A centímetros</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Peso do produto: <span style="font-weight: normal; color: black;">1,5 Quilogramas</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Marca: <span style="font-weight: normal; color: black;">BOXFAN COMPRE RECEBA APROVEITE</span></p>
+            </div>
+
+            <p style="font-weight: bold; color: black; font-size: 25px;">R$47,<span style="font-size: 20px;">43</span></p>
+            <button class="comprar-item">Comprar</button>
+        </div>
+        </div>
+    </div>
+
+    <!-- Pop-up 10 -->
+    <div class="overlay" id="popup10">
+        <div class="popup">
+        <div class="popup-left">
+            <div class="carousel">
+            <img src="imagens/acessorios/Lixeira_Para_Capsulas.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 1" class="active">
+            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt2.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 2">
+            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt3.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 3">
+            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt4.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 4">
+            </div>
+            <div class="thumbnails">
+            <img src="imagens/acessorios/Lixeira_Para_Capsulas.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 1">
+            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt2.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 2">
+            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt3.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 3">
+            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt4.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 4">
+            </div>
+            <span class="arrow left">&#10094;</span>
+            <span class="arrow right">&#10095;</span>
+        </div>
+        <div class="popup-right">
+            <span class="close-btn">&times;</span><br>
+            <h2 style="color: #B85C3A">Lixeira para Cápsulas Dolce Gusto (Branca)</h2>
+            <p>Dedicada exclusivamente para armazenar cápsulas usadas da Dolce Gusto, mantendo o ambiente organizado - Design quadrado e cor branca, combinando com a estética da máquina de café Dolce Gusto</p>
+            <div class="especificacao">
+                <p style="font-weight: bold; color: #B85C3A;">Marca: <span style="font-weight: normal; color: black;">Dolce Gusto</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Cor: <span style="font-weight: normal; color: black;">Branca</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Mecanismo de abertura: <span style="font-weight: normal; color: black;">Removível</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Material: <span style="font-weight: normal; color: black;">Plástico</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Adequação do controle por rádio: <span style="font-weight: normal; color: black;">Cozinha</span></p>
+            </div>
+
+            <p style="font-weight: bold; color: black; font-size: 25px;">R$39,<span style="font-size: 20px;">90</span></p>
+            <button class="comprar-item">Comprar</button>
+        </div>
+        </div>
+    </div>
+
+    <!-- Pop-up 11 -->
+    <div class="overlay" id="popup11">
+        <div class="popup">
+        <div class="popup-left">
+            <div class="carousel">
+            <img src="imagens/acessorios/Filtro_Inox.jpg" alt="Coador Filtro de Café Inox imagem 1" class="active">
+            <img src="imagens/acessorios/Filtro_Inox_pt2.jpg" alt="Coador Filtro de Café Inox imagem 2">
+            <img src="imagens/acessorios/Filtro_Inox_pt5.jpg" alt="Coador Filtro de Café Inox imagem 3">
+            <img src="imagens/acessorios/Filtro_Inox_pt4.jpg" alt="Coador Filtro de Café Inox imagem 4">
+            </div>
+            <div class="thumbnails">
+            <img src="imagens/acessorios/Filtro_Inox.jpg" alt="Coador Filtro de Café Inox imagem 1">
+            <img src="imagens/acessorios/Filtro_Inox_pt2.jpg" alt="Coador Filtro de Café Inox imagem 2">
+            <img src="imagens/acessorios/Filtro_Inox_pt5.jpg" alt="Coador Filtro de Café Inox imagem 3">
+            <img src="imagens/acessorios/Filtro_Inox_pt4.jpg" alt="Coador Filtro de Café Inox imagem 4">
+            </div>
+            <span class="arrow left">&#10094;</span>
+            <span class="arrow right">&#10095;</span>
+        </div>
+        <div class="popup-right">
+            <span class="close-btn">&times;</span><br>
+            <h2 style="color: #B85C3A">Coador Filtro De Café 103 Inox Dúravel Sem Uso De Papel</h2>
+            <p>Durabilidade: Fabricado em aço inoxidável de alta qualidade, resistente à corrosão e desgaste, garantindo longa vida útil. Ideal para uso contínuo sem perder a integridade.</p>
+            <div class="especificacao">
+                <p style="font-weight: bold; color: #B85C3A;">Material: <span style="font-weight: normal; color: black;">Aço inoxidável</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Marca: <span style="font-weight: normal; color: black;">Genérico</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Forma: <span style="font-weight: normal; color: black;">Cone</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Contagem de unidades: <span style="font-weight: normal; color: black;">1 unidade</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Fabricante: <span style="font-weight: normal; color: black;">Importado</span></p>
+            </div>
+
+            <p style="font-weight: bold; color: black; font-size: 25px;">R$39,<span style="font-size: 20px;">90</span></p>
+            <button class="comprar-item">Comprar</button>
+        </div>
+        </div>
+    </div>
+
+    <!-- Pop-up 12 -->
+    <div class="overlay" id="popup12">
+        <div class="popup">
+        <div class="popup-left">
+            <div class="carousel">
+            <img src="imagens/acessorios/Caneca_de_Vidro.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 1" class="active">
+            <img src="imagens/acessorios/Caneca_de_Vidro_pt2.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 2">
+            <img src="imagens/acessorios/Caneca_de_Vidro_pt3.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 3">
+            <img src="imagens/acessorios/Caneca_de_Vidro_pt4.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 4">
+            </div>
+            <div class="thumbnails">
+            <img src="imagens/acessorios/Caneca_de_Vidro.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 1">
+            <img src="imagens/acessorios/Caneca_de_Vidro_pt2.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 2">
+            <img src="imagens/acessorios/Caneca_de_Vidro_pt3.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 3">
+            <img src="imagens/acessorios/Caneca_de_Vidro_pt4.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 4">
+            </div>
+            <span class="arrow left">&#10094;</span>
+            <span class="arrow right">&#10095;</span>
+        </div>
+        <div class="popup-right">
+            <span class="close-btn">&times;</span><br>
+            <h2 style="color: #B85C3A">Conjunto de 4 peças Caneca de Café de Vidro Transparente</h2>
+            <p>Durabilidade: Fabricado em aço inoxidável de alta qualidade, resistente à corrosão e desgaste, garantindo longa vida útil. Ideal para uso contínuo sem perder a integridade.</p>
+            <div class="especificacao">
+                <p style="font-weight: bold; color: #B85C3A;">Marca: <span style="font-weight: normal; color: black;">Genérico</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Material: <span style="font-weight: normal; color: black;">Vidro de borossilicato</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Cor: <span style="font-weight: normal; color: black;">Transparente</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Capacidade: <span style="font-weight: normal; color: black;">250 Mililitros</span></p>
+                <p style="font-weight: bold; color: #B85C3A;">Características especiais: <span style="font-weight: normal; color: black;">Parede Dupla</span></p>
+            </div>
+
+            <p style="font-weight: bold; color: black; font-size: 25px;">R$89,<span style="font-size: 20px;">00</span></p>
+            <button class="comprar-item">Comprar</button>
+        </div>
+        </div>
+    </div>
+
 
     <!-- Scripts JavaScript -->
     <script>
