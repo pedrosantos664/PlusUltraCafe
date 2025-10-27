@@ -16,7 +16,6 @@ body {
   line-height: 1.6;
 }
 
-<<<<<<< HEAD
 /*O Header(Cabeçalho) do PlusUltrCafé*/
 header {
     width: 100%; /* ocupa toda a largura da tela */
@@ -38,7 +37,6 @@ header {
 }
 
 /*São os Botões do Header*/
-=======
 /* ===== HEADER ===== */
 header {
   width: 100%;
@@ -63,7 +61,6 @@ header {
 }
 
 /* ===== MENU ===== */
->>>>>>> 24ddff8f07c99b1a780047323837611d350a3638
 .menu_direita ul {
   display: flex;
   gap: 40px;
@@ -72,7 +69,6 @@ header {
   font-size: 32px;
 }
 
-<<<<<<< HEAD
 
 /* ===== Botão ativo ===== */
 .menu_direita .ativo {
@@ -138,7 +134,6 @@ header {
 }
 
 /* MAIN */
-=======
 .menu_direita a {
   text-decoration: none;
   color: #f5e8d3;
@@ -165,7 +160,6 @@ header {
 }
 
 /* ===== MAIN ===== */
->>>>>>> 24ddff8f07c99b1a780047323837611d350a3638
 main {
   max-width: 1200px;
   margin: 60px auto;
