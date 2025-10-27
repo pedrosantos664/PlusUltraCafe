@@ -251,3 +251,280 @@ nav {
     color: #6F4E37;
     font-weight: bold;
 }
+
+.cart-section {
+    margin-bottom: 50px;
+    /* Aumenta espaço antes dos artigos */
+}
+
+.cart-section h2 {
+    font-size: 28px;
+    /* Maior */
+    color: white;
+    text-align: center;
+    margin-bottom: 35px;
+    /* Mais espaço */
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.3);
+    /* Sombra mais pronunciada */
+}
+
+.cart-grid {
+    display: grid;
+    /* Ajusta minmax para permitir cards um pouco menores se necessário */
+    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.cart-item-card {
+    background: white;
+    border-radius: 15px;
+    overflow: hidden;
+    /* Garante que imagem não vaze */
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column;
+    /* Organiza conteúdo verticalmente */
+    text-align: center;
+}
+
+.cart-item-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.cart-item-card img {
+    width: 100%;
+    height: 180px;
+    /* Altura da imagem */
+    object-fit: cover;
+    /* Garante que a imagem cubra a área */
+}
+
+.item-details {
+    padding: 20px;
+    flex-grow: 1;
+    /* Faz esta seção ocupar o espaço disponível */
+    display: flex;
+    flex-direction: column;
+    /* Organiza detalhes verticalmente */
+}
+
+.item-name {
+    font-size: 18px;
+    font-weight: 600;
+    margin-bottom: 12px;
+    color: #333;
+}
+
+.item-info {
+    display: flex;
+    justify-content: space-around;
+    /* Espaça preço e quantidade */
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 15px;
+    padding: 8px 0;
+    border-top: 1px solid #eee;
+    /* Linha sutil separadora */
+    border-bottom: 1px solid #eee;
+    /* Linha sutil separadora */
+}
+
+.item-info span {
+    flex-basis: 50%;
+    /* Divide espaço igualmente */
+}
+
+
+.item-subtotal {
+    font-size: 17px;
+    font-weight: bold;
+    color: #27ae60;
+    /* Verde do preço */
+    margin-top: auto;
+    /* Empurra para o final do card */
+    padding-top: 15px;
+    /* Espaço acima do subtotal */
+}
+
+.item-actions {
+    padding: 0 20px 20px 20px;
+    /* Padding apenas no final */
+    margin-top: 10px;
+    /* Espaço acima do botão */
+}
+
+.remove-btn {
+    background: #e74c3c;
+    /* Vermelho para remover */
+    color: white;
+    border: none;
+    padding: 8px 15px;
+    border-radius: 6px;
+    cursor: pointer;
+    text-decoration: none;
+    font-size: 13px;
+    font-weight: 500;
+    transition: background-color 0.2s ease;
+}
+
+.remove-btn:hover {
+    background-color: #c0392b;
+    /* Vermelho mais escuro */
+}
+
+.cart-summary {
+    background: white;
+    border-radius: 15px;
+    padding: 25px 35px;
+    /* Mais padding */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 22px;
+    font-weight: bold;
+    margin-top: 10px;
+    /* Leve espaço acima do sumário */
+}
+
+.cart-total-text {
+    color: #333;
+}
+
+.checkout-btn {
+    background-color: #27ae60;
+    color: white;
+    padding: 12px 30px;
+    /* Botão maior */
+    border-radius: 8px;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: 500;
+    transition: background-color 0.2s ease, transform 0.2s ease;
+}
+
+.checkout-btn:hover {
+    background-color: #229954;
+    transform: translateY(-2px);
+    /* Efeito sutil ao passar o mouse */
+}
+
+.empty-cart-message {
+    background: rgba(255, 255, 255, 0.9);
+    /* Fundo branco levemente transparente */
+    border-radius: 15px;
+    padding: 50px 30px;
+    /* Mais padding */
+    text-align: center;
+    color: #555;
+    /* Cor mais escura */
+    font-size: 18px;
+    box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+}
+
+/* --- ESTILOS PARA A SEÇÃO DO CARRINHO (FORMATO TABELA) --- */
+.cart-section {
+    background: white;
+    /* Fundo branco para a seção */
+    border-radius: 15px;
+    /* Bordas arredondadas */
+    padding: 30px;
+    /* Espaçamento interno */
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+    /* Sombra suave */
+    margin-bottom: 40px;
+    /* Espaço abaixo da seção */
+    animation: fadeIn 0.5s ease-in-out;
+    /* Efeito de entrada suave */
+}
+
+.cart-section h2 {
+    font-size: 26px;
+    /* Tamanho do título */
+    color: #333;
+    /* Cor escura para o título */
+    text-align: center;
+    /* Centraliza o título */
+    margin-bottom: 25px;
+    /* Espaço abaixo do título */
+    border-bottom: 2px solid #6F4E37;
+    /* Linha sutil abaixo do título (cor do tema) */
+    padding-bottom: 10px;
+    /* Espaço entre texto e linha */
+}
+
+.cart-table {
+    width: 100%;
+    /* Ocupa toda a largura da seção */
+    border-collapse: collapse;
+    /* Remove espaços entre as bordas das células */
+    margin-bottom: 25px;
+    /* Espaço abaixo da tabela */
+}
+
+.cart-table thead {
+    background-color: #f8f8f8;
+    /* Fundo levemente cinza para o cabeçalho */
+}
+
+.cart-table th {
+    padding: 15px;
+    /* Espaçamento interno das células do cabeçalho */
+    text-align: left;
+    /* Alinha o texto à esquerda */
+    font-weight: 600;
+    /* Texto em negrito */
+    color: #555;
+    /* Cor do texto do cabeçalho */
+    border-bottom: 2px solid #ddd;
+    /* Linha mais forte abaixo do cabeçalho */
+}
+
+.cart-table td {
+    padding: 15px;
+    /* Espaçamento interno das células do corpo */
+    text-align: left;
+    /* Alinha o texto à esquerda */
+    border-bottom: 1px solid #eee;
+    /* Linha sutil entre as linhas */
+    color: #444;
+    /* Cor do texto das células */
+    vertical-align: middle;
+    /* Alinha o conteúdo verticalmente ao meio */
+}
+
+/* Estilo para a última linha não ter borda inferior */
+.cart-table tbody tr:last-child td {
+    border-bottom: none;
+}
+
+.cart-total {
+    text-align: right;
+    /* Alinha o total à direita */
+    font-size: 20px;
+    /* Tamanho da fonte do total */
+    font-weight: bold;
+    /* Texto em negrito */
+    color: #333;
+    /* Cor escura para o total */
+    margin-top: 10px;
+    /* Pequeno espaço acima do total */
+    padding-top: 15px;
+    /* Espaço acima do total */
+    border-top: 2px solid #6F4E37;
+    /* Linha acima do total (cor do tema) */
+}
+
+.empty-cart-message {
+    text-align: center;
+    /* Centraliza a mensagem */
+    color: #777;
+    /* Cor cinza para a mensagem */
+    font-size: 18px;
+    /* Tamanho da fonte */
+    padding: 40px 0;
+    /* Espaçamento vertical e horizontal */
+}

@@ -4,6 +4,8 @@ from django.contrib.auth import get_user_model
 from django.core.exceptions import ValidationError
 from django.utils.translation import gettext_lazy as _
 
+from janela.models import Usuario
+
 User = get_user_model()
 
 class LoginForm(AuthenticationForm):
@@ -91,3 +93,30 @@ class RegistroForm(UserCreationForm):
         if commit:
             user.save()
         return user
+    
+
+
+
+class PerfilEditForm(forms.ModelForm):
+    class Meta:
+        model = Usuario
+        # Liste APENAS os campos que o usuário pode editar
+        fields = ['nome', 'email', 'foto_perfil'] 
+        widgets = {
+            'nome': forms.TextInput(attrs={'class': 'form-input', 'placeholder': 'Seu nome completo'}),
+            'email': forms.EmailInput(attrs={'class': 'form-input', 'placeholder': 'Seu melhor email'}),
+            'foto_perfil': forms.ClearableFileInput(attrs={'class': 'form-input-file'}),
+        }
+        labels = {
+            'nome': 'Nome Completo',
+            'email': 'Endereço de Email',
+            'foto_perfil': 'Foto de Perfil (Opcional)',
+        }
+
+    # Validação extra para garantir que o novo email (se alterado) não esteja em uso por OUTRO usuário
+    def clean_email(self):
+        email = self.cleaned_data.get('email')
+        # 'self.instance' é o objeto Usuario que está sendo editado
+        if Usuario.objects.filter(email=email).exclude(pk=self.instance.pk).exists():
+            raise forms.ValidationError("Este endereço de email já está em uso por outro usuário.")
+        return email 
