@@ -1,10 +1,12 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Blog - Plus Ultra Café</title>
+    <title>Cursos - Plus Ultra Café</title>
     <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
+    <link rel="icon" type="image/png" href="{% static 'imagens/favicon.jpg' %}">
     <style>
         /* RESET */
 * {
@@ -282,13 +284,14 @@ footer {
 <body>
     <header>
         <nav class="menu_esquerda">
-            <img src="imagens/Logo_PlusUltraCafe.png" alt="Logo Plus Ultra Café" class="logo">
+            <img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo">
         </nav>
         <nav class="menu_direita">
             <ul>
-                <li><a href="menu_inicial.html" class="nao_ativo">Home</a></li>
-                <li><a href="Curso.html" class="ativo">Cursos</a></li>
-                <li><a href="Blog.html" class="nao_ativo">Blog</a></li>
+                <li><a href="{% url 'menu_inicial' %}" class="nao_ativo">Home</a></li>
+                <li><a href="{% url 'Curso' %}" class="ativo">Cursos</a></li>
+                <li><a href="{% url 'blog' %}" class="nao_ativo">Blog</a></li>
+                <li><a href="{% url 'contact' %}" class="nao_ativo">Contato</a></li>
             </ul>
         </nav>
     </header>

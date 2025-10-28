@@ -1,110 +1,115 @@
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-    font-family: Tenor Sans;
-}
+/* ======================================= */
+/* ☕ Estilos para o Layout Base (do body) */
+/* ======================================= */
 
-body {
-    background-color: #f9f9f9;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-    padding: 20px;
-    background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)),
-        url('https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8cmVzdGF1cmFudCUyMGludGVyaW9yfGVufDB8fDB8fHww&w=1000&q=80') no-repeat center center fixed;
-    background-size: cover;
-}
+/* RESET e BODY já estão no CSS principal, focaremos nos novos elementos */
+
+/* ======================================= */
+/* 🛠️ Estilos da Navegação (Nav) */
+/* (Baseado na estrutura HTML fornecida) */
+/* ======================================= */
+
+/* A nav já tem estilos no seu CSS principal, 
+   mas vamos adaptar as classes dela para se 
+   alinhar com o layout mais moderno. */
 
 nav {
+    /* Herda o background-color: #b85c3a; e box-shadow do header no seu CSS principal */
+    width: 100%;
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 15px 40px;
-    border-bottom: 1px solid #eee;
-    background-color: white;
-    position: fixed;
+    padding: 15px 60px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
     top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+    z-index: 100;
+    background-color: #b85c3a; /* Garante que o fundo da nav é o do café */
 }
 
-.nav-left,
-.nav-right {
+.nav-left, .nav-right {
     display: flex;
     align-items: center;
-    gap: 30px;
+}
+
+.nav-left .logo {
+    /* Estilo para a logo/nome do café, usando a cor clara */
+    font-family: 'Rouge Script', cursive; /* Se você estiver usando esta fonte */
+    font-size: 32px;
+    color: #f5e8d3;
+    text-decoration: none;
+    margin-right: 40px;
+    transition: color 0.3s;
+}
+.nav-left .logo:hover {
+    color: #fff;
 }
 
 .nav-links {
     display: flex;
-    gap: 20px;
+    gap: 25px;
 }
 
-.nav-links a {
+.nav-links a, .auth-buttons a {
+    color: #f5e8d3;
     text-decoration: none;
-    color: #333;
+    font-size: 1.1rem;
+    padding: 8px 12px;
+    border-radius: 4px;
+    transition: background-color 0.3s, color 0.3s;
     font-weight: 500;
-    font-size: 14px;
 }
 
-.nav-links a:hover {
-    color: #666;
+.nav-links a:hover, .auth-buttons a:hover {
+    background-color: rgba(255, 255, 255, 0.1);
+    color: #fff;
 }
 
 .auth-buttons {
     display: flex;
+    align-items: center;
     gap: 15px;
 }
 
-.auth-buttons a {
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 15px;
-    border-radius: 4px;
+.welcome-text {
+    color: #fff8f0; /* Cor de fundo mais clara para destacar */
+    font-size: 1rem;
+    font-weight: 400;
+    margin-right: 10px;
 }
 
-.auth-buttons a:first-child {
-    color: #333;
-}
-
+/* Estilo específico para o botão de "Register" ou "Sair" para ter destaque (Botão Primário) */
 .auth-buttons a:last-child {
-    background-color: #000;
-    color: white;
+    background-color: #8e4a2a; /* Tom mais escuro do café */
+    border: 1px solid #8e4a2a;
 }
 
-.logo {
-    font-weight: 700;
-    font-size: 18px;
-    color: #000;
+.auth-buttons a:last-child:hover {
+    background-color: #6f361b;
+    border-color: #6f361b;
 }
 
+/* ======================================= */
+/* 📝 Estilos do Formulário de Contato */
+/* ======================================= */
 
 .form-container {
-    background-color: rgba(255, 255, 255, 0.15);
-    /* Transparência apenas no fundo */
-    backdrop-filter: blur(10px);
-    /* Efeito de vidro fosco */
-    border-radius: 12px;
-    box-shadow: 0 8px 32px rgba(0, 0, 0, 0.2);
-    width: 100%;
-    max-width: 500px;
+    max-width: 600px;
+    margin: 80px auto 100px auto; /* Mais espaçamento para respirar */
     padding: 40px;
-    border: 1px solid rgba(255, 255, 255, 0.2);
+    background-color: #fff; /* Fundo branco ou creme claro para o formulário */
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.15); /* Sombra mais profissional */
 }
 
 .form-title {
-    font-size: 32px;
-    font-weight: bold;
-    color: white;
+    font-size: 2.2rem;
+    color: #b85c3a; /* Cor principal da marca */
     text-align: center;
     margin-bottom: 30px;
-    letter-spacing: 1px;
-    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.3);
+    border-bottom: 3px solid #f5e8d3; /* Linha sutil de divisão */
+    padding-bottom: 10px;
+    font-weight: 600;
 }
 
 .form-group {
@@ -113,67 +118,89 @@ nav {
 
 .form-label {
     display: block;
-    font-size: 16px;
-    color: white;
-    margin-bottom: 10px;
-    font-weight: 500;
-    text-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+    font-weight: 600;
+    margin-bottom: 8px;
+    color: #4a2e1f; /* Cor escura do texto */
+    font-size: 1rem;
 }
 
-.form-input {
+.form-input, .form-textarea {
     width: 100%;
-    padding: 14px 15px;
-    background: rgba(255, 255, 255, 0.1);
-    border: 1px solid rgba(255, 255, 255, 0.3);
+    padding: 12px 15px;
+    border: 1px solid #ccc;
     border-radius: 6px;
-    font-size: 16px;
-    transition: all 0.3s;
-    color: white;
+    font-size: 1rem;
+    color: #3b3b3b;
+    background-color: #f9f9f9;
+    transition: border-color 0.3s, box-shadow 0.3s;
+    outline: none; /* Remove o outline padrão */
 }
 
-.form-input::placeholder {
-    color: rgba(255, 255, 255, 0.7);
+.form-input::placeholder, .form-textarea::placeholder {
+    color: #999;
 }
 
-.form-input:focus {
-    outline: none;
-    background: rgba(255, 255, 255, 0.2);
-    border: 1px solid rgba(255, 255, 255, 0.5);
-    box-shadow: 0 0 10px rgba(255, 255, 255, 0.2);
+.form-input:focus, .form-textarea:focus {
+    border-color: #b85c3a; /* Borda da cor principal ao focar */
+    box-shadow: 0 0 0 3px rgba(184, 92, 58, 0.2); /* Sombra de foco sutil */
+    background-color: #fff;
 }
 
 .form-textarea {
-    height: 120px;
-    resize: vertical;
+    resize: vertical; /* Permite redimensionamento apenas vertical */
+    min-height: 150px;
 }
 
 .submit-btn {
-    background-color: rgba(0, 0, 0, 0.7);
-    color: white;
-    border: none;
-    padding: 14px 25px;
-    font-size: 16px;
-    border-radius: 6px;
-    cursor: pointer;
+    display: block;
     width: 100%;
-    font-weight: 500;
-    letter-spacing: 0.5px;
-    transition: all 0.3s;
-    margin-top: 10px;
+    padding: 15px;
+    background-color: #b85c3a; /* Cor primária do café */
+    color: #fff;
+    border: none;
+    border-radius: 6px;
+    font-size: 1.1rem;
+    font-weight: 700;
+    cursor: pointer;
+    transition: background-color 0.3s, transform 0.1s;
+    margin-top: 30px;
 }
 
 .submit-btn:hover {
-    background-color: rgba(0, 0, 0, 0.9);
-    transform: translateY(-2px);
-    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    background-color: #8e4a2a; /* Tom mais escuro no hover */
 }
 
-@media (max-width: 576px) {
-    .form-container {
-        padding: 25px;
-    }
+.submit-btn:active {
+    transform: translateY(1px); /* Efeito de clique */
+}
 
-    .form-title {
-        font-size: 26px;
-    }
+.submit-btn:disabled {
+    background-color: #ccc;
+    cursor: not-allowed;
+}
+
+
+/* ======================================= */
+/* ✅ Mensagens de Feedback */
+/* ======================================= */
+
+.success-message, .error-message {
+    padding: 15px;
+    margin-bottom: 20px;
+    border-radius: 6px;
+    font-weight: 600;
+    text-align: center;
+    display: none; /* Inicialmente oculto no HTML */
+}
+
+.success-message {
+    background-color: #e6ffed; /* Fundo verde suave */
+    color: #3c763d; /* Texto verde escuro */
+    border: 1px solid #d6e9c6;
+}
+
+.error-message {
+    background-color: #fbe6e6; /* Fundo vermelho suave */
+    color: #a94442; /* Texto vermelho escuro */
+    border: 1px solid #ebccd1;
 }

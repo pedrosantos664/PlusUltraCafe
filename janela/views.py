@@ -18,6 +18,9 @@ def menu_inicial(request):
 def Blog(request):
     return render(request, "janela/Blog.html")
 
+def Curso(request):
+    return render(request, "janela/Curso.html")
+
 def contact(request):
     return render(request, "janela/contact.html")
 
@@ -84,7 +87,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Você saiu com sucesso!')
-    return redirect('/janela/')
+    return redirect('/janela/menu_inicial')
 
 # As views abaixo já estão corretas e vão funcionar
 # pois agora 'request.user' será uma instância de 'Usuario'

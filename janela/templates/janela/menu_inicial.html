@@ -22,8 +22,9 @@
             <img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo">
             <ul>
                 <li><a href="{% url 'menu_inicial' %}" class="ativo">Home</a></li>
-                <li><a href="#" class="nao_ativo">Cursos</a></li>
+                <li><a href="{% url 'Curso' %}" class="nao_ativo">Cursos</a></li>
                 <li><a href="{% url 'blog' %}" class="nao_ativo">Blog</a></li>
+                 <li><a href="{% url 'contact' %}" class="nao_ativo">Contato</a></li>
             </ul>
         </nav>
 
@@ -314,16 +315,17 @@
         <div class="popup">
             <div class="popup-left">
                 <div class="carousel">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3.png' %}{% static '" alt="Cafeteira 1" class="active">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt2.jpg' %}{% static '" alt="Cafeteira 2">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt3.jpg' %}{% static '" alt="Cafeteira 3">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt4.jpg' %}{% static '" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3.png' %}" alt="Cafeteira 1" class="active">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt2.jpg' %}" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt3.jpg' %}" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt4.jpg' %}" alt="Cafeteira 4">
                 </div>
+
                 <div class="thumbnails">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3.png' %}{% static '" alt="Cafeteira 1">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt2.jpg' %}{% static '" alt="Cafeteira 2">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt3.jpg' %}{% static '" alt="Cafeteira 3">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt4.jpg' %}{% static '" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3.png' %}" alt="Cafeteira 1">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt2.jpg' %}" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt3.jpg' %}" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt4.jpg' %}" alt="Cafeteira 4">
                 </div>
                 <span class="arrow left">&#10094;</span>
                 <span class="arrow right">&#10095;</span>
