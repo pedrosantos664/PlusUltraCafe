@@ -1,0 +1,495 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
+    <title>Blog - Plus Ultra Café</title>
+    <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
+    <style>
+        /* RESET */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+}
+
+body {
+    font-family: Arial, sans-serif;
+    background-color: #fff8f0; /* Cor de fundo creme suave */
+    color: #3b3b3b; /* Cor de texto principal */
+    line-height: 1.6;
+}
+
+/* ================================================= */
+/* CABEÇALHO (HEADER) - MANTIDO                       */
+/* ================================================= */
+
+header {
+    width: 100%;
+    background-color: #b85c3a; /* Marrom escuro */
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 15px 60px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+
+.logo {
+    height: 80px;
+    transition: transform 0.3s ease;
+}
+.logo:hover {
+    transform: scale(1.05);
+}
+
+/* ===== MENU ===== */
+.menu_direita ul {
+    display: flex;
+    gap: 40px;
+    list-style: none;
+    font-family: 'Rouge Script', cursive;
+    font-size: 32px;
+}
+
+.menu_direita a {
+    text-decoration: none;
+    color: #f5e8d3; /* Off-white do menu */
+    position: relative;
+    transition: 0.3s;
+}
+
+/* ===== Botão ativo (Blog) ===== */
+.menu_direita .ativo {
+    color: #F5E8D3;
+}
+.menu_direita .ativo::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    height: 2px;
+    width: 100%; 
+    background-color: #F5E8D3;
+    transition: width 0.3s;
+}
+.menu_direita .ativo:hover {
+    color: #fff;
+}
+
+
+/* ===== Botão não ativo ===== */
+.menu_direita .nao_ativo {
+    color: #f5e8d3;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.menu_direita .nao_ativo::after {
+    content: "";
+    position: absolute;
+    bottom: -5px;
+    left: 0;
+    width: 0%;
+    height: 2px;
+    background-color: #F5E8D3;
+    transition: width 0.3s ease;
+}
+.menu_direita .nao_ativo:hover {
+    color: #fff;
+    transform: scale(1.1);
+}
+.menu_direita .nao_ativo:hover::after {
+    width: 100%;
+}
+
+
+/* ================================================= */
+/* MAIN (AJUSTADO PARA OS VÍDEOS)                    */
+/* ================================================= */
+
+main {
+    max-width: 1200px;
+    margin: 60px auto;
+    padding: 0 20px;
+}
+
+/* Layout de grid para os vídeos (cria 2 colunas em telas grandes) */
+.conteudo {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
+    gap: 30px;
+}
+
+.tutorial {
+    background-color: #fdf4ea; 
+    border-radius: 12px;
+    padding: 25px;
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    transition: transform 0.2s ease;
+    display: flex; 
+    flex-direction: column; /* Organiza título, descrição e vídeo verticalmente */
+}
+.tutorial:hover {
+    transform: translateY(-5px);
+}
+
+.tutorial h2 {
+    color: #8e4a2a; /* Marrom escuro do título */
+    font-size: 24px;
+    margin-bottom: 10px;
+    border-left: 4px solid #b85c3a; /* Linha de destaque */
+    padding-left: 10px;
+}
+
+/* Estilo para a Descrição do Vídeo */
+.tutorial .descricao {
+    font-size: 0.95rem;
+    color: #5d5d5d;
+    margin-bottom: 20px;
+    padding: 0 5px;
+    line-height: 1.5;
+}
+
+/* Container para centralizar e manter a proporção 16:9 do vídeo */
+.video-container {
+    position: relative;
+    width: 100%;
+    padding-bottom: 56.25%; /* Proporção 16:9 */
+    height: 0; 
+    overflow: hidden;
+    margin-top: 10px;
+    border-radius: 8px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+    flex-grow: 1; /* Faz o container ocupar o espaço restante na coluna */
+}
+
+.video-container iframe {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    border: none;
+    border-radius: 8px;
+}
+
+/* ================================================= */
+/* RODAPÉ (FOOTER) - MANTIDO                        */
+/* ================================================= */
+
+footer {
+    background-color: #b85c3a;
+    color: #f5e8d3;
+    padding: 40px 60px;
+    margin-top: 80px;
+    text-align: center;
+}
+
+.newsletter {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    justify-content: center;
+    align-items: center;
+    margin-bottom: 40px;
+}
+.newsletter input {
+    padding: 10px;
+    border: none;
+    border-radius: 5px;
+    width: 250px;
+}
+.newsletter button {
+    background-color: #8e4a2a;
+    border: none;
+    color: #fff;
+    padding: 10px 18px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+.newsletter button:hover {
+    background-color: #6f361b;
+}
+
+.rodape-links {
+    display: flex;
+    justify-content: space-around;
+    flex-wrap: wrap;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+.rodape-links h4 {
+    color: #fff;
+    margin-bottom: 10px;
+    border-bottom: 2px solid #f5e8d3;
+    display: inline-block;
+    padding-bottom: 5px;
+}
+.rodape-links a {
+    color: #f5e8d3;
+    text-decoration: none;
+    transition: 0.2s;
+}
+.rodape-links a:hover {
+    color: #fff;
+    text-decoration: underline;
+}
+
+.copy {
+    text-align: center;
+    color: rgba(245, 232, 211, 0.7);
+    font-size: 0.9rem;
+    margin-top: 20px; 
+}
+
+/* ================================================= */
+/* RESPONSIVIDADE                                    */
+/* ================================================= */
+@media (max-width: 768px) {
+    header {
+        padding: 10px 20px;
+    }
+    .logo {
+        height: 60px;
+    }
+    .menu_direita ul {
+        gap: 20px;
+        font-size: 20px;
+    }
+    .conteudo {
+        grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
+    }
+    .tutorial {
+        padding: 20px;
+    }
+    .rodape-links {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+    }
+}
+    </style>
+
+</head>
+<body>
+    <header>
+        <nav class="menu_esquerda">
+            <img src="imagens/Logo_PlusUltraCafe.png" alt="Logo Plus Ultra Café" class="logo">
+        </nav>
+        <nav class="menu_direita">
+            <ul>
+                <li><a href="menu_inicial.html" class="nao_ativo">Home</a></li>
+                <li><a href="Curso.html" class="ativo">Cursos</a></li>
+                <li><a href="Blog.html" class="nao_ativo">Blog</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section class="conteudo">
+            
+            <article class="tutorial">
+                <h2>Café básico - Aula 01: Como fazer em casa</h2>
+                
+                <p class="descricao">
+                    Nesta primeira aula, você aprenderá as bases para preparar um café coado perfeito em casa. Descubra os segredos da moagem, proporção e tempo de extração para o dia a dia.
+                </p>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/zJVR_Fns5Yw" 
+                        title="Café básico 01: Como fazer um café coado"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="tutorial">
+                <h2>Espresso básico - Aula 02: Fundamentos e Preparo</h2>
+
+                <p class="descricao">
+                    Aprenda o que define um espresso de qualidade e os parâmetros essenciais para extrair um shot perfeito. Entenda a importância da pressão e do tempo.
+                </p>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/GSj97oIbYUA" 
+                        title="Espresso básico: Fundamentos e Preparo"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="tutorial">
+                <h2>Espresso duplo - Aula 03: Extração e Padronização</h2>
+
+                <p class="descricao">
+                    Domine a técnica do *double shot* de espresso, uma base crucial para a maioria das bebidas com leite. Aprenda a ajustar a moagem e a dosagem para resultados consistentes.
+                </p>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/OI4GxrMkWnY" 
+                        title="Espresso duplo: Extração e Padronização"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="tutorial">
+                <h2>Vaporização de leite - Aula 04: Textura e Temperatura</h2>
+
+                <p class="descricao">
+                    Essencial para cappuccinos e lattes. Descubra como criar a microespuma perfeita, com a textura aveludada e a temperatura ideal para realçar o sabor do seu café.
+                </p>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/njBMTIWsZzw" 
+                        title="Vaporização de leite: Textura e Temperatura"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="tutorial">
+                <h2>Cafés básicos passo a passo - Aula 05: Receitas Essenciais</h2>
+
+                <p class="descricao">
+                    Um guia passo a passo sobre como montar as bebidas clássicas do cardápio de qualquer cafeteria, como Macchiato, Americano e Flat White.
+                </p>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/RC4JBU1XCTI" 
+                        title="Cafés básicos passo a passo: Receitas Essenciais"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="tutorial">
+                <h2>Cappuccino - Aula 06: O Clássico Italiano</h2>
+
+                <p class="descricao">
+                    Aprenda a proporção perfeita e o método de preparo para criar um cappuccino equilibrado e delicioso, com a técnica correta de vaporização e montagem.
+                </p>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/FZbKdM6VgdA" 
+                        title="Cappuccino: O Clássico Italiano"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="tutorial">
+                <h2>Servir - Aula 07: Etiqueta e Apresentação</h2>
+
+                <p class="descricao">
+                    Dicas essenciais sobre a arte de servir o café. Aprenda sobre a importância da apresentação, temperatura do copo e a etiqueta de serviço para encantar o cliente.
+                </p>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/VfnH1GqTN3k" 
+                        title="Servir: Etiqueta e Apresentação"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="tutorial">
+                <h2>Atendimento no caixa - Aula 08: Interação com o Cliente</h2>
+
+                <p class="descricao">
+                    O caixa é o primeiro e último contato do cliente. Nesta aula, foco no atendimento: como vender sugestões, lidar com filas e garantir uma experiência positiva.
+                </p>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/hefZPH3Zfqg" 
+                        title="Atendimento no caixa: Interação com o Cliente"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+
+            <article class="tutorial">
+                <h2>Ajuste de Moedor - Aula 09: Calibragem por Tipo de Torra</h2>
+
+                <p class="descricao">
+                    Aprenda a calibrar seu moedor de café para diferentes tipos de torra. A granulometria correta é essencial para um espresso perfeito e impacta diretamente o sabor da bebida.
+                </p>
+
+                <div class="video-container">
+                    <iframe 
+                        src="https://www.youtube.com/embed/I3qvfDbEMRM" 
+                        title="Como ajustar o moedor de café de acordo com a torra"
+                        frameborder="0" 
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                        allowfullscreen>
+                    </iframe>
+                </div>
+            </article>
+        </section>
+    </main>
+
+    <footer>
+        <div class="newsletter">
+            <p>Não perca mais nada sobre o mercado de café</p>
+            <input type="email" placeholder="Digite seu e-mail">
+            <button>Assinar</button>
+        </div>
+
+        <div class="rodape-links">
+            <div>
+                <h4>Institucional</h4>
+                <ul>
+                    <li><a href="#">Sobre nós</a></li>
+                    <li><a href="#">Contato</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Ajuda</h4>
+                <ul>
+                    <li><a href="#">Suporte</a></li>
+                    <li><a href="#">Política de privacidade</a></li>
+                </ul>
+            </div>
+            <div>
+                <h4>Redes sociais</h4>
+                <p>Facebook | Instagram | YouTube</p>
+            </div>
+        </div>
+
+        <p class="copy">© 2025 Café Blog. Todos os direitos reservados.</p>
+    </footer>
+
+</body>
+</html>
