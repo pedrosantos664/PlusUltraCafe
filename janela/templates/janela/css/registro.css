@@ -2,45 +2,39 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Tenor Sans;
 }
 
 body {
-
+    margin: 0;
+    padding: 0;
     background-image: url(../imagens/Wallpaper-Cafe.png);
-    display: flex;
-    padding-top: 70px;
-    justify-content: center;
-    align-items: center;
-    min-height: 100vh;
-
-
 }
 
-
-
-
-.form-container {
-    background-color: white;
-    padding: 20px;
+/*Container do Cadastro*/
+.login-container {
+    max-width: 500px;
+    margin: 50px auto;
+    margin-top: 5%;
+    padding: 40px;
+    background-color: #E8E1E1;
     border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-    width: 300px;
+    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.2);
 }
 
-h2 {
-    text-align: center;
+/*Conjunto de todos os campos do Cadastro*/
+.form-group {
     margin-bottom: 20px;
 }
 
-.form-group {
-    margin-bottom: 15px;
-}
-
-label {
+/*Texto em cima dos inputs (Email e Senha)*/
+.form-label {
+    font-family: 'Rouge Script', cursive;
     display: block;
-    margin-bottom: 5px;
+    font-size: 30px;
     font-weight: bold;
+    color: #555;
+    margin-bottom: 8px;
+    font-weight: 500;
 }
 
 input[type="text"],
@@ -53,132 +47,242 @@ input[type="password"] {
     box-sizing: border-box;
 }
 
-button {
+/*Campos para o usuário digitar*/
+.form-input {
+    display: flex;
+    width: 100%;
+    padding: 12px 15px;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+    font-size: 16px;
+    transition: transform 0.3s ease;
+}
+.form-input:hover{
+    border: 1px solid #6F4E37;
+    transform: scale(1.05);
+}
+.form-input:focus {
+    outline: none;
+    border-color: #B85C3A;
+}
+
+/*Botão de Login*/
+.login-btn {
     width: 100%;
     padding: 12px;
-    background-color: #000;
+    background-color: #6F4E37;
     color: white;
     border: none;
     border-radius: 4px;
-    font-size: 16px;
+    font-family: 'Rouge Script', cursive;
+    font-size: 30px;
     font-weight: 500;
     cursor: pointer;
     margin-top: 10px;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.login-btn:hover {
+    background-color: #556B2F;
+    transform: scale(1.05);
+}
+.login-btn:active {
+    background-color: #B85C3A;
 }
 
-button:hover {
-    background-color: #333;
-}
-
-nav {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 40px;
-    border-bottom: 1px solid #eee;
-    background-color: white;
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    z-index: 1000;
-    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
-}
-
-.nav-left,
-.nav-right {
-    display: flex;
-    align-items: center;
-    gap: 30px;
-}
-
-.nav-links {
-    display: flex;
-    gap: 20px;
-}
-
-.nav-links a {
-    text-decoration: none;
-    color: #333;
-    font-weight: 500;
-    font-size: 14px;
-}
-
-.nav-links a:hover {
-    color: #666;
-}
-
-.auth-buttons {
-    display: flex;
-    gap: 15px;
-}
-
-.auth-buttons a {
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 500;
-    padding: 8px 15px;
-    border-radius: 4px;
-}
-
-.auth-buttons a:first-child {
-    color: #333;
-}
-
-.auth-buttons a:last-child {
-    background-color: #000;
-    color: white;
-}
-
-
-.main-content {
-    display: flex;
-    padding: 40px;
-    gap: 80px;
-}
-
-.left-column,
-.right-column {
-    display: flex;
-    flex-direction: column;
-    gap: 20px;
-}
-
-.column-section {
-    display: flex;
-    flex-direction: column;
-    gap: 10px;
-}
-
-.column-title {
-    font-weight: 600;
-    font-size: 16px;
-    margin-bottom: 5px;
-}
-
-.column-item {
-    font-size: 14px;
-    color: #555;
-    cursor: pointer;
-}
-
-.column-item:hover {
-    color: #000;
-}
-
-.logo {
-    font-weight: 700;
-    font-size: 18px;
-    color: #EBB42C;
-}
-
+/*Mensagem de Erro*/
 .error-message {
-    color: #dc3545;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    margin: 10px auto;
+    width: 15%;
+    height: auto;
+    color: #dc3545; /* Vermelho */
     font-size: 14px;
     margin-top: 5px;
     text-align: center;
     padding: 10px;
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
+    border-radius: 6px;
+}
+
+/*Botão para levar a tela de Cadastro*/
+.login-link {
+    display: flex;
+    gap: 3%;
+    margin-top: 10%;
+    font-size: 23px;
+}
+.login-link a {
+    
+    text-decoration: none; 
+    color: #B85C3A;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.login-link a:hover {
+    transform: scale(1.15);
+    color: #C8963E;
+}
+
+
+
+/* ===== O Corpo do Header(Cabeçalho) =====*/
+
+header {
+    width: 100%; /* ocupa toda a largura da tela */
+    display: flex;
+    justify-content: space-between;
+    background-color: #B85C3A;
+    padding: 10px 20px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    align-items: center;
+    font-size: 24px;
+    font-weight: bold;
+    position: relative; /* mantém no fluxo normal */
+}
+
+/*A logo do PlusUltraCafé*/
+.logo {
+    height: 100px;
+    margin-left: 10%;
+}
+
+.menu_esquerda{
+    display: flex;
+    align-items: center;
+    gap: 10%;
+}
+/*São os Botões do Header*/
+.menu_esquerda ul {
+    font-family: 'Rouge Script', cursive;
+    font-size: 35px;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    margin-right: 100px;
+}
+
+
+/* ===== Botão ativo ===== */
+.menu_esquerda .ativo,
+.menu_direita .ativo {
+    position: relative;
+    color: #F5E8D3;
+    text-decoration: none;
+}
+.menu_esquerda .ativo::after,
+.menu_direita .ativo::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0; /* começa da direita */
+    width: 100%;
+    height: 2px;
+    background-color: #F5E8D3;
+    transform: scaleX(1); /* sempre visível */
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+
+.menu_esquerda:hover .ativo,
+.menu_direita:hover .ativo {
+    color: #3b3b3b; /* Fica na mesma cor dos botões não ativos */
+    transition: 0.3s ease;
+}
+.menu_esquerda:hover .ativo::after,
+.menu_direita:hover .ativo::after {
+    transform: scaleX(0); /* Faz a linha de baixo do botão ativo desaparecer */
+}
+/* Quando não tem hover no menu, volta ao normal */
+.menu_esquerda:not(:hover) .ativo,
+.menu_direita:not(:hover) .ativo {
+    color: #F5E8D3;
+    transition: 0.3s ease;
+}
+.menu_esquerda:not(:hover) .ativo::after,
+.menu_direita:not(:hover) .ativo::after {
+    transform: scaleX(1);
+}
+
+
+/* ===== Botão não ativo ===== */
+.menu_esquerda .nao_ativo,
+.menu_direita .nao_ativo {
+    position: relative;
+    text-decoration: none;
+    color: #3b3b3b;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.menu_esquerda .nao_ativo::after,
+.menu_direita .nao_ativo::after {
+    content: "";
+    position: absolute;
+    bottom: 0;
+    right: 0; 
+    width: 100%;
+    height: 2px;
+    background-color: #F5E8D3;
+    transform: scaleX(0);
+    transform-origin: center;
+    transition: transform 0.3s ease;
+}
+.menu_esquerda .nao_ativo:hover,
+.menu_direita .nao_ativo:hover {
+    transform: scale(1.2);
+    color: #F5E8D3;
+}
+.menu_esquerda .nao_ativo:hover::after,
+.menu_direita .nao_ativo:hover::after {
+    transform: scaleX(1);
+}
+
+/*Menu da Direita*/
+.menu_direita {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 5.5%;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 45px;
+}
+
+.auth-buttons a {
+    font-family: 'Rouge Script', cursive;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 35px;
+    padding: 8px 15px;
     border-radius: 4px;
+    text-align: center;
+    justify-content: center;
+}
+
+.auth-buttons a:first-child {
+    color: #3b3b3b;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.auth-buttons a:first-child:hover{
+    color: #F5E8D3;
+    transform: scale(1.15);
+}
+
+
+.auth-buttons a:last-child {
+    background-color: #6F4E37;
+    color: white;
+    border-radius: 10px;
+    width: 140px;
+    text-align: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.auth-buttons a:last-child:hover {
+    background-color: #C8963E;
+    transform: scale(1.15);
 }

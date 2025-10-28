@@ -15,9 +15,11 @@
 
     <nav>
         <div class="nav-left">
-            <a href="{% url 'index' %}" class="logo">PlusUltraCafe</a>
+            <a href="{% url 'menu_inicial' %}" class="logo">PlusUltraCafe</a>
             <div class="nav-links">
-                <a href="{% url 'products' %}">Products</a>
+                <a href="{% url 'menu_inicial' %}" class="ativo">Home</a>
+                <a href="{% url 'Curso' %}" class="nao_ativo">Cursos</a>
+                <a href="{% url 'blog' %}" class="nao_ativo">Blog</a>
                 <a href="{% url 'contact' %}">Contact</a>
             </div>
         </div>

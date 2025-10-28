@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -35,14 +36,14 @@
     </header>
 
     <!--Container do Login-->
+    {% if messages %}
+    {% for message in messages %}
+    <div class="error-message">
+        {{ message }}
+    </div>
+    {% endfor %}
+    {% endif %}
     <div class="login-container">
-        {% if messages %}
-        {% for message in messages %}
-        <div class="error-message">
-            {{ message }}
-        </div>
-        {% endfor %}
-        {% endif %}
         <form method="POST" action="{% url 'login' %}">
             {% csrf_token %}
 
@@ -89,10 +90,6 @@
             });
         });
     </script>
-</body>
-
-</html>
-
 </body>
 
 </html>

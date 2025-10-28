@@ -11,12 +11,13 @@ html {
 
 body {
   font-family: Arial, sans-serif;
-  background-color: #fff8f0;
+  background-color: #faf6f2;
   color: #3b3b3b;
   line-height: 1.6;
 }
 
-/*O Header(Cabeçalho) do PlusUltrCafé*/
+/* ===== O Corpo do Header(Cabeçalho) =====*/
+
 header {
     width: 100%; /* ocupa toda a largura da tela */
     display: flex;
@@ -33,50 +34,34 @@ header {
 /*A logo do PlusUltraCafé*/
 .logo {
     height: 100px;
-    margin-left: 20px;
+    margin-left: 10%;
 }
 
+.menu_esquerda{
+    display: flex;
+    align-items: center;
+    gap: 10%;
+}
 /*São os Botões do Header*/
-/* ===== HEADER ===== */
-header {
-  width: 100%;
-  background-color: #b85c3a;
-  color: #fff;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 15px 60px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-  position: sticky;
-  top: 0;
-  z-index: 100;
-}
-
-.logo {
-  height: 80px;
-  transition: transform 0.3s ease;
-}
-.logo:hover {
-  transform: scale(1.05);
-}
-
-/* ===== MENU ===== */
-.menu_direita ul {
-  display: flex;
-  gap: 40px;
-  list-style: none;
-  font-family: 'Rouge Script', cursive;
-  font-size: 32px;
+.menu_esquerda ul {
+    font-family: 'Rouge Script', cursive;
+    font-size: 35px;
+    list-style: none;
+    display: flex;
+    gap: 30px;
+    margin: 0;
+    padding: 0;
+    margin-right: 100px;
 }
 
 
 /* ===== Botão ativo ===== */
-.menu_direita .ativo {
+.menu_esquerda .ativo {
     position: relative;
     color: #F5E8D3;
     text-decoration: none;
 }
-.menu_direita .ativo::after {
+.menu_esquerda .ativo::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -89,31 +74,31 @@ header {
     transition: transform 0.3s ease;
 }
 
-.menu_direita:hover .ativo {
-    color: #3b3b3b; /* Fica namesma cor dos não ativos */
+.menu_esquerda:hover .ativo {
+    color: #3b3b3b; /* Fica na mesma cor dos botões não ativos */
     transition: 0.3s ease;
 }
-.menu_direita:hover .ativo::after {
-    transform: scaleX(0); /* some a linha */
+.menu_esquerda:hover .ativo::after {
+    transform: scaleX(0); /* Faz a linha de baixo do botão ativo desaparecer */
 }
 /* Quando não tem hover no menu, volta ao normal */
-.menu_direita:not(:hover) .ativo {
+.menu_esquerda:not(:hover) .ativo {
     color: #F5E8D3;
     transition: 0.3s ease;
 }
-.menu_direita:not(:hover) .ativo::after {
+.menu_esquerda:not(:hover) .ativo::after {
     transform: scaleX(1);
 }
 
 
 /* ===== Botão não ativo ===== */
-.menu_direita .nao_ativo {
+.menu_esquerda .nao_ativo {
     position: relative;
     text-decoration: none;
     color: #3b3b3b;
     transition: transform 0.3s ease, color 0.3s ease;
 }
-.menu_direita .nao_ativo::after {
+.menu_esquerda .nao_ativo::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -125,38 +110,78 @@ header {
     transform-origin: center;
     transition: transform 0.3s ease;
 }
-.menu_direita .nao_ativo:hover {
+.menu_esquerda .nao_ativo:hover {
     transform: scale(1.2);
     color: #F5E8D3;
 }
-.menu_direita .nao_ativo:hover::after {
+.menu_esquerda .nao_ativo:hover::after {
     transform: scaleX(1);
 }
 
-/* MAIN */
-.menu_direita a {
-  text-decoration: none;
-  color: #f5e8d3;
-  position: relative;
-  transition: 0.3s;
+/*Menu da Direita*/
+.menu_direita {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 5%;
 }
-.menu_direita a:hover {
-  color: #fff;
-  transform: scale(1.1);
+
+.auth-buttons {
+    display: flex;
+    gap: 40px;
 }
-.menu_direita a::after {
-  content: "";
-  position: absolute;
-  bottom: -5px;
-  left: 0;
-  height: 2px;
-  width: 0%;
-  background-color: #fff;
-  transition: width 0.3s;
+
+.auth-buttons a {
+    font-family: 'Rouge Script', cursive;
+    font-weight: bold;
+    text-decoration: none;
+    font-size: 35px;
+    padding: 8px 15px;
+    border-radius: 4px;
+    text-align: center;
+    justify-content: center;
 }
-.menu_direita a:hover::after,
-.menu_direita a.ativo::after {
-  width: 100%;
+
+.auth-buttons a:first-child {
+    color: #F5E8D3;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.auth-buttons a:first-child:hover{
+    color: #dbc8aa;
+    transform: scale(1.15);
+}
+
+
+.auth-buttons a:last-child {
+    background-color: #6F4E37;
+    color: white;
+    border-radius: 10px;
+    width: 140px;
+    text-align: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.auth-buttons a:last-child:hover {
+    background-color: #C8963E;
+    transform: scale(1.15);
+}
+
+/*Botão do Carrinho*/
+.carrinho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrinho img{
+    display: flex;
+    width: 50%;
+    height: 50%;
+    transition: transform 0.3s ease;
+}
+
+.carrinho img:hover {
+    transform: scale(1.1);
 }
 
 /* ===== MAIN ===== */
@@ -269,69 +294,180 @@ iframe {
   color: #8e4a2a;
 }
 
-/* ===== FOOTER ===== */
+/* ===== Footer ===== */
+
 footer {
-  background-color: #b85c3a;
-  color: #f5e8d3;
-  padding: 40px 60px;
-  margin-top: 80px;
-  text-align: center;
+    display: flex;
+    width: 100%;
+    background-color: #f5ede5;
+    padding: 30px 60px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    margin-top: 60px;
+    flex-direction: column;
+    align-items: center;
+    position: relative;
+    font-family: 'Rouge Script', cursive;
+    font-size: 30px;
 }
 
 .newsletter {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-  justify-content: center;
-  align-items: center;
-  margin-bottom: 40px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    margin-bottom: 40px;
 }
+
 .newsletter input {
-  padding: 10px;
-  border: none;
-  border-radius: 5px;
-  width: 250px;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    width: 200px;
 }
+
+.newsletter input::placeholder {
+    font-family: 'Rouge Script', cursive;
+    font-size: 20px;
+}
+
+.newsletter input:focus {
+    outline: none;
+    border-color: #b6613a;
+}
+
 .newsletter button {
-  background-color: #8e4a2a;
-  border: none;
-  color: #fff;
-  padding: 10px 18px;
-  border-radius: 5px;
-  cursor: pointer;
-  font-weight: bold;
-  transition: 0.3s;
+    background-color: #b6613a;
+    color: white;
+    border: none;
+    padding: 8px 16px;
+    border-radius: 4px;
+    cursor: pointer;
+    font-family: 'Rouge Script', cursive;
+    font-size: 30px;
+    font-weight: bold;
 }
+
 .newsletter button:hover {
-  background-color: #6f361b;
+    background-color: #8e4a2a;
+}
+
+.newsletter button:active {
+    background-color: #C8963E;
 }
 
 .rodape-links {
-  display: flex;
-  justify-content: space-around;
-  flex-wrap: wrap;
-  gap: 30px;
-  margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    margin-top: -50px;
+    margin-bottom: 10px;
+    width: 95%;
 }
+
 .rodape-links h4 {
-  color: #fff;
-  margin-bottom: 10px;
-  border-bottom: 2px solid #f5e8d3;
-  display: inline-block;
-  padding-bottom: 5px;
+    color: #8e4a2a;
+    margin-bottom: 10px;
 }
+
+.rodape-links ul {
+    list-style: none;
+}
+
 .rodape-links a {
-  color: #f5e8d3;
-  text-decoration: none;
-  transition: 0.2s;
+    color: #333;
+    text-decoration: none;
 }
+
 .rodape-links a:hover {
-  color: #fff;
-  text-decoration: underline;
+    text-decoration: underline;
+}
+
+.sobre-cafe, .ajuda, .contato, .redes-sociais {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 }
 
 .copy {
     text-align: center;
     color: #666;
+    font-family: 'Times New Roman', Times, serif;
     font-size: 0.9rem;
+}
+
+/* ===== LEGENDAS DE IMAGENS E VÍDEOS ===== */
+.imagem-artigo + p,
+.video-container + .lead {
+    font-size: 1.05rem;
+    color: #4a2e1f;
+    line-height: 1.7;
+    margin-top: 12px;
+    margin-bottom: 24px;
+    text-align: justify;
+    padding: 12px 15px;
+    background-color: #fff4ed;
+    border-left: 4px solid #b85c3a;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+    font-family: 'Arial', sans-serif;
+}
+
+/* Ícones discretos antes do texto */
+.imagem-artigo + p::before,
+.video-container + .lead::before {
+    content: "📝";
+    margin-right: 8px;
+    color: #b85c3a;
+}
+
+/* FIGCAPTION */
+figure {
+    display: block;
+    margin: 20px 0;
+}
+
+figure img {
+    width: 100%;
+    border-radius: 10px;
+}
+
+figure figcaption {
+    font-size: 1rem;
+    color: #4a2e1f;
+    text-align: center;
+    margin-top: 10px;
+    font-style: italic;
+    line-height: 1.6;
+    background-color: #fff4ed;
+    padding: 8px 12px;
+    border-radius: 6px;
+    box-shadow: 0 2px 6px rgba(0,0,0,0.08);
+}
+
+/* ===== RESPONSIVIDADE ===== */
+@media (max-width: 768px) {
+  header {
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .menu_direita ul {
+    flex-wrap: wrap;
+    justify-content: center;
+    font-size: 26px;
+    gap: 20px;
+  }
+
+  iframe {
+    height: 250px;
+  }
+
+  .newsletter {
+    flex-direction: column;
+  }
+
+  .rodape-links {
+    flex-direction: column;
+    text-align: center;
+  }
 }
