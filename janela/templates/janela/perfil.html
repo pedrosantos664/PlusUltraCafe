@@ -6,40 +6,36 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Meu Perfil - PlusUltraCafe</title>
-    <link rel="icon" type="image/png" href="{% static 'imagens/favicon.jpg' %}">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
     <link href="https://fonts.googleapis.com/css2?family=Tenor+Sans&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="{% static 'css/perfil.css' %}">
 </head>
 
 <body>
 
-    <nav>
-        <div class="nav-left">
-            <a href="{% url 'menu_inicial' %}" class="logo">PlusUltraCafe</a>
-            <div class="nav-links">
-                <a href="{% url 'menu_inicial' %}" class="ativo">Home</a>
-                <a href="{% url 'Curso' %}" class="nao_ativo">Cursos</a>
-                <a href="{% url 'blog' %}" class="nao_ativo">Blog</a>
-                <a href="{% url 'contact' %}">Contact</a>
-            </div>
-        </div>
+    <!-- Header do Site-->
+    <header class="cima">
+        <!--Menu da Esquerda-->
+        <nav class="menu_esquerda">
+            <a href="{% url 'menu_inicial' %}"><img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo"></a>
+            <ul>
+                <li><a href="{% url 'menu_inicial' %}" class="nao_ativo" style="font-family: 'Rouge Script', cursive;">Home</a></li>
+                <li><a href="{% url 'Curso' %}" class="nao_ativo" style="font-family: 'Rouge Script', cursive;">Cursos</a></li>
+                <li><a href="{% url 'blog' %}" class="nao_ativo" style="font-family: 'Rouge Script', cursive;">Blog</a></li>
+                 <li><a href="{% url 'contact' %}" class="nao_ativo" style="font-family: 'Rouge Script', cursive;">Contato</a></li>
+            </ul>
+        </nav>
 
-        <div class="nav-right">
-            {% if user.is_authenticated %}
+        <nav class="menu_direita">
+            <a href="{%url 'perfil' %}" class="carrinho"><img src="{% static 'imagens/icone_carrinho.png' %}"></a>
             <div class="auth-buttons">
-                <a href="{%url 'perfil' %}" class="welcome-text">Olá, {{ usuario.nome }}!</a>
-
+                <a href="{%url 'perfil' %}" class="welcome-text">Olá, {{ user.first_name}}!</a>
                 <a href="{% url 'logout' %}">Sair</a>
             </div>
-            {% else %}
-            <div class="auth-buttons">
-                <a href="{% url 'login' %}">Sign in</a>
-                <a href="{% url 'registro' %}">Register</a>
-            </div>
-            {% endif %}
-        </div>
-
-    </nav>
+        </nav>
+    </header>
 
 
 
