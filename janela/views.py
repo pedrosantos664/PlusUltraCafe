@@ -53,13 +53,13 @@ def registro(request):
         
         login(request, user)
         messages.success(request, f'Cadastro realizado! Bem-vindo, {nome}!')
-        return redirect('/janela/')
+        return redirect('/janela/menu_inicial')
 
     return render(request, 'janela/registro.html')
 
 def login_view(request):
     if request.user.is_authenticated:
-        return redirect('/janela/')
+        return redirect('/janela/menu_inicial')
         
     if request.method == 'POST':
         email = request.POST.get('email')
@@ -84,7 +84,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Você saiu com sucesso!')
-    return redirect('/janela/')
+    return redirect('/janela/login')
 
 # As views abaixo já estão corretas e vão funcionar
 # pois agora 'request.user' será uma instância de 'Usuario'

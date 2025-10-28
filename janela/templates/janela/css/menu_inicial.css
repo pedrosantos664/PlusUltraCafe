@@ -120,28 +120,45 @@ header {
 
 .auth-buttons {
     display: flex;
-    gap: 15px;
+    gap: 40px;
 }
 
 .auth-buttons a {
     font-family: 'Rouge Script', cursive;
-    font-weight: 500;
+    font-weight: bold;
     text-decoration: none;
-    font-size: 30px;
+    font-size: 35px;
     padding: 8px 15px;
     border-radius: 4px;
+    text-align: center;
+    justify-content: center;
 }
 
 .auth-buttons a:first-child {
     color: #F5E8D3;
+    transition: transform 0.3s ease, color 0.3s ease;
 }
+.auth-buttons a:first-child:hover{
+    color: #dbc8aa;
+    transform: scale(1.15);
+}
+
 
 .auth-buttons a:last-child {
-    background-color: #000;
+    background-color: #6F4E37;
     color: white;
-
+    border-radius: 10px;
+    width: 140px;
+    text-align: center;
+    justify-content: center;
+    transition: transform 0.3s ease, background-color 0.3s ease;
+}
+.auth-buttons a:last-child:hover {
+    background-color: #C8963E;
+    transform: scale(1.15);
 }
 
+/*Botão do Carrinho*/
 .carrinho {
     display: flex;
     align-items: center;
@@ -150,14 +167,16 @@ header {
 
 .carrinho img{
     display: flex;
-    width: 60%;
-    height: 60%;
+    width: 50%;
+    height: 50%;
     transition: transform 0.3s ease;
 }
 
 .carrinho img:hover {
     transform: scale(1.1);
 }
+
+
 
 /*==== Corpo do Menu Inicial ==== */
 
