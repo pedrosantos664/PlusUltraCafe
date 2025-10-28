@@ -19,7 +19,7 @@
     <header>
         <!--Menu da Esquerda-->
         <nav class="menu_esquerda">
-            <img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo">
+            <a href="{% url 'menu_inicial' %}"><img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo"></a>
             <ul>
                 <li><a href="{% url 'menu_inicial' %}" class="ativo">Home</a></li>
                 <li><a href="{% url 'Curso' %}" class="nao_ativo">Cursos</a></li>
@@ -37,8 +37,8 @@
             </div>
             {% else %}
             <div class="auth-buttons">
-                <a href="{% url 'login' %}">Sign in</a>
-                <a href="{% url 'registro' %}">Register</a>
+                <a href="{% url 'login' %}">Entrar</a>
+                <a href="{% url 'registro' %}">Cadastrar</a>
             </div>
             {% endif %}
         </nav>
