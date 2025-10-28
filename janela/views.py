@@ -87,11 +87,7 @@ def login_view(request):
 def logout_view(request):
     logout(request)
     messages.success(request, 'Você saiu com sucesso!')
-<<<<<<< HEAD
-    return redirect('/janela/menu_inicial')
-=======
     return redirect('/janela/login')
->>>>>>> 8b8ef84bfac228846553b474e7fa35bf46cba1a4
 
 # As views abaixo já estão corretas e vão funcionar
 # pois agora 'request.user' será uma instância de 'Usuario'
