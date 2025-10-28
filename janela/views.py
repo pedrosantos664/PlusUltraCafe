@@ -75,7 +75,7 @@ def login_view(request):
         if user is not None:
             login(request, user)
             messages.success(request, f'Bem-vindo, {user.nome}!')
-            return redirect('/janela/')
+            return redirect('/janela/menu_inicial')
         else:
             messages.error(request, 'Email ou senha incorretos!')
     

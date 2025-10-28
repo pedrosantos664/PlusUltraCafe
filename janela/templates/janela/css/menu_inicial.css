@@ -26,11 +26,16 @@ header {
 /*A logo do PlusUltraCafé*/
 .logo {
     height: 100px;
-    margin-left: 20px;
+    margin-left: 10%;
 }
 
+.menu_esquerda{
+    display: flex;
+    align-items: center;
+    gap: 10%;
+}
 /*São os Botões do Header*/
-.menu_direita ul {
+.menu_esquerda ul {
     font-family: 'Rouge Script', cursive;
     font-size: 35px;
     list-style: none;
@@ -43,12 +48,12 @@ header {
 
 
 /* ===== Botão ativo ===== */
-.menu_direita .ativo {
+.menu_esquerda .ativo {
     position: relative;
     color: #F5E8D3;
     text-decoration: none;
 }
-.menu_direita .ativo::after {
+.menu_esquerda .ativo::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -61,31 +66,31 @@ header {
     transition: transform 0.3s ease;
 }
 
-.menu_direita:hover .ativo {
+.menu_esquerda:hover .ativo {
     color: #3b3b3b; /* Fica na mesma cor dos botões não ativos */
     transition: 0.3s ease;
 }
-.menu_direita:hover .ativo::after {
+.menu_esquerda:hover .ativo::after {
     transform: scaleX(0); /* Faz a linha de baixo do botão ativo desaparecer */
 }
 /* Quando não tem hover no menu, volta ao normal */
-.menu_direita:not(:hover) .ativo {
+.menu_esquerda:not(:hover) .ativo {
     color: #F5E8D3;
     transition: 0.3s ease;
 }
-.menu_direita:not(:hover) .ativo::after {
+.menu_esquerda:not(:hover) .ativo::after {
     transform: scaleX(1);
 }
 
 
 /* ===== Botão não ativo ===== */
-.menu_direita .nao_ativo {
+.menu_esquerda .nao_ativo {
     position: relative;
     text-decoration: none;
     color: #3b3b3b;
     transition: transform 0.3s ease, color 0.3s ease;
 }
-.menu_direita .nao_ativo::after {
+.menu_esquerda .nao_ativo::after {
     content: "";
     position: absolute;
     bottom: 0;
@@ -97,14 +102,62 @@ header {
     transform-origin: center;
     transition: transform 0.3s ease;
 }
-.menu_direita .nao_ativo:hover {
+.menu_esquerda .nao_ativo:hover {
     transform: scale(1.2);
     color: #F5E8D3;
 }
-.menu_direita .nao_ativo:hover::after {
+.menu_esquerda .nao_ativo:hover::after {
     transform: scaleX(1);
 }
 
+/*Menu da Direita*/
+.menu_direita {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-right: 5%;
+}
+
+.auth-buttons {
+    display: flex;
+    gap: 15px;
+}
+
+.auth-buttons a {
+    font-family: 'Rouge Script', cursive;
+    font-weight: 500;
+    text-decoration: none;
+    font-size: 30px;
+    padding: 8px 15px;
+    border-radius: 4px;
+}
+
+.auth-buttons a:first-child {
+    color: #F5E8D3;
+}
+
+.auth-buttons a:last-child {
+    background-color: #000;
+    color: white;
+
+}
+
+.carrinho {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.carrinho img{
+    display: flex;
+    width: 60%;
+    height: 60%;
+    transition: transform 0.3s ease;
+}
+
+.carrinho img:hover {
+    transform: scale(1.1);
+}
 
 /*==== Corpo do Menu Inicial ==== */
 
@@ -117,10 +170,10 @@ header {
     display: block;
     margin-left: auto;
     margin-right: auto;
+    transition: transform 0.3s ease;
 }
 .banner:hover {
     transform: scale(1.02);
-    transition: transform 0.3s ease;
 }
 
 
@@ -191,6 +244,7 @@ header {
 
 /*Título da Cafeteira*/
 .card h2 {
+    display: flex;
     font-size: 40px;
     font-family: 'Times New Roman', Times, serif;
 }
@@ -244,6 +298,7 @@ header {
 
 footer {
     display: flex;
+    width: 100%;
     background-color: #f5ede5;
     padding: 30px 60px;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
@@ -467,4 +522,24 @@ footer {
   right: 15px;
   font-size: 28px;
   cursor: pointer;
+}
+
+@keyframes float {
+
+    0%,
+    100% {
+        transform: translateY(0) translateX(0);
+    }
+
+    25% {
+        transform: translateY(-20px) translateX(10px);
+    }
+
+    50% {
+        transform: translateY(-40px) translateX(-10px);
+    }
+
+    75% {
+        transform: translateY(-20px) translateX(-15px);
+    }
 }

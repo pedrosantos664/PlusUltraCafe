@@ -5,32 +5,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Plus Ultra Café</title>
+    <title>Home - Plus Ultra Café</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="css/menu_inicial.css">
+    <link rel="icon" type="image/png" href="{% static 'imagens/favicon.jpg' %}">
+    <link rel="stylesheet" href="{% static 'css/menu_inicial.css' %}">
 </head>
 
 <body>
 
     <!-- Header do Site-->
     <header>
+        <!--Menu da Esquerda-->
         <nav class="menu_esquerda">
-            <img src="imagens/Logo_PlusUltraCafe.png" alt="Logo da Cafeteria Plus Ultra Café" class="logo">
-        </nav>
-        <nav class="menu_direita">
+            <img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo">
             <ul>
                 <li><a href="{% url 'menu_inicial' %}" class="ativo">Home</a></li>
-                <li><a href="#" class="nao_ativo">Cardápio</a></li>
                 <li><a href="#" class="nao_ativo">Cursos</a></li>
                 <li><a href="{% url 'blog' %}" class="nao_ativo">Blog</a></li>
             </ul>
         </nav>
+
+        <nav class="menu_direita">
+            {% if user.is_authenticated %}
+            <a href="{%url 'perfil' %}" class="carrinho"><img src="{% static 'imagens/icone_carrinho.png' %}"></a>
+            <div class="auth-buttons">
+                <a href="{%url 'perfil' %}" class="welcome-text">Olá, {{ user.first_name}}!</a>
+                <a href="{% url 'logout' %}">Sair</a>
+            </div>
+            {% else %}
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}">Sign in</a>
+                <a href="{% url 'registro' %}">Register</a>
+            </div>
+            {% endif %}
+        </nav>
     </header>
 
     <!-- Banner do Plus Ultra Café-->
-    <img src="imagens/Banner_PlusUltraCafe.png" alt="Banner do Plus Ultra Café Indicando Cafés com 20% de Desconto"
+    <img src="{% static 'imagens/Banner_PlusUltraCafe.png' %}" alt="Banner do Plus Ultra Café Indicando Cafés com 20% de Desconto"
         class="banner">
 
     <!-- Seção Principal do Site-->
@@ -40,39 +54,39 @@
         <section class="secao_cafeteiras">
             <h1>Cafeteiras</h1>
             <div class="caixa-cafeteira">
-                <a href="#" class="seta-esquerda-cafeteira"><img src="imagens/Seta-Esquerda.png" alt="Seta para a esquerda"></a>
+                <a href="#" class="seta-esquerda-cafeteira"><img src="{% static 'imagens/Seta-Esquerda.png' %}" alt="Seta para a esquerda"></a>
 
                 <div class="cafeteiras">
                     <div class="card" data-popup="popup1"><br>
-                        <img src="imagens/cafeteiras/Cafeteira_1.png" alt="Cafeteira Eletrolux ECM25 127v">
+                        <img src="{% static 'imagens/cafeteiras/Cafeteira_1.png' %}" alt="Cafeteira Eletrolux ECM25 127v">
                         <h2>Cafeteira Eletrolux ECM25 127v</h2>
                         <p>R$ 228,71</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
 
                     <div class="card" data-popup="popup2"><br>
-                        <img src="imagens/cafeteiras/Cafeteira_2.png" alt="Cafeteira Expresso Arno Dolce Gusto">
+                        <img src="{% static 'imagens/cafeteiras/Cafeteira_2.png' %}" alt="Cafeteira Expresso Arno Dolce Gusto">
                         <h2>Cafeteira Expresso Arno Dolce Gusto</h2>
                         <p>R$ 475,90</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
 
                     <div class="card" data-popup="popup3"><br>
-                        <img src="imagens/cafeteiras/Cafeteira_3.png" alt="Cafeteira Oster PrimaLatte Touch Red">
+                        <img src="{% static 'imagens/cafeteiras/Cafeteira_3.png' %}" alt="Cafeteira Oster PrimaLatte Touch Red">
                         <h2>Cafeteira Oster PrimaLatte Touch Red</h2>
                         <p>R$ 1204,90</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
                     
                     <div class="card" data-popup="popup4"><br>
-                        <img src="imagens/cafeteiras/Cafeteira_4.png" alt="Cafeteira Elétrica Mondial, Preto">
+                        <img src="{% static 'imagens/cafeteiras/Cafeteira_4.png' %}" alt="Cafeteira Elétrica Mondial, Preto">
                         <h2>Cafeteira Elétrica Mondial, Preto</h2>
                         <p>R$ 109,90</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
                 </div>
                 
-                <a href="#" class="seta-direita-cafeteira"><img src="imagens/Seta-Direita.png" alt="Seta para a direita"></a>
+                <a href="#" class="seta-direita-cafeteira"><img src="{% static 'imagens/Seta-Direita.png' %}" alt="Seta para a direita"></a>
             </div>
         </section>
 
@@ -81,39 +95,39 @@
         <section class="secao_cafes_selecionados">
             <h1>Cafés Selecionados</h1>
             <div class="caixa-cafe-selecionado">
-                <a href="#" class="seta-esquerda-cafe"><img src="imagens/Seta-Esquerda.png" alt="Seta para a esquerda"></a>
+                <a href="#" class="seta-esquerda-cafe"><img src="{% static 'imagens/Seta-Esquerda.png' %}" alt="Seta para a esquerda"></a>
 
                 <div class="cafes_selecionados">
                     <div class="card" data-popup="popup5"><br>
-                        <img src="imagens/cafes_solucionados/Cafe_Nescafe_Origins.png" alt="Café Selecionado Nescafé Origins">
+                        <img src="{% static 'imagens/cafes_solucionados/Cafe_Nescafe_Origins.png' %}" alt="Café Selecionado Nescafé Origins">
                         <h2>Café Nescafé Origins Brazil</h2>
                         <p>R$ 22,49</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
 
                     <div class="card" data-popup="popup6"><br>
-                        <img src="imagens/cafes_solucionados/Cafe_Constantino.png" alt="Café Selecionado Constantino" style="height: 29%;">
+                        <img src="{% static 'imagens/cafes_solucionados/Cafe_Constantino.png' %}" alt="Café Selecionado Constantino" style="height: 29%;">
                         <h2>Café Especial Constantino</h2>
                         <p>R$ 59,90</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
 
                     <div class="card" data-popup="popup7"><br>
-                        <img src="imagens/cafes_solucionados/Cafe_Orfeu.png" alt="Café Selecionado Orfeu Clássico em Grãos" style="height: 30%;">
+                        <img src="{% static 'imagens/cafes_solucionados/Cafe_Orfeu.png' %}" alt="Café Selecionado Orfeu Clássico em Grãos" style="height: 30%;">
                         <h2>Orfeu Café Clássico</h2>
                         <p>R$ 115,73</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
 
                     <div class="card" data-popup="popup8"><br>
-                        <img src="imagens/cafes_solucionados/Cafe_Baggio.png" alt="Café Selecionado Baggio">
+                        <img src="{% static 'imagens/cafes_solucionados/Cafe_Baggio.png' %}" alt="Café Selecionado Baggio">
                         <h2>Café Baggio Chocolate com Menta</h2>
                         <p>R$ 34,19</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
                 </div>
 
-                <a href="#" class="seta-direita-cafe"><img src="imagens/Seta-Direita.png" alt="Seta para a direita"></a>
+                <a href="#" class="seta-direita-cafe"><img src="{% static 'imagens/Seta-Direita.png' %}" alt="Seta para a direita"></a>
             </div>
         </section>
 
@@ -122,39 +136,39 @@
         <section class="secao_acessorios">
             <h1>Acessórios</h1>
             <div class="caixa-acessorio">
-                <a href="#" class="seta-esquerda-acessorio"><img src="imagens/Seta-Esquerda.png" alt="Seta para a esquerda"></a>
+                <a href="#" class="seta-esquerda-acessorio"><img src="{% static 'imagens/Seta-Esquerda.png' %}" alt="Seta para a esquerda"></a>
 
                 <div class="acessorios">
                     <div class="card" data-popup="popup9"><br>
-                        <img src="imagens/acessorios/Porta_Capsulas.jpg" alt="Porta Cápsulas">
+                        <img src="{% static 'imagens/acessorios/Porta_Capsulas.jpg' %}" alt="Porta Cápsulas">
                         <h2>Porta Cápsulas com bandeja</h2>
                         <p>R$ 47,43</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
 
                     <div class="card" data-popup="popup10"><br>
-                        <img src="imagens/acessorios/Lixeira_Para_Capsulas.jpg" alt="Lixeira para Cápsulas Dolce Gusto">
+                        <img src="{% static 'imagens/acessorios/Lixeira_Para_Capsulas.jpg' %}" alt="Lixeira para Cápsulas Dolce Gusto">
                         <h2>Lixeira para Cápsulas</h2>
                         <p>R$ 39,90</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
 
                     <div class="card" data-popup="popup11"><br>
-                        <img src="imagens/acessorios/Filtro_Inox.jpg" alt="Coador Filtro De Café Inox" style="height: 29%;">
+                        <img src="{% static 'imagens/acessorios/Filtro_Inox.jpg' %}" alt="Coador Filtro De Café Inox" style="height: 29%;">
                         <h2>Coador Filtro De Café Inox</h2>
                         <p>R$ 39,90</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
 
                     <div class="card" data-popup="popup12"><br>
-                        <img src="imagens/acessorios/Caneca_de_Vidro.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente">
+                        <img src="{% static 'imagens/acessorios/Caneca_de_Vidro.jpg' %}" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente">
                         <h2>4x Caneca de Café de Vidro</h2>
                         <p>R$ 89,00</p>
                         <button class="comprar-item">Comprar</button>
                     </div>
                 </div>
 
-                <a href="#" class="seta-direita-acessorio"><img src="imagens/Seta-Direita.png" alt="Seta para a direita"></a>
+                <a href="#" class="seta-direita-acessorio"><img src="{% static 'imagens/Seta-Direita.png' %}" alt="Seta para a direita"></a>
             </div>
         </section>
 
@@ -213,16 +227,16 @@
         <div class="popup">
             <div class="popup-left">
                 <div class="carousel">
-                    <img src="imagens/cafeteiras/Cafeteira_1.png" alt="Cafeteira 1" class="active">
-                    <img src="imagens/cafeteiras/Cafeteira_1_pt4.jpg" alt="Cafeteira 2">
-                    <img src="imagens/cafeteiras/Cafeteira_1_pt3.jpg" alt="Cafeteira 3">
-                    <img src="imagens/cafeteiras/Cafeteira_1_pt2.jpg" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1.png' %}" alt="Cafeteira 1" class="active">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt4.jpg' %}" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt3.jpg' %}" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt2.jpg' %}" alt="Cafeteira 4">
                 </div>
                 <div class="thumbnails">
-                    <img src="imagens/cafeteiras/Cafeteira_1.png" alt="Cafeteira 1">
-                    <img src="imagens/cafeteiras/Cafeteira_1_pt4.jpg" alt="Cafeteira 2">
-                    <img src="imagens/cafeteiras/Cafeteira_1_pt3.jpg" alt="Cafeteira 3">
-                    <img src="imagens/cafeteiras/Cafeteira_1_pt2.jpg" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1.png' %}" alt="Cafeteira 1">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt4.jpg' %}" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt3.jpg' %}" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt2.jpg' %}" alt="Cafeteira 4">
                 </div>
                 <span class="arrow left">&#10094;</span>
                 <span class="arrow right">&#10095;</span>
@@ -256,16 +270,16 @@
         <div class="popup">
             <div class="popup-left">
                 <div class="carousel">
-                    <img src="imagens/cafeteiras/Cafeteira_2.png" alt="Cafeteira 1" class="active">
-                    <img src="imagens/cafeteiras/Cafeteira_2_pt2.jpg" alt="Cafeteira 2">
-                    <img src="imagens/cafeteiras/Cafeteira_2_pt4.jpg" alt="Cafeteira 3">
-                    <img src="imagens/cafeteiras/Cafeteira_2_pt3.jpg" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_2.png' %}" alt="Cafeteira 1" class="active">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_2_pt2.jpg' %}" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_2_pt4.jpg' %}" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_2_pt3.jpg' %}" alt="Cafeteira 4">
                 </div>
                 <div class="thumbnails">
-                    <img src="imagens/cafeteiras/Cafeteira_2.png" alt="Cafeteira 1">
-                    <img src="imagens/cafeteiras/Cafeteira_2_pt2.jpg" alt="Cafeteira 2">
-                    <img src="imagens/cafeteiras/Cafeteira_2_pt4.jpg" alt="Cafeteira 3">
-                    <img src="imagens/cafeteiras/Cafeteira_2_pt3.jpg" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_2.png' %}" alt="Cafeteira 1">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_2_pt2.jpg' %}" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_2_pt4.jpg' %}" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_2_pt3.jpg' %}" alt="Cafeteira 4">
                 </div>
                 <span class="arrow left">&#10094;</span>
                 <span class="arrow right">&#10095;</span>
@@ -300,16 +314,16 @@
         <div class="popup">
             <div class="popup-left">
                 <div class="carousel">
-                    <img src="imagens/cafeteiras/Cafeteira_3.png" alt="Cafeteira 1" class="active">
-                    <img src="imagens/cafeteiras/Cafeteira_3_pt2.jpg" alt="Cafeteira 2">
-                    <img src="imagens/cafeteiras/Cafeteira_3_pt3.jpg" alt="Cafeteira 3">
-                    <img src="imagens/cafeteiras/Cafeteira_3_pt4.jpg" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3.png' %}{% static '" alt="Cafeteira 1" class="active">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt2.jpg' %}{% static '" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt3.jpg' %}{% static '" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt4.jpg' %}{% static '" alt="Cafeteira 4">
                 </div>
                 <div class="thumbnails">
-                    <img src="imagens/cafeteiras/Cafeteira_3.png" alt="Cafeteira 1">
-                    <img src="imagens/cafeteiras/Cafeteira_3_pt2.jpg" alt="Cafeteira 2">
-                    <img src="imagens/cafeteiras/Cafeteira_3_pt3.jpg" alt="Cafeteira 3">
-                    <img src="imagens/cafeteiras/Cafeteira_3_pt4.jpg" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3.png' %}{% static '" alt="Cafeteira 1">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt2.jpg' %}{% static '" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt3.jpg' %}{% static '" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_3_pt4.jpg' %}{% static '" alt="Cafeteira 4">
                 </div>
                 <span class="arrow left">&#10094;</span>
                 <span class="arrow right">&#10095;</span>
@@ -343,16 +357,16 @@
         <div class="popup">
             <div class="popup-left">
                 <div class="carousel">
-                    <img src="imagens/cafeteiras/Cafeteira_4.png" alt="Cafeteira 1" class="active">
-                    <img src="imagens/cafeteiras/Cafeteira_4_pt2.jpg" alt="Cafeteira 2">
-                    <img src="imagens/cafeteiras/Cafeteira_4_pt3.jpg" alt="Cafeteira 3">
-                    <img src="imagens/cafeteiras/Cafeteira_4_pt4.jpg" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_4.png' %}" alt="Cafeteira 1" class="active">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_4_pt2.jpg' %}" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_4_pt3.jpg' %}" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_4_pt4.jpg' %}" alt="Cafeteira 4">
                 </div>
                 <div class="thumbnails">
-                    <img src="imagens/cafeteiras/Cafeteira_4.png" alt="Cafeteira 1">
-                    <img src="imagens/cafeteiras/Cafeteira_4_pt2.jpg" alt="Cafeteira 2">
-                    <img src="imagens/cafeteiras/Cafeteira_4_pt3.jpg" alt="Cafeteira 3">
-                    <img src="imagens/cafeteiras/Cafeteira_4_pt4.jpg" alt="Cafeteira 4">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_4.png' %}" alt="Cafeteira 1">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_4_pt2.jpg' %}" alt="Cafeteira 2">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_4_pt3.jpg' %}" alt="Cafeteira 3">
+                    <img src="{% static 'imagens/cafeteiras/Cafeteira_4_pt4.jpg' %}" alt="Cafeteira 4">
                 </div>
                 <span class="arrow left">&#10094;</span>
                 <span class="arrow right">&#10095;</span>
@@ -389,16 +403,16 @@
         <div class="popup">
         <div class="popup-left">
             <div class="carousel">
-            <img src="imagens/cafes_solucionados/Cafe_Nescafe_Origins.png" alt="Café Selecionado Nescafé Origins 1" class="active">
-            <img src="imagens/cafes_solucionados/Cafe_Nescafe_pt2.jpg" alt="Café Selecionado Nescafé Origins 2">
-            <img src="imagens/cafes_solucionados/Cafe_Nescafe_pt3.jpg" alt="Café Selecionado Nescafé Origins 3">
-            <img src="imagens/cafes_solucionados/Cafe_Nescafe_pt4.jpg" alt="Café Selecionado Nescafé Origins 4">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Nescafe_Origins.png' %}" alt="Café Selecionado Nescafé Origins 1" class="active">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Nescafe_pt2.jpg' %}" alt="Café Selecionado Nescafé Origins 2">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Nescafe_pt3.jpg' %}" alt="Café Selecionado Nescafé Origins 3">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Nescafe_pt4.jpg' %}" alt="Café Selecionado Nescafé Origins 4">
             </div>
             <div class="thumbnails">
-            <img src="imagens/cafes_solucionados/Cafe_Nescafe_Origins.png" alt="Café Selecionado Nescafé Origins">
-            <img src="imagens/cafes_solucionados/Cafe_Nescafe_pt2.jpg" alt="Café Selecionado Nescafé Origins 2">
-            <img src="imagens/cafes_solucionados/Cafe_Nescafe_pt3.jpg" alt="Café Selecionado Nescafé Origins 3">
-            <img src="imagens/cafes_solucionados/Cafe_Nescafe_pt4.jpg" alt="Café Selecionado Nescafé Origins 4">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Nescafe_Origins.png' %}" alt="Café Selecionado Nescafé Origins">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Nescafe_pt2.jpg' %}" alt="Café Selecionado Nescafé Origins 2">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Nescafe_pt3.jpg' %}" alt="Café Selecionado Nescafé Origins 3">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Nescafe_pt4.jpg' %}" alt="Café Selecionado Nescafé Origins 4">
             </div>
             <span class="arrow left">&#10094;</span>
             <span class="arrow right">&#10095;</span>
@@ -426,16 +440,16 @@
         <div class="popup">
         <div class="popup-left">
             <div class="carousel">
-            <img src="imagens/cafes_solucionados/Cafe_Constantino_pt1.jpg" alt="Café Selecionado Constantino 1" class="active">
-            <img src="imagens/cafes_solucionados/Cafe_Constantino_pt2.jpg" alt="Café Selecionado Constantino 2">
-            <img src="imagens/cafes_solucionados/Cafe_Constantino_pt3.jpg" alt="Café Selecionado Constantino 3">
-            <img src="imagens/cafes_solucionados/Cafe_Constantino_pt4.jpg" alt="Café Selecionado Constantino 4">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Constantino_pt1.jpg' %}" alt="Café Selecionado Constantino 1" class="active">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Constantino_pt2.jpg' %}" alt="Café Selecionado Constantino 2">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Constantino_pt3.jpg' %}" alt="Café Selecionado Constantino 3">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Constantino_pt4.jpg' %}" alt="Café Selecionado Constantino 4">
             </div>
             <div class="thumbnails">
-            <img src="imagens/cafes_solucionados/Cafe_Constantino_pt1.jpg" alt="Café Selecionado Constantino 1">
-            <img src="imagens/cafes_solucionados/Cafe_Constantino_pt2.jpg" alt="Café Selecionado Constantino 2">
-            <img src="imagens/cafes_solucionados/Cafe_Constantino_pt3.jpg" alt="Café Selecionado Constantino 3">
-            <img src="imagens/cafes_solucionados/Cafe_Constantino_pt4.jpg" alt="Café Selecionado Constantino 4">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Constantino_pt1.jpg' %}" alt="Café Selecionado Constantino 1">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Constantino_pt2.jpg' %}" alt="Café Selecionado Constantino 2">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Constantino_pt3.jpg' %}" alt="Café Selecionado Constantino 3">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Constantino_pt4.jpg' %}" alt="Café Selecionado Constantino 4">
             </div>
             <span class="arrow left">&#10094;</span>
             <span class="arrow right">&#10095;</span>
@@ -463,16 +477,16 @@
         <div class="popup">
         <div class="popup-left">
             <div class="carousel">
-            <img src="imagens/cafes_solucionados/Cafe_Orfeu.png" alt="Café Selecionado Orfeu" class="active">
-            <img src="imagens/cafes_solucionados/Cafe_Orfeu_pt2.jpg" alt="Café Selecionado Orfeu 2">
-            <img src="imagens/cafes_solucionados/Cafe_Orfeu_pt3.jpg" alt="Café Selecionado Orfeu 3">
-            <img src="imagens/cafes_solucionados/Cafe_Orfeu_pt4.jpg" alt="Café Selecionado Orfeu 4">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Orfeu.png' %}" alt="Café Selecionado Orfeu" class="active">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Orfeu_pt2.jpg' %}" alt="Café Selecionado Orfeu 2">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Orfeu_pt3.jpg' %}" alt="Café Selecionado Orfeu 3">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Orfeu_pt4.jpg' %}" alt="Café Selecionado Orfeu 4">
             </div>
             <div class="thumbnails">
-            <img src="imagens/cafes_solucionados/Cafe_Orfeu.png" alt="Café Selecionado Orfeu 1">
-            <img src="imagens/cafes_solucionados/Cafe_Orfeu_pt2.jpg" alt="Café Selecionado Orfeu 2">
-            <img src="imagens/cafes_solucionados/Cafe_Orfeu_pt3.jpg" alt="Café Selecionado Orfeu 3">
-            <img src="imagens/cafes_solucionados/Cafe_Orfeu_pt4.jpg" alt="Café Selecionado Orfeu 4">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Orfeu.png' %}" alt="Café Selecionado Orfeu 1">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Orfeu_pt2.jpg' %}" alt="Café Selecionado Orfeu 2">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Orfeu_pt3.jpg' %}" alt="Café Selecionado Orfeu 3">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Orfeu_pt4.jpg' %}" alt="Café Selecionado Orfeu 4">
             </div>
             <span class="arrow left">&#10094;</span>
             <span class="arrow right">&#10095;</span>
@@ -500,16 +514,16 @@
         <div class="popup">
         <div class="popup-left">
             <div class="carousel">
-            <img src="imagens/cafes_solucionados/Cafe_Baggio.png" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g" class="active">
-            <img src="imagens/cafes_solucionados/Cafe_Baggio_pt2.jpg" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
-            <img src="imagens/cafes_solucionados/Cafe_Baggio_pt3.jpg" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
-            <img src="imagens/cafes_solucionados/Cafe_Baggio_pt4.jpg" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Baggio.png' %}" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g" class="active">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Baggio_pt2.jpg' %}" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Baggio_pt3.jpg' %}" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Baggio_pt4.jpg' %}" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
             </div>
             <div class="thumbnails">
-            <img src="imagens/cafes_solucionados/Cafe_Baggio.png" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
-            <img src="imagens/cafes_solucionados/Cafe_Baggio_pt2.jpg" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
-            <img src="imagens/cafes_solucionados/Cafe_Baggio_pt3.jpg" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
-            <img src="imagens/cafes_solucionados/Cafe_Baggio_pt4.jpg" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Baggio.png' %}" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Baggio_pt2.jpg' %}" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Baggio_pt3.jpg' %}" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
+            <img src="{% static 'imagens/cafes_solucionados/Cafe_Baggio_pt4.jpg' %}" alt="Baggio Café Café Torrado e Moído Aroma de Chocolate com Menta 250g">
             </div>
             <span class="arrow left">&#10094;</span>
             <span class="arrow right">&#10095;</span>
@@ -540,16 +554,16 @@
         <div class="popup">
         <div class="popup-left">
             <div class="carousel">
-            <img src="imagens/acessorios/Porta_Capsulas.jpg" alt="Porta Cápsulas Cantinho do Café imagem 1" class="active">
-            <img src="imagens/acessorios/Porta_Capsulas_pt2.jpg" alt="Porta Cápsulas Cantinho do Café imagem 2">
-            <img src="imagens/acessorios/Porta_Capsulas_pt3.jpg" alt="Porta Cápsulas Cantinho do Café imagem 3">
-            <img src="imagens/acessorios/Porta_Capsulas_pt5.jpg" alt="Porta Cápsulas Cantinho do Café imagem 4">
+            <img src="{% static 'imagens/acessorios/Porta_Capsulas.jpg' %}" alt="Porta Cápsulas Cantinho do Café imagem 1" class="active">
+            <img src="{% static 'imagens/acessorios/Porta_Capsulas_pt2.jpg' %}" alt="Porta Cápsulas Cantinho do Café imagem 2">
+            <img src="{% static 'imagens/acessorios/Porta_Capsulas_pt3.jpg' %}" alt="Porta Cápsulas Cantinho do Café imagem 3">
+            <img src="{% static 'imagens/acessorios/Porta_Capsulas_pt5.jpg' %}" alt="Porta Cápsulas Cantinho do Café imagem 4">
             </div>
             <div class="thumbnails">
-            <img src="imagens/acessorios/Porta_Capsulas.jpg" alt="Porta Cápsulas Cantinho do Café imagem 1">
-            <img src="imagens/acessorios/Porta_Capsulas_pt2.jpg" alt="Porta Cápsulas Cantinho do Café imagem 2">
-            <img src="imagens/acessorios/Porta_Capsulas_pt3.jpg" alt="Porta Cápsulas Cantinho do Café imagem 3">
-            <img src="imagens/acessorios/Porta_Capsulas_pt5.jpg" alt="Porta Cápsulas Cantinho do Café imagem 4">
+            <img src="{% static 'imagens/acessorios/Porta_Capsulas.jpg' %}" alt="Porta Cápsulas Cantinho do Café imagem 1">
+            <img src="{% static 'imagens/acessorios/Porta_Capsulas_pt2.jpg' %}" alt="Porta Cápsulas Cantinho do Café imagem 2">
+            <img src="{% static 'imagens/acessorios/Porta_Capsulas_pt3.jpg' %}" alt="Porta Cápsulas Cantinho do Café imagem 3">
+            <img src="{% static 'imagens/acessorios/Porta_Capsulas_pt5.jpg' %}" alt="Porta Cápsulas Cantinho do Café imagem 4">
             </div>
             <span class="arrow left">&#10094;</span>
             <span class="arrow right">&#10095;</span>
@@ -577,16 +591,16 @@
         <div class="popup">
         <div class="popup-left">
             <div class="carousel">
-            <img src="imagens/acessorios/Lixeira_Para_Capsulas.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 1" class="active">
-            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt2.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 2">
-            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt3.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 3">
-            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt4.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 4">
+            <img src="{% static 'imagens/acessorios/Lixeira_Para_Capsulas.jpg' %}" alt="Lixeira para Cápsulas Dolce Gusto imagem 1" class="active">
+            <img src="{% static 'imagens/acessorios/Lixeira_Para_Capsulas_pt2.jpg' %}" alt="Lixeira para Cápsulas Dolce Gusto imagem 2">
+            <img src="{% static 'imagens/acessorios/Lixeira_Para_Capsulas_pt3.jpg' %}" alt="Lixeira para Cápsulas Dolce Gusto imagem 3">
+            <img src="{% static 'imagens/acessorios/Lixeira_Para_Capsulas_pt4.jpg' %}" alt="Lixeira para Cápsulas Dolce Gusto imagem 4">
             </div>
             <div class="thumbnails">
-            <img src="imagens/acessorios/Lixeira_Para_Capsulas.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 1">
-            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt2.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 2">
-            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt3.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 3">
-            <img src="imagens/acessorios/Lixeira_Para_Capsulas_pt4.jpg" alt="Lixeira para Cápsulas Dolce Gusto imagem 4">
+            <img src="{% static 'imagens/acessorios/Lixeira_Para_Capsulas.jpg' %}" alt="Lixeira para Cápsulas Dolce Gusto imagem 1">
+            <img src="{% static 'imagens/acessorios/Lixeira_Para_Capsulas_pt2.jpg' %}" alt="Lixeira para Cápsulas Dolce Gusto imagem 2">
+            <img src="{% static 'imagens/acessorios/Lixeira_Para_Capsulas_pt3.jpg' %}" alt="Lixeira para Cápsulas Dolce Gusto imagem 3">
+            <img src="{% static 'imagens/acessorios/Lixeira_Para_Capsulas_pt4.jpg' %}" alt="Lixeira para Cápsulas Dolce Gusto imagem 4">
             </div>
             <span class="arrow left">&#10094;</span>
             <span class="arrow right">&#10095;</span>
@@ -614,16 +628,16 @@
         <div class="popup">
         <div class="popup-left">
             <div class="carousel">
-            <img src="imagens/acessorios/Filtro_Inox.jpg" alt="Coador Filtro de Café Inox imagem 1" class="active">
-            <img src="imagens/acessorios/Filtro_Inox_pt2.jpg" alt="Coador Filtro de Café Inox imagem 2">
-            <img src="imagens/acessorios/Filtro_Inox_pt5.jpg" alt="Coador Filtro de Café Inox imagem 3">
-            <img src="imagens/acessorios/Filtro_Inox_pt4.jpg" alt="Coador Filtro de Café Inox imagem 4">
+            <img src="{% static 'imagens/acessorios/Filtro_Inox.jpg' %}" alt="Coador Filtro de Café Inox imagem 1" class="active">
+            <img src="{% static 'imagens/acessorios/Filtro_Inox_pt2.jpg' %}" alt="Coador Filtro de Café Inox imagem 2">
+            <img src="{% static 'imagens/acessorios/Filtro_Inox_pt5.jpg' %}" alt="Coador Filtro de Café Inox imagem 3">
+            <img src="{% static 'imagens/acessorios/Filtro_Inox_pt4.jpg' %}" alt="Coador Filtro de Café Inox imagem 4">
             </div>
             <div class="thumbnails">
-            <img src="imagens/acessorios/Filtro_Inox.jpg" alt="Coador Filtro de Café Inox imagem 1">
-            <img src="imagens/acessorios/Filtro_Inox_pt2.jpg" alt="Coador Filtro de Café Inox imagem 2">
-            <img src="imagens/acessorios/Filtro_Inox_pt5.jpg" alt="Coador Filtro de Café Inox imagem 3">
-            <img src="imagens/acessorios/Filtro_Inox_pt4.jpg" alt="Coador Filtro de Café Inox imagem 4">
+            <img src="{% static 'imagens/acessorios/Filtro_Inox.jpg' %}" alt="Coador Filtro de Café Inox imagem 1">
+            <img src="{% static 'imagens/acessorios/Filtro_Inox_pt2.jpg' %}" alt="Coador Filtro de Café Inox imagem 2">
+            <img src="{% static 'imagens/acessorios/Filtro_Inox_pt5.jpg' %}" alt="Coador Filtro de Café Inox imagem 3">
+            <img src="{% static 'imagens/acessorios/Filtro_Inox_pt4.jpg' %}" alt="Coador Filtro de Café Inox imagem 4">
             </div>
             <span class="arrow left">&#10094;</span>
             <span class="arrow right">&#10095;</span>
@@ -651,16 +665,16 @@
         <div class="popup">
         <div class="popup-left">
             <div class="carousel">
-            <img src="imagens/acessorios/Caneca_de_Vidro.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 1" class="active">
-            <img src="imagens/acessorios/Caneca_de_Vidro_pt2.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 2">
-            <img src="imagens/acessorios/Caneca_de_Vidro_pt3.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 3">
-            <img src="imagens/acessorios/Caneca_de_Vidro_pt4.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 4">
+            <img src="{% static 'imagens/acessorios/Caneca_de_Vidro.jpg' %}" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 1" class="active">
+            <img src="{% static 'imagens/acessorios/Caneca_de_Vidro_pt2.jpg' %}" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 2">
+            <img src="{% static 'imagens/acessorios/Caneca_de_Vidro_pt3.jpg' %}" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 3">
+            <img src="{% static 'imagens/acessorios/Caneca_de_Vidro_pt4.jpg' %}" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 4">
             </div>
             <div class="thumbnails">
-            <img src="imagens/acessorios/Caneca_de_Vidro.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 1">
-            <img src="imagens/acessorios/Caneca_de_Vidro_pt2.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 2">
-            <img src="imagens/acessorios/Caneca_de_Vidro_pt3.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 3">
-            <img src="imagens/acessorios/Caneca_de_Vidro_pt4.jpg" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 4">
+            <img src="{% static 'imagens/acessorios/Caneca_de_Vidro.jpg' %}" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 1">
+            <img src="{% static 'imagens/acessorios/Caneca_de_Vidro_pt2.jpg' %}" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 2">
+            <img src="{% static 'imagens/acessorios/Caneca_de_Vidro_pt3.jpg' %}" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 3">
+            <img src="{% static 'imagens/acessorios/Caneca_de_Vidro_pt4.jpg' %}" alt="Conjunto de 4 peças Caneca de Café de Vidro Transparente imagem 4">
             </div>
             <span class="arrow left">&#10094;</span>
             <span class="arrow right">&#10095;</span>

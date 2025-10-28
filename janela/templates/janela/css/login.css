@@ -10,7 +10,6 @@ body {
     color: #333;
 }
 
-
 nav {
     display: flex;
     justify-content: space-between;
@@ -48,6 +47,14 @@ nav {
 .nav-links a:hover {
     color: #666;
 }
+
+/*Nome do Site da Cafeteria*/
+.logo {
+    font-weight: 700;
+    font-size: 18px;
+    color: #000;
+}
+
 
 .login-container {
     max-width: 400px;
@@ -100,27 +107,6 @@ nav {
     background-color: #333;
 }
 
-.forgot-password {
-    display: block;
-    text-align: center;
-    margin-top: 20px;
-    font-size: 14px;
-    color: #666;
-    text-decoration: none;
-}
-
-.forgot-password:hover {
-    color: #333;
-    text-decoration: underline;
-
-}
-
-.logo {
-    font-weight: 700;
-    font-size: 18px;
-    color: #000;
-}
-
 .auth-buttons a {
     text-decoration: none;
     font-size: 14px;
@@ -138,9 +124,10 @@ nav {
     color: white;
 }
 
+
+/*Mensagem de Erro*/
 .error-message {
-    color: #dc3545;
-    /* Vermelho */
+    color: #dc3545; /* Vermelho */
     font-size: 14px;
     margin-top: 5px;
     text-align: center;
@@ -148,4 +135,44 @@ nav {
     background-color: #f8d7da;
     border: 1px solid #f5c6cb;
     border-radius: 4px;
+}
+
+
+/*Botão para levar a tela de Cadastro*/
+.login-link {
+    display: flex;
+    gap: 3%;
+    margin-top: 10%;
+    font-size: 20px;
+}
+.login-link a {
+    
+    text-decoration: none; 
+    color: #C8963E;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.login-link a:hover {
+    transform: scale(1.15);
+    color: #B85C3A;
+}
+
+
+
+/*Botão de caso tenha esquecido a senha*/
+.forgot-password {
+    display: block;
+    text-align: center;
+    margin-top: 8%;
+    font-size: 14px;
+    color: #666;
+    text-decoration: none;
+    transition: transform 0.3s ease, color 0.3s ease;
+}
+.forgot-password:hover {
+    color: #333;
+    text-decoration: underline;
+    transform: scale(1.15);
+}
+.forgot-password:active{
+    color: #556B2F;
 }
