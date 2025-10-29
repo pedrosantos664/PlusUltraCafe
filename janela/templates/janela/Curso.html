@@ -1,298 +1,44 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-BR">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0"> 
-    <title>Cursos - Plus Ultra Café</title>
+    <title>Cursos - PlusUltraCafe</title>
     <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'imagens/favicon.jpg' %}">
-    <style>
-        /* RESET */
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-}
-
-html {
-    scroll-behavior: smooth;
-}
-
-body {
-    font-family: Arial, sans-serif;
-    background-color: #fff8f0; /* Cor de fundo creme suave */
-    color: #3b3b3b; /* Cor de texto principal */
-    line-height: 1.6;
-}
-
-/* ================================================= */
-/* CABEÇALHO (HEADER) - MANTIDO                       */
-/* ================================================= */
-
-header {
-    width: 100%;
-    background-color: #b85c3a; /* Marrom escuro */
-    color: #fff;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    padding: 15px 60px;
-    box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-    position: sticky;
-    top: 0;
-    z-index: 100;
-}
-
-.logo {
-    height: 80px;
-    transition: transform 0.3s ease;
-}
-.logo:hover {
-    transform: scale(1.05);
-}
-
-/* ===== MENU ===== */
-.menu_direita ul {
-    display: flex;
-    gap: 40px;
-    list-style: none;
-    font-family: 'Rouge Script', cursive;
-    font-size: 32px;
-}
-
-.menu_direita a {
-    text-decoration: none;
-    color: #f5e8d3; /* Off-white do menu */
-    position: relative;
-    transition: 0.3s;
-}
-
-/* ===== Botão ativo (Blog) ===== */
-.menu_direita .ativo {
-    color: #F5E8D3;
-}
-.menu_direita .ativo::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    height: 2px;
-    width: 100%; 
-    background-color: #F5E8D3;
-    transition: width 0.3s;
-}
-.menu_direita .ativo:hover {
-    color: #fff;
-}
-
-
-/* ===== Botão não ativo ===== */
-.menu_direita .nao_ativo {
-    color: #f5e8d3;
-    transition: transform 0.3s ease, color 0.3s ease;
-}
-.menu_direita .nao_ativo::after {
-    content: "";
-    position: absolute;
-    bottom: -5px;
-    left: 0;
-    width: 0%;
-    height: 2px;
-    background-color: #F5E8D3;
-    transition: width 0.3s ease;
-}
-.menu_direita .nao_ativo:hover {
-    color: #fff;
-    transform: scale(1.1);
-}
-.menu_direita .nao_ativo:hover::after {
-    width: 100%;
-}
-
-
-/* ================================================= */
-/* MAIN (AJUSTADO PARA OS VÍDEOS)                    */
-/* ================================================= */
-
-main {
-    max-width: 1200px;
-    margin: 60px auto;
-    padding: 0 20px;
-}
-
-/* Layout de grid para os vídeos (cria 2 colunas em telas grandes) */
-.conteudo {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 30px;
-}
-
-.tutorial {
-    background-color: #fdf4ea; 
-    border-radius: 12px;
-    padding: 25px;
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease;
-    display: flex; 
-    flex-direction: column; /* Organiza título, descrição e vídeo verticalmente */
-}
-.tutorial:hover {
-    transform: translateY(-5px);
-}
-
-.tutorial h2 {
-    color: #8e4a2a; /* Marrom escuro do título */
-    font-size: 24px;
-    margin-bottom: 10px;
-    border-left: 4px solid #b85c3a; /* Linha de destaque */
-    padding-left: 10px;
-}
-
-/* Estilo para a Descrição do Vídeo */
-.tutorial .descricao {
-    font-size: 0.95rem;
-    color: #5d5d5d;
-    margin-bottom: 20px;
-    padding: 0 5px;
-    line-height: 1.5;
-}
-
-/* Container para centralizar e manter a proporção 16:9 do vídeo */
-.video-container {
-    position: relative;
-    width: 100%;
-    padding-bottom: 56.25%; /* Proporção 16:9 */
-    height: 0; 
-    overflow: hidden;
-    margin-top: 10px;
-    border-radius: 8px;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    flex-grow: 1; /* Faz o container ocupar o espaço restante na coluna */
-}
-
-.video-container iframe {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    border: none;
-    border-radius: 8px;
-}
-
-/* ================================================= */
-/* RODAPÉ (FOOTER) - MANTIDO                        */
-/* ================================================= */
-
-footer {
-    background-color: #b85c3a;
-    color: #f5e8d3;
-    padding: 40px 60px;
-    margin-top: 80px;
-    text-align: center;
-}
-
-.newsletter {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 10px;
-    justify-content: center;
-    align-items: center;
-    margin-bottom: 40px;
-}
-.newsletter input {
-    padding: 10px;
-    border: none;
-    border-radius: 5px;
-    width: 250px;
-}
-.newsletter button {
-    background-color: #8e4a2a;
-    border: none;
-    color: #fff;
-    padding: 10px 18px;
-    border-radius: 5px;
-    cursor: pointer;
-    font-weight: bold;
-    transition: 0.3s;
-}
-.newsletter button:hover {
-    background-color: #6f361b;
-}
-
-.rodape-links {
-    display: flex;
-    justify-content: space-around;
-    flex-wrap: wrap;
-    gap: 30px;
-    margin-bottom: 30px;
-}
-.rodape-links h4 {
-    color: #fff;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #f5e8d3;
-    display: inline-block;
-    padding-bottom: 5px;
-}
-.rodape-links a {
-    color: #f5e8d3;
-    text-decoration: none;
-    transition: 0.2s;
-}
-.rodape-links a:hover {
-    color: #fff;
-    text-decoration: underline;
-}
-
-.copy {
-    text-align: center;
-    color: rgba(245, 232, 211, 0.7);
-    font-size: 0.9rem;
-    margin-top: 20px; 
-}
-
-/* ================================================= */
-/* RESPONSIVIDADE                                    */
-/* ================================================= */
-@media (max-width: 768px) {
-    header {
-        padding: 10px 20px;
-    }
-    .logo {
-        height: 60px;
-    }
-    .menu_direita ul {
-        gap: 20px;
-        font-size: 20px;
-    }
-    .conteudo {
-        grid-template-columns: 1fr; /* Uma coluna em telas pequenas */
-    }
-    .tutorial {
-        padding: 20px;
-    }
-    .rodape-links {
-        flex-direction: column;
-        align-items: center;
-        text-align: center;
-    }
-}
-    </style>
-
+    <link rel="stylesheet" href="{% static 'css/cursos.css' %}">
 </head>
+
 <body>
+    
+    <!-- Header do Site-->
     <header>
+        <!--Menu da Esquerda-->
         <nav class="menu_esquerda">
-            <img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo">
-        </nav>
-        <nav class="menu_direita">
+            <a href="{% url 'menu_inicial' %}"><img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo"></a>
             <ul>
                 <li><a href="{% url 'menu_inicial' %}" class="nao_ativo">Home</a></li>
                 <li><a href="{% url 'Curso' %}" class="ativo">Cursos</a></li>
                 <li><a href="{% url 'blog' %}" class="nao_ativo">Blog</a></li>
-                <li><a href="{% url 'contact' %}" class="nao_ativo">Contato</a></li>
+                 <li><a href="{% url 'contact' %}" class="nao_ativo">Contato</a></li>
             </ul>
+        </nav>
+
+        <nav class="menu_direita">
+            {% if user.is_authenticated %}
+            <a href="{%url 'perfil' %}" class="carrinho"><img src="{% static 'imagens/icone_carrinho.png' %}"></a>
+            <div class="auth-buttons">
+                <a href="{%url 'perfil' %}" class="welcome-text">Olá, {{ user.first_name}}!</a>
+                <a href="{% url 'logout' %}">Sair</a>
+            </div>
+            {% else %}
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}" style="color: #3b3b3b;}">Entrar</a>
+                <a href="{% url 'registro' %}">Cadastrar</a>
+            </div>
+            {% endif %}
         </nav>
     </header>
 
@@ -463,6 +209,7 @@ footer {
         </section>
     </main>
 
+    <!-- FOOTER -->
     <footer>
         <div class="newsletter">
             <p>Não perca mais nada sobre o mercado de café</p>
@@ -471,27 +218,34 @@ footer {
         </div>
 
         <div class="rodape-links">
-            <div>
+
+            <div class="sobre-cafe">
                 <h4>Institucional</h4>
                 <ul>
                     <li><a href="#">Sobre nós</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="{% url 'contact' %}">Contato</a></li>
                 </ul>
             </div>
-            <div>
+
+            <div class="ajuda">
                 <h4>Ajuda</h4>
                 <ul>
                     <li><a href="#">Suporte</a></li>
                     <li><a href="#">Política de privacidade</a></li>
                 </ul>
             </div>
-            <div>
+
+            <div class="social">
                 <h4>Redes sociais</h4>
-                <p>Facebook | Instagram | YouTube</p>
+                <ul>
+                    <li><a href="#">Facebook</a></li>
+                    <li><a href="#">Instagram</a></li>
+                    <li><a href="#">YouTube</a></li>
+                </ul>
             </div>
         </div>
 
-        <p class="copy">© 2025 Café Blog. Todos os direitos reservados.</p>
+        <p class="copy">© 2025 Café Menu. Todos os direitos reservados.</p>
     </footer>
 
 </body>

@@ -5,7 +5,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Home - Plus Ultra Café</title>
+    <title>Home - PlusUltraCafe</title>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
@@ -37,7 +37,7 @@
             </div>
             {% else %}
             <div class="auth-buttons">
-                <a href="{% url 'login' %}">Entrar</a>
+                <a href="{% url 'login' %}" style="color: #3b3b3b;}">Entrar</a>
                 <a href="{% url 'registro' %}">Cadastrar</a>
             </div>
             {% endif %}
@@ -50,44 +50,67 @@
 
     <!-- Seção Principal do Site-->
     <main>
-
         <!-- Seção de Cafeteiras-->
         <section class="secao_cafeteiras">
+    
             <h1>Cafeteiras</h1>
-            <div class="caixa-cafeteira">
-                <a href="#" class="seta-esquerda-cafeteira"><img src="{% static 'imagens/Seta-Esquerda.png' %}" alt="Seta para a esquerda"></a>
 
-                <div class="cafeteiras">
-                    <div class="card" data-popup="popup1"><br>
-                        <img src="{% static 'imagens/cafeteiras/Cafeteira_1.png' %}" alt="Cafeteira Eletrolux ECM25 127v">
-                        <h2>Cafeteira Eletrolux ECM25 127v</h2>
-                        <p>R$ 228,71</p>
-                        <button class="comprar-item">Comprar</button>
-                    </div>
+   
 
-                    <div class="card" data-popup="popup2"><br>
-                        <img src="{% static 'imagens/cafeteiras/Cafeteira_2.png' %}" alt="Cafeteira Expresso Arno Dolce Gusto">
-                        <h2>Cafeteira Expresso Arno Dolce Gusto</h2>
-                        <p>R$ 475,90</p>
-                        <button class="comprar-item">Comprar</button>
-                    </div>
+    <div class="caixa-cafeteira">
+        
+{% for produto in produtos %}
 
-                    <div class="card" data-popup="popup3"><br>
-                        <img src="{% static 'imagens/cafeteiras/Cafeteira_3.png' %}" alt="Cafeteira Oster PrimaLatte Touch Red">
-                        <h2>Cafeteira Oster PrimaLatte Touch Red</h2>
-                        <p>R$ 1204,90</p>
-                        <button class="comprar-item">Comprar</button>
+            <!-- Card -->
+            <div class="card" data-popup="popup{{ produto.id }}"><br>
+                <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}">
+                <h2>{{ produto.nome }}</h2>
+                <p>R$ {{ produto.preco }}</p>
+                <button type="submit" class="comprar-item">Adicionar ao Carrinho</button>
+            </div>
+
+            <!-- Popup -->
+            <div class="overlay" id="popup{{ produto.id }}">
+                <div class="popup">
+                    <div class="popup-left">
+                        <div class="carousel">
+                            <img src="{{ produto.imagem.url }}" alt="{{ produto.nome }}" class="active">
+                            <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt4.jpg' %}" alt="Cafeteira 2">
+                            <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt3.jpg' %}" alt="Cafeteira 3">
+                            <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt2.jpg' %}" alt="Cafeteira 4">
+                        </div>
+                        <div class="thumbnails">
+                            <img src="{{ produto.imagem.url }}" alt="Cafeteira 1">
+                            <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt4.jpg' %}" alt="Cafeteira 2">
+                            <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt3.jpg' %}" alt="Cafeteira 3">
+                            <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt2.jpg' %}" alt="Cafeteira 4">
+                        </div>
+                        <span class="arrow left">&#10094;</span>
+                        <span class="arrow right">&#10095;</span>
                     </div>
-                    
-                    <div class="card" data-popup="popup4"><br>
-                        <img src="{% static 'imagens/cafeteiras/Cafeteira_4.png' %}" alt="Cafeteira Elétrica Mondial, Preto">
-                        <h2>Cafeteira Elétrica Mondial, Preto</h2>
-                        <p>R$ 109,90</p>
-                        <button class="comprar-item">Comprar</button>
+                    <div class="popup-right">
+                        <span class="close-btn">&times;</span><br>
+                        <h2 style="color: #B85C3A">{{ produto.nome }}</h2>
+                        <p>{{ produto.descricao }}</p>
+                        <div class="especificacao">
+                            <p><strong style="color: #B85C3A;">Marca:</strong> <span>{{ produto.marca }}</span></p>
+                            <p><strong style="color: #B85C3A;">Capacidade:</strong> <span>{{ produto.capacidade }}</span></p>
+                            <p><strong style="color: #B85C3A;">Cor:</strong> <span>{{ produto.cor }}</span></p>
+                            <p><strong style="color: #B85C3A;">Dimensões:</strong> <span>{{ produto.dimensoes }}</span></p>
+                            <p><strong style="color: #B85C3A;">Características:</strong> <span>{{ produto.caracteristicas }}</span></p>
+                        </div>
+                        <p style="font-weight: bold; color: black; font-size: 25px;">R$ {{ produto.preco }}</p>
+                        <form action="{% url 'adicionar_ao_carrinho' produto.id %}" method="post" style="margin-top: 15px;">
+                            {% csrf_token %}
+                            <button class="comprar-item">Comprar</button>
+                        </form>
                     </div>
                 </div>
-                
-                <a href="#" class="seta-direita-cafeteira"><img src="{% static 'imagens/Seta-Direita.png' %}" alt="Seta para a direita"></a>
+            </div>
+       
+    
+{% endfor %}
+
             </div>
         </section>
 
@@ -192,7 +215,7 @@
                 <h4>Institucional</h4>
                 <ul>
                     <li><a href="#">Sobre nós</a></li>
-                    <li><a href="#">Contato</a></li>
+                    <li><a href="{% url 'contact' %}">Contato</a></li>
                 </ul>
             </div>
 
@@ -224,47 +247,7 @@
     <!--Pop-ups da Seção de Cafeteria-->
 
     <!-- Pop-up 1 -->
-    <div class="overlay" id="popup1">
-        <div class="popup">
-            <div class="popup-left">
-                <div class="carousel">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1.png' %}" alt="Cafeteira 1" class="active">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt4.jpg' %}" alt="Cafeteira 2">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt3.jpg' %}" alt="Cafeteira 3">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt2.jpg' %}" alt="Cafeteira 4">
-                </div>
-                <div class="thumbnails">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1.png' %}" alt="Cafeteira 1">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt4.jpg' %}" alt="Cafeteira 2">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt3.jpg' %}" alt="Cafeteira 3">
-                    <img src="{% static 'imagens/cafeteiras/Cafeteira_1_pt2.jpg' %}" alt="Cafeteira 4">
-                </div>
-                <span class="arrow left">&#10094;</span>
-                <span class="arrow right">&#10095;</span>
-            </div>
-            <div class="popup-right">
-                <span class="close-btn">&times;</span><br>
-                <h2 style="color: #B85C3A">Cafeteira Eletrolux ECM25 127v</h2>
-                <p>Cafeteira Elétrica Electrolux inox filtro permanente removivel capacidade 1,2L 30 xicaras função
-                    timer painel digital desligamento automatico ECM25 127v</p>
-                <div class="especificacao">
-                    <p style="font-weight: bold; color: #B85C3A;">Marca: <span
-                            style="font-weight: normal; color: black;">Eletrolux</span></p>
-                    <p style="font-weight: bold; color: #B85C3A;">Capacidade: <span
-                            style="font-weight: normal; color: black;">1,2 Litros</span></p>
-                    <p style="font-weight: bold; color: #B85C3A;">Cor: <span
-                            style="font-weight: normal; color: black;">Granite Grey</span></p>
-                    <p style="font-weight: bold; color: #B85C3A;">Dimensões do Produto: <span
-                            style="font-weight: normal; color: black;">24,9P x 18,3L x 32,9A centímetros</span></p>
-                    <p style="font-weight: bold; color: #B85C3A;">Características Especiais: <span
-                            style="font-weight: normal; color: black;">Filtro Permanente</span></p>
-                </div>
-
-            <p style="font-weight: bold; color: black; font-size: 25px;">R$228,<span style="font-size: 20px;">71</span></p>
-            <button class="comprar-item">Comprar</button>
-        </div>
-        </div>
-    </div>
+    
 
     <!-- Pop-up 2 -->
     <div class="overlay" id="popup2">

@@ -5,28 +5,37 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>PlusUltraCafe</title>
+    <title>Registro - PlusUltraCafe</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'imagens/favicon.jpg' %}">
     <link rel="stylesheet" href="{% static 'css/registro.css' %}">
 </head>
 
 <body>
-    <nav>
-        <div class="nav-left">
-            <a href="{% url 'index' %}" class="logo">PlusUltraCafe</a>
-            <div class="nav-links">
-                <a href="{% url 'products' %}">Products</a>
-                <a href="{% url 'contact' %}">Contact</a>
-            </div>
-        </div>
-        </div>
-        <div class="nav-right">
+    <!-- Header do Site-->
+    <header>
+        <!--Menu da Esquerda-->
+        <nav class="menu_esquerda">
+            <a href="{% url 'menu_inicial' %}"><img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo"></a>
+            <ul>
+                <li><a href="{% url 'menu_inicial' %}" class="nao_ativo">Home</a></li>
+                <li><a href="{% url 'Curso' %}" class="nao_ativo">Cursos</a></li>
+                <li><a href="{% url 'blog' %}" class="nao_ativo">Blog</a></li>
+                 <li><a href="{% url 'contact' %}" class="nao_ativo">Contato</a></li>
+            </ul>
+        </nav>
+        <!--Menu da Direita-->
+        <nav class="menu_direita">
             <div class="auth-buttons">
-                <a href="http://127.0.0.1:8000/janela/login">Sign in</a>
-                <a href="http://127.0.0.1:8000/janela/registro">Register</a>
+                <a href="{% url 'login' %}" class="nao_ativo">Entrar</a>
+                <a href="{% url 'registro' %}">Cadastrar</a>
             </div>
-        </div>
-    </nav>
+        </nav>
+    </header>
+
+    <!--Container do Cadastro-->
     <div class="login-container">
         {% if messages %}
         {% for message in messages %}

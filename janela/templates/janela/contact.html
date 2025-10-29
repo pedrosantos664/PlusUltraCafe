@@ -8,7 +8,6 @@
     <title>Contato - PlusUltraCafe</title>
     <link href="https://fonts.googleapis.com/css2?family=Rouge+Script&display=swap" rel="stylesheet">
     <link rel="icon" type="image/png" href="{% static 'imagens/favicon.jpg' %}">
-
     <style>
         /* ======================================= */
         /* ☕ CSS - COMPLETO E ATUALIZADO */
@@ -32,95 +31,176 @@
             line-height: 1.6;
         }
 
-        /* ------------------------------------------- */
-        /* ESTILOS DE CABEÇALHO (HEADER) - PADRONIZADO */
-        /* ------------------------------------------- */
+        /* ===== O Corpo do Header(Cabeçalho) =====*/
 
         header {
-            width: 100%;
-            background-color: #b85c3a;
-            color: #fff;
+            width: 100%; /* ocupa toda a largura da tela */
             display: flex;
             justify-content: space-between;
+            background-color: #B85C3A;
+            padding: 10px 20px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
             align-items: center;
-            padding: 15px 60px;
-            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
-            position: sticky;
-            top: 0;
-            z-index: 100;
+            font-size: 24px;
+            font-weight: bold;
+            position: relative; /* mantém no fluxo normal */
         }
 
+        /*A logo do PlusUltraCafé*/
         .logo {
-            /* Se for a imagem de logo, use height: 80px */
-            height: 80px; 
+            height: 100px;
+            margin-left: 10%;
+            transition: transform 0.3s ease;
+        }
+        .logo:hover{
+            transform: scale(1.15);
+        }
+
+        .menu_esquerda{
+            display: flex;
+            align-items: center;
+            gap: 10%;
+        }
+        /*São os Botões do Header*/
+        .menu_esquerda ul {
+            font-family: 'Rouge Script', cursive;
+            font-size: 35px;
+            list-style: none;
+            display: flex;
+            gap: 30px;
+            margin: 0;
+            padding: 0;
+            margin-right: 100px;
+        }
+
+
+        /* ===== Botão ativo ===== */
+        .menu_esquerda .ativo {
+            position: relative;
+            color: #F5E8D3;
+            text-decoration: none;
+        }
+        .menu_esquerda .ativo::after {
+            content: "";
+            position: absolute;
+            bottom: 0;
+            right: 0; /* começa da direita */
+            width: 100%;
+            height: 2px;
+            background-color: #F5E8D3;
+            transform: scaleX(1); /* sempre visível */
+            transform-origin: center;
             transition: transform 0.3s ease;
         }
 
-        .logo:hover {
-            transform: scale(1.05);
+        .menu_esquerda:hover .ativo {
+            color: #3b3b3b; /* Fica na mesma cor dos botões não ativos */
+            transition: 0.3s ease;
         }
-
-        /* ===== MENU ===== */
-        .menu_direita ul {
-            display: flex;
-            gap: 40px;
-            list-style: none;
-            font-family: 'Rouge Script', cursive;
-            font-size: 32px;
+        .menu_esquerda:hover .ativo::after {
+            transform: scaleX(0); /* Faz a linha de baixo do botão ativo desaparecer */
         }
-
-        .menu_direita a {
-            text-decoration: none;
-            color: #f5e8d3;
-            position: relative;
-            transition: 0.3s;
-        }
-
-        /* ===== Botão ativo (Contact) - Adaptado para ser 'Contato' ativo */
-        .menu_direita .ativo {
+        /* Quando não tem hover no menu, volta ao normal */
+        .menu_esquerda:not(:hover) .ativo {
             color: #F5E8D3;
+            transition: 0.3s ease;
         }
-
-        .menu_direita .ativo::after {
-            content: "";
-            position: absolute;
-            bottom: -5px;
-            left: 0;
-            height: 2px;
-            width: 100%;
-            background-color: #F5E8D3;
-            transition: width 0.3s;
-        }
-
-        .menu_direita .ativo:hover {
-            color: #fff;
+        .menu_esquerda:not(:hover) .ativo::after {
+            transform: scaleX(1);
         }
 
 
         /* ===== Botão não ativo ===== */
-        .menu_direita .nao_ativo {
-            color: #f5e8d3;
+        .menu_esquerda .nao_ativo {
+            position: relative;
+            text-decoration: none;
+            color: #3b3b3b;
             transition: transform 0.3s ease, color 0.3s ease;
         }
-
-        .menu_direita .nao_ativo::after {
+        .menu_esquerda .nao_ativo::after {
             content: "";
             position: absolute;
-            bottom: -5px;
-            left: 0;
-            width: 0%;
+            bottom: 0;
+            right: 0; 
+            width: 100%;
             height: 2px;
             background-color: #F5E8D3;
-            transition: width 0.3s ease;
+            transform: scaleX(0);
+            transform-origin: center;
+            transition: transform 0.3s ease;
+        }
+        .menu_esquerda .nao_ativo:hover {
+            transform: scale(1.2);
+            color: #F5E8D3;
+        }
+        .menu_esquerda .nao_ativo:hover::after {
+            transform: scaleX(1);
         }
 
-        .menu_direita .nao_ativo:hover {
-            color: #fff;
+        /*Menu da Direita*/
+        .menu_direita {
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            margin-right: 5%;
+        }
+
+        .auth-buttons {
+            display: flex;
+            gap: 40px;
+        }
+
+        .auth-buttons a {
+            font-family: 'Rouge Script', cursive;
+            font-weight: bold;
+            text-decoration: none;
+            font-size: 35px;
+            padding: 8px 15px;
+            border-radius: 4px;
+            text-align: center;
+            justify-content: center;
+        }
+
+        .auth-buttons a:first-child {
+            color: #F5E8D3;
+            transition: transform 0.3s ease, color 0.3s ease;
+        }
+        .auth-buttons a:first-child:hover{
+            color: #dbc8aa;
+            transform: scale(1.15);
+        }
+
+
+        .auth-buttons a:last-child {
+            background-color: #6F4E37;
+            color: white;
+            border-radius: 10px;
+            width: 140px;
+            text-align: center;
+            justify-content: center;
+            transition: transform 0.3s ease, background-color 0.3s ease;
+        }
+        .auth-buttons a:last-child:hover {
+            background-color: #C8963E;
+            transform: scale(1.15);
+        }
+
+        /*Botão do Carrinho*/
+        .carrinho {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .carrinho img{
+            display: flex;
+            width: 50%;
+            height: 50%;
+            transition: transform 0.3s ease;
+        }
+
+        .carrinho img:hover {
             transform: scale(1.1);
-        }
-
-        .menu_direita .nao_ativo:hover::after {
-            width: 100%;
         }
 
 
@@ -241,81 +321,105 @@
             border: 1px solid #ebccd1;
         }
 
-        /* ------------------------------------------- */
-        /* ESTILOS DO RODAPÉ (FOOTER) - PADRONIZADO */
-        /* ------------------------------------------- */
+        /* ===== Footer ===== */
 
         footer {
-            background-color: #b85c3a;
-            color: #f5e8d3;
-            padding: 40px 60px;
-            margin-top: 80px;
-            text-align: center;
+            display: flex;
+            width: 100%;
+            background-color: #f5ede5;
+            padding: 30px 60px;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            margin-top: 60px;
+            flex-direction: column;
+            align-items: center;
+            position: relative;
+            font-family: 'Rouge Script', cursive;
+            font-size: 30px;
         }
 
         .newsletter {
             display: flex;
-            flex-wrap: wrap;
-            gap: 10px;
-            justify-content: center;
             align-items: center;
+            gap: 10px;
+            flex-wrap: wrap;
             margin-bottom: 40px;
         }
 
         .newsletter input {
-            padding: 10px;
-            border: none;
-            border-radius: 5px;
-            width: 250px;
+            padding: 8px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            width: 200px;
+        }
+
+        .newsletter input::placeholder {
+            font-family: 'Rouge Script', cursive;
+            font-size: 20px;
+        }
+
+        .newsletter input:focus {
+            outline: none;
+            border-color: #b6613a;
         }
 
         .newsletter button {
-            background-color: #8e4a2a;
+            background-color: #b6613a;
+            color: white;
             border: none;
-            color: #fff;
-            padding: 10px 18px;
-            border-radius: 5px;
+            padding: 8px 16px;
+            border-radius: 4px;
             cursor: pointer;
+            font-family: 'Rouge Script', cursive;
+            font-size: 30px;
             font-weight: bold;
-            transition: 0.3s;
         }
 
         .newsletter button:hover {
-            background-color: #6f361b;
+            background-color: #8e4a2a;
+        }
+
+        .newsletter button:active {
+            background-color: #C8963E;
         }
 
         .rodape-links {
             display: flex;
-            justify-content: space-around;
+            justify-content: space-between;
             flex-wrap: wrap;
-            gap: 30px;
-            margin-bottom: 30px;
+            margin-top: -50px;
+            margin-bottom: 10px;
+            width: 95%;
         }
 
         .rodape-links h4 {
-            color: #fff;
+            color: #8e4a2a;
             margin-bottom: 10px;
-            border-bottom: 2px solid #f5e8d3;
-            display: inline-block;
-            padding-bottom: 5px;
+        }
+
+        .rodape-links ul {
+            list-style: none;
         }
 
         .rodape-links a {
-            color: #f5e8d3;
+            color: #333;
             text-decoration: none;
-            transition: 0.2s;
         }
 
         .rodape-links a:hover {
-            color: #fff;
             text-decoration: underline;
+        }
+
+        .sobre-cafe, .ajuda, .contato, .redes-sociais {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
         }
 
         .copy {
             text-align: center;
-            color: rgba(245, 232, 211, 0.7);
+            color: #666;
+            font-family: 'Times New Roman', Times, serif;
             font-size: 0.9rem;
-            margin-top: 20px;
         }
 
         /* RESPONSIVIDADE (mantenha, se necessário) */
@@ -343,22 +447,38 @@
 </head>
 
 <body>
+
+    <!-- Header do Site-->
     <header>
+        <!--Menu da Esquerda-->
         <nav class="menu_esquerda">
-            <a href="{% url 'index' %}" class="logo" style="text-decoration: none; color: #f5e8d3; font-size: 32px; font-weight: bold; font-family: 'Rouge Script', cursive;">PlusUltraCafe</a>
-            </nav>
-        <nav class="menu_direita">
+            <a href="{% url 'menu_inicial' %}"><img src="{% static 'imagens/Logo_PlusUltraCafe.png' %}" alt="Logo da Cafeteria Plus Ultra Café" class="logo"></a>
             <ul>
                 <li><a href="{% url 'menu_inicial' %}" class="nao_ativo">Home</a></li>
-                <li><a href="{% url 'Curso' %}" class="ativo">Cursos</a></li>
+                <li><a href="{% url 'Curso' %}" class="nao_ativo">Cursos</a></li>
                 <li><a href="{% url 'blog' %}" class="nao_ativo">Blog</a></li>
-                <li><a href="{% url 'contact' %}" class="nao_ativo">Contato</a></li>
+                 <li><a href="{% url 'contact' %}" class="ativo">Contato</a></li>
             </ul>
+        </nav>
+
+        <nav class="menu_direita">
+            {% if user.is_authenticated %}
+            <a href="{%url 'perfil' %}" class="carrinho"><img src="{% static 'imagens/icone_carrinho.png' %}"></a>
+            <div class="auth-buttons">
+                <a href="{%url 'perfil' %}" class="welcome-text">Olá, {{ user.first_name}}!</a>
+                <a href="{% url 'logout' %}">Sair</a>
+            </div>
+            {% else %}
+            <div class="auth-buttons">
+                <a href="{% url 'login' %}" style="color: #3b3b3b;}">Entrar</a>
+                <a href="{% url 'registro' %}">Cadastrar</a>
+            </div>
+            {% endif %}
         </nav>
     </header>
 
     <div class="form-container">
-        <h2 class="form-title">Contact Us</h2>
+        <h2 class="form-title">Nos Contate</h2>
 
 
         <div id="successMessage" class="success-message">
@@ -374,28 +494,28 @@
             {% csrf_token %}
 
             <div class="form-group">
-                <label for="name" class="form-label">Name</label>
-                <input type="text" id="name" name="from_name" class="form-input" placeholder="Your name" required>
+                <label for="name" class="form-label">Nome</label>
+                <input type="text" id="name" name="from_name" class="form-input" placeholder="Seu nome" required>
             </div>
 
             <div class="form-group">
-                <label for="surname" class="form-label">Surname</label>
-                <input type="text" id="surname" name="from_surname" class="form-input" placeholder="Your surname"
+                <label for="surname" class="form-label">Sobrenome</label>
+                <input type="text" id="surname" name="from_surname" class="form-input" placeholder="Seu Sobrenome"
                     required>
             </div>
 
             <div class="form-group">
                 <label for="email" class="form-label">Email</label>
-                <input type="email" id="email" name="from_email" class="form-input" placeholder="Your email" required>
+                <input type="email" id="email" name="from_email" class="form-input" placeholder="Seu email" required>
             </div>
 
             <div class="form-group">
-                <label for="message" class="form-label">Message</label>
-                <textarea id="message" name="message" class="form-input form-textarea" placeholder="Your message"
+                <label for="message" class="form-label">Mensagem</label>
+                <textarea id="message" name="message" class="form-input form-textarea" placeholder="Sua messagem"
                     required></textarea>
             </div>
 
-            <button type="submit" class="submit-btn">Send Message</button>
+            <button type="submit" class="submit-btn">Mandar Mensagem</button>
         </form>
 
 

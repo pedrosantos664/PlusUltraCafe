@@ -104,7 +104,7 @@ def ver_produtos(request):
     contexto = {
         'produtos': lista_de_produtos
     }
-    return render(request, 'janela/products.html', contexto)
+    return render(request, 'janela/menu_inicial.html', contexto)
 
 @login_required
 def adicionar_ao_carrinho(request, produto_id):
